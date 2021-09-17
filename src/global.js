@@ -9,7 +9,7 @@ const GlobalStyle = createGlobalStyle`
   body {
     box-sizing: border-box;
     background-color: #322c3a;
-
+    overflow: hidden;
   }
 
  

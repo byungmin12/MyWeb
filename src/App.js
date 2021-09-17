@@ -104,16 +104,15 @@ const AppBody = styled.div`
 const ScreenSection = styled.div`
   width: 100%;
   height: 100%;
-  /* background-color: red; */
   display: flex;
   justify-content: center;
-  align-items: center;
+  /* align-items: center; */
+  margin-top: 2%;
 `;
 
 const ScreenBody = styled.div`
   width: 70%;
   height: 70%;
-  /* background-color: grey; */
   text-align: center;
   display: flex;
   justify-content: center;
@@ -152,14 +151,14 @@ const MainScreen = styled.div`
   position: relative;
 
   div:nth-child(1) {
-    background-color: white;
     width: 97%;
     height: 97%;
+    box-shadow: rgba(255, 255, 255, 0.19) 0px 0px 40px 14px;
 
     .background {
       width: 100%;
       height: 100%;
-      background-color: white;
+      background-color: red; //바꿔주기
     }
 
     .outer-scratch,
@@ -222,37 +221,39 @@ const ProjectSection = styled.div`
   /* background-color: blue; */
   position: fixed;
   top: 100%;
-  left: 65%;
-  width: 35%;
-  height: 20%;
-  transform: translate(0%, -100%);
-`;
-
-const ProjectBody = styled.div`
-  display: inline-block;
-  width: 100%;
-  height: 100%;
-  background-color: white;
-  clip-path: polygon(12% 23%, 73% 0%, 100% 54%, 100% 100%, 12% 100%);
-  position: relative;
-`;
-
-const ProjectLeft = styled.div`
-  background-color: #d3d3d3;
-  clip-path: polygon(12% 23%, 12% 23%, 37% 100%, 12% 100%);
-  width: 100%;
-  height: 100%;
-`;
-
-const Button = styled.div`
-  position: fixed;
-  background-color: red;
-  width: 30px;
-  height: 30px;
-  top: 50%;
   left: 50%;
-  z-index: 999;
+  width: 13%;
+  height: auto;
+  transform: translate(-50%, -50%);
 `;
+
+const Trapezoid = styled.div`
+  background-color: blue;
+  clip-path: polygon(0 0, 100% 1%, 63% 100%, 38% 100%);
+  height: 100%;
+  width: 100%;
+  transform: translate(-50%, -50%);
+`;
+
+// const BeamLight = styled.div`
+//   width: 27vw;
+//   height: 5%;
+//   perspective: 400px;
+//   transform-origin: 0 0;
+//   position: absolute;
+//   top: 30%;
+//   left: 40%;
+//   transform: rotateX(51deg) rotateZ(269deg);
+// `;
+
+// const Light = styled.div`
+//   height: 100%;
+//   transform: rotateY(-45deg);
+//   transform-origin: 0 50%;
+//   background-image: linear-gradient(to right, white, rgba(255, 255, 255, 0.5) 70%, transparent);
+//   border-radius: 20%/100% 0 0 100%;
+//   filter: blur(6px);
+// `;
 
 function App() {
   return (
@@ -276,11 +277,20 @@ function App() {
       </ScreenSection>
 
       <ProjectSection>
-        <ProjectBody>
-          <ProjectLeft></ProjectLeft>
-          <Button>dd</Button>
-        </ProjectBody>
+        {/* <ProjectBody></ProjectBody> */}
+        {/* <BeamLight>
+          <Light></Light>
+        </BeamLight> */}
+        <Trapezoid></Trapezoid>
+
+        <svg viewBox="0 0 20 10" width="100%">
+          <path d="M3,0 L17,0 L20,10 L0,10z" fill="white" />
+        </svg>
+        <svg viewBox="0 0 20 21" width="100%">
+          <path d="M0,0 L20,0 L20,5 L0,5z" fill="#d3d3d3" />
+        </svg>
       </ProjectSection>
+      {/* <ProjectLeft></ProjectLeft> */}
     </AppBody>
   );
 }
