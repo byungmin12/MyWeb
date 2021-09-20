@@ -1,5 +1,6 @@
 import styled, { keyframes } from 'styled-components';
 import PowerSettingsNewIcon from '@mui/icons-material/PowerSettingsNew';
+import ArrowLeftIcon from '@mui/icons-material/ArrowLeft';
 
 //keyframes
 const grain = keyframes`
@@ -291,26 +292,58 @@ const XRotateRPower = styled(PowerSettingsNewIcon)`
 `;
 
 const RemoteControl = styled.div`
-  width: 200px;
-  height: 300px;
-  /* background-color: red; */
-  box-shadow: 0px 0px 0 rgb(226, 226, 226), 1px 1px 0 rgb(225, 225, 225), 2px 2px 0 rgb(224, 224, 224),
-    3px 3px 0 rgb(223, 223, 223), 4px 4px 0 rgb(221, 221, 221), 5px 5px 0 rgb(220, 220, 220),
-    6px 6px 0 rgb(219, 219, 219), 7px 7px 0 rgb(218, 218, 218), 8px 8px 0 rgb(217, 217, 217),
-    9px 9px 0 rgb(216, 216, 216), 10px 10px 0 rgb(215, 215, 215), 11px 11px 0 rgb(214, 214, 214),
-    12px 12px 0 rgb(213, 213, 213), 13px 13px 0 rgb(211, 211, 211), 14px 14px 0 rgb(210, 210, 210),
-    15px 15px 0 rgb(209, 209, 209), 16px 16px 0 rgb(208, 208, 208), 17px 17px 0 rgb(207, 207, 207),
-    18px 18px 0 rgb(206, 206, 206), 19px 19px 0 rgb(205, 205, 205), 20px 20px 0 rgb(204, 204, 204),
-    21px 21px 0 rgb(203, 203, 203), 22px 22px 0 rgb(201, 201, 201), 23px 23px 0 rgb(200, 200, 200),
-    24px 24px 0 rgb(199, 199, 199), 25px 25px 0 rgb(198, 198, 198), 26px 26px 0 rgb(197, 197, 197),
-    27px 27px 0 rgb(196, 196, 196), 28px 28px 0 rgb(195, 195, 195), 29px 29px 0 rgb(194, 194, 194),
-    30px 30px 0 rgb(193, 193, 193), 31px 31px 0 rgb(191, 191, 191), 32px 32px 0 rgb(190, 190, 190),
-    33px 33px 0 rgb(189, 189, 189), 34px 34px 0 rgb(188, 188, 188), 35px 35px 0 rgb(187, 187, 187),
-    36px 36px 0 rgb(186, 186, 186), 37px 37px 0 rgb(185, 185, 185), 38px 38px 0 rgb(184, 184, 184),
-    39px 39px 0 rgb(183, 183, 183), 40px 40px 0 rgb(181, 181, 181), 41px 41px 0 rgb(180, 180, 180),
-    42px 42px 0 rgb(179, 179, 179), 43px 43px 0 rgb(178, 178, 178), 44px 44px 0 rgb(177, 177, 177),
-    45px 45px 0 rgb(176, 176, 176), 46px 46px 45px rgba(0, 0, 0, 0.6), 46px 46px 1px rgba(0, 0, 0, 0.5),
-    0px 0px 45px rgba(0, 0, 0, 0.2);
+  position: fixed;
+  top: 70%;
+  height: 30%;
+  min-height: 200px;
+  width: 10%;
+  min-width: 100px;
+  border: 1px solid #807f7b;
+  border-radius: 5%;
+  box-shadow: 1px 1px #807f7b, 2px 2px #807f7b, 3px 3px #807f7b, 4px 4px #807f7b, 5px 5px #807f7b, 6px 6px #807f7b,
+    7px 7px #807f7b, 8px 8px #807f7b, 9px 9px #807f7b, 10px 10px #807f7b, 12px 12px #807f7b, 13px 13px #807f7b,
+    14px 14px #807f7b, 15px 15px #807f7b, 16px 16px #807f7b, 17px 17px #807f7b, 18px 18px #807f7b, 19px 19px #807f7b,
+    20px 20px #807f7b;
+  /* -webkit-transform: translateX(-3px);
+  transform: translateX(-3px); */
+  /* transform: rotate(30deg); */
+  background-color: #eaeaea;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+const ArrowAndPowerSection = styled.div`
+  height: 20%;
+  width: 90%;
+  margin-top: 5%;
+  display: flex;
+`;
+
+const Direction = styled.div`
+  height: 100%;
+  width: 30%;
+  background-color: white;
+`;
+const Circle = styled.div`
+  width: 40%;
+  background-color: blue;
+`;
+
+const RemoteControllerButton = styled.div`
+  height: 15%;
+  width: 90%;
+  background-color: red;
+  margin: 5% 0 5% 0;
+  box-shadow: 3px 3px 3px black;
+  transition-duration: 0.3s;
+  border-radius: 5px;
+  :active {
+    box-shadow: 1px 1px 1px black;
+  }
+  :hover {
+    cursor: pointer;
+  }
 `;
 
 function App() {
@@ -342,7 +375,16 @@ function App() {
         </TopOfProjector>
         <BackOfProjector></BackOfProjector>
       </ProjectSection>
-      <RemoteControl></RemoteControl>
+      <RemoteControl>
+        <ArrowAndPowerSection>
+          <Direction></Direction>
+          <Circle></Circle>
+          <Direction></Direction>
+        </ArrowAndPowerSection>
+        <RemoteControllerButton onClick={() => {}}></RemoteControllerButton>
+        <RemoteControllerButton onClick={() => {}}></RemoteControllerButton>
+        <RemoteControllerButton onClick={() => {}}></RemoteControllerButton>
+      </RemoteControl>
     </AppBody>
   );
 }
