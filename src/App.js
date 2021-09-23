@@ -2,6 +2,8 @@ import styled, { keyframes } from 'styled-components';
 import PowerSettingsNewIcon from '@mui/icons-material/PowerSettingsNew';
 import ArrowLeftIcon from '@mui/icons-material/ArrowLeft';
 
+import ToggleButton from './components/ToggleButton';
+
 //keyframes
 const grain = keyframes`
 
@@ -105,7 +107,7 @@ const AppBody = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center; */
-  perspective: 400px;
+  perspective: 500px;
 `;
 
 const Test = styled.div`
@@ -237,23 +239,31 @@ const BottomStick = styled.div`
 
 const ProjectSection = styled.div`
   /* background-color: blue; */
-  width: 30%;
-  height: 20%;
+  width: 15%;
+  height: 30%;
   transform: translate(-50%, -100%);
   position: fixed;
-  top: 100%;
+  top: 110%;
   left: 50%;
+  min-width: 300px;
+  min-height: 300px;
+`;
+
+const ProjectTopWrap = styled.div`
+  filter: drop-shadow(0px 2px 0px black) drop-shadow(0px -2px 0px black) drop-shadow(2px 0px 0px black)
+    drop-shadow(-2px 0px 0px black);
 `;
 
 const TopOfProjector = styled.div`
   background-color: white;
   clip-path: polygon(15% 0, 85% 0, 100% 100%, 0 100%);
   width: 100%;
-  height: 70%;
+  height: 50%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  position: relative;
   div:nth-child(1) {
     font-size: 40px;
     -webkit-text-stroke-width: 2px;
@@ -267,7 +277,24 @@ const TopOfProjector = styled.div`
 const BackOfProjector = styled.div`
   background-color: #d3d3d3;
   width: 100%;
-  height: 30%;
+  height: 50%;
+  filter: drop-shadow(0px 3px 0px black) drop-shadow(0px -3px 0px black) drop-shadow(3px 0px 0px black)
+    drop-shadow(-3px 0px 0px black);
+  position: relative;
+`;
+
+const LeftWheel = styled.div`
+  width: 20px;
+  height: 10px;
+  background-color: black;
+  position: absolute;
+  top: 100%;
+  border-radius: 0px 0px 3px 3px;
+`;
+
+const RightWheel = styled(LeftWheel)`
+  left: 100%;
+  transform: translate(-100%, 0%);
 `;
 
 const Trapezoid = styled.div`
@@ -283,7 +310,6 @@ const Trapezoid = styled.div`
   position: absolute;
   top: -50%;
   left: 50%;
-
   clip-path: polygon(0 0, 100% 0, 45% 100%, 55% 100%);
   width: 60vw;
   height: 60%;
@@ -348,6 +374,9 @@ const LeftDirectionWrap = styled.div`
   width: 25%;
   filter: drop-shadow(1px 3px 2px #dadada);
   position: relative;
+  :active {
+    filter: drop-shadow(0px 2px 1px #dadada);
+  }
 `;
 
 const LeftDirection = styled.div`
@@ -361,6 +390,9 @@ const LeftDirection = styled.div`
     top: 1px;
     left: 1px;
   }
+  :hover {
+    cursor: pointer;
+  }
 `;
 
 const RightDirectionWrap = styled.div`
@@ -368,6 +400,9 @@ const RightDirectionWrap = styled.div`
   width: 25%;
   filter: drop-shadow(1px 3px 2px #dadada);
   position: relative;
+  :active {
+    filter: drop-shadow(0px 1px 1px #dadada);
+  }
 `;
 
 const RightDirection = styled.div`
@@ -380,6 +415,9 @@ const RightDirection = styled.div`
     position: absolute;
     top: 1px;
     left: 1px;
+  }
+  :hover {
+    cursor: pointer;
   }
 `;
 
@@ -415,8 +453,12 @@ const RemoteControllerButton = styled.div`
   box-shadow: 3px 3px 3px black;
   transition-duration: 0.3s;
   border-radius: 5px;
+  position: relative;
+
   :active {
     box-shadow: 1px 1px 1px black;
+    top: 2px;
+    left: 1px;
   }
   :hover {
     cursor: pointer;
@@ -447,11 +489,17 @@ function App() {
 
         <ProjectSection>
           <Trapezoid></Trapezoid>
-          <TopOfProjector>
-            <XRotateText>Kim's PR</XRotateText>
-            <XRotateRPower></XRotateRPower>
-          </TopOfProjector>
-          <BackOfProjector></BackOfProjector>
+          <ProjectTopWrap>
+            <TopOfProjector>
+              <XRotateText>Kim's PR</XRotateText>
+              <XRotateRPower></XRotateRPower>
+            </TopOfProjector>
+          </ProjectTopWrap>
+          <BackOfProjector>
+            <ToggleButton />
+            <LeftWheel></LeftWheel>
+            <RightWheel></RightWheel>
+          </BackOfProjector>
         </ProjectSection>
         <RemoteControl>
           <RemoteLight></RemoteLight>
