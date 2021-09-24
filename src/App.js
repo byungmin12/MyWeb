@@ -479,7 +479,7 @@ function App() {
             <MainScreen>
               <OuterScratch className="outer-scratch">
                 <InnerScratch className="inner-scratch">
-                  <BackgroundGrain className="background grain"></BackgroundGrain>
+                  <BackgroundGrain className="background grain">김병민</BackgroundGrain>
                 </InnerScratch>
               </OuterScratch>
             </MainScreen>

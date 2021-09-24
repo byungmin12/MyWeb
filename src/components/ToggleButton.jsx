@@ -1,26 +1,20 @@
 import React from 'react';
-import styled, { keyframes } from 'styled-components';
+import styled from 'styled-components';
 
 const Rocker = styled.label`
   display: inline-block;
   position: relative;
-  /*
-    SIZE OF SWITCH
-    ==============
-    All sizes are in em - therefore
-    changing the font-size here
-    will change the size of the switch.
-    See .rocker-small below as example.
-    */
-  font-size: 2em;
+  font-size: 1em;
   font-weight: bold;
-  text-align: center;
+  top: 50%;
+  left: 30%;
+
   text-transform: uppercase;
   color: #888;
   width: 7em;
   height: 4em;
   /* overflow: hidden; */
-  border-bottom: 0.5em solid #eee;
+  border-bottom: 0.5em solid #d3d3d3;
   .rocker-small {
     font-size: 0.75em; /* Sizes the switch */
     margin: 1em;
@@ -28,13 +22,14 @@ const Rocker = styled.label`
   ::before {
     content: '';
     position: absolute;
-    top: 0.5em;
-    left: 0;
+    top: 2.5em;
+    left: 0.1em;
     right: 0;
     bottom: 0;
     background-color: #999;
-    border: 0.5em solid #eee;
+    border: 0.5em solid #d3d3d3;
     border-bottom: 0;
+    height: 1em;
   }
   .switch-left,
   .switch-right {
@@ -125,9 +120,10 @@ const Rocker = styled.label`
   input:checked:focus + .switch-left + .switch-right {
     color: #333;
   }
+  input {
+    visibility: hidden;
+  }
 `;
-
-const InputStyle = styled.input``;
 
 function ToggleButton() {
   return (
