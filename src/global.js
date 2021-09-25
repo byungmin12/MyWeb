@@ -8,9 +8,8 @@ const GlobalStyle = createGlobalStyle`
 
   body {
     box-sizing: border-box;
-    background-color: red;
-     /* #322c3a; */
-    /* overflow: hidden; */
+    background-color:   #322c3a;
+    overflow: hidden;
   perspective: 400px;
   }
 

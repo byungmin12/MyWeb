@@ -1,8 +1,8 @@
 import styled, { keyframes } from 'styled-components';
 import PowerSettingsNewIcon from '@mui/icons-material/PowerSettingsNew';
-import ArrowLeftIcon from '@mui/icons-material/ArrowLeft';
 
 import ToggleButton from './components/ToggleButton';
+import OpenLogo from './components/OpenLogo';
 
 //keyframes
 const grain = keyframes`
@@ -107,7 +107,7 @@ const AppBody = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center; */
-  perspective: 500px;
+  /* perspective: 500px; */
 `;
 
 const Test = styled.div`
@@ -117,8 +117,8 @@ const Test = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center; */
-  transform-style: preserve-3d;
-  transform: translateZ(-100px);
+  /* transform-style: preserve-3d; */
+  transform: translateZ(-50px);
 `;
 
 const ScreenSection = styled.div`
@@ -479,7 +479,9 @@ function App() {
             <MainScreen>
               <OuterScratch className="outer-scratch">
                 <InnerScratch className="inner-scratch">
-                  <BackgroundGrain className="background grain">김병민</BackgroundGrain>
+                  <BackgroundGrain className="background grain">
+                    <OpenLogo />
+                  </BackgroundGrain>
                 </InnerScratch>
               </OuterScratch>
             </MainScreen>
