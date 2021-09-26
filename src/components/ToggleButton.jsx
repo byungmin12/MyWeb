@@ -129,8 +129,8 @@ function ToggleButton() {
   return (
     <Rocker className="rocker-small">
       <input type="checkbox" />
-      <span className="switch-left">Yes</span>
-      <span className="switch-right">No</span>
+      <span className="switch-left">On</span>
+      <span className="switch-right">Off</span>
     </Rocker>
   );
 }
