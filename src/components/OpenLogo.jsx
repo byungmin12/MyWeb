@@ -1,27 +1,20 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import styled, { keyframes } from 'styled-components';
+import useInterval from 'use-interval';
+import Logo from './Logo.jsx';
 
-const LastKimNameKeyframes = keyframes`
+const PressButtonMassage = keyframes`
     0% {
-    transform: translateX( -44.8%);
+      opacity: 1;
   }
- 
+  50%{
+    opacity: 0;
+
+  }
   100% {
-    transform: translateX( 0%);
+    opacity: 1;
   }
 `;
-
-const NameKeyframes = keyframes`
-    from {
-    d: path("m100, 150 h0");
-  }
- 
-  to {
-    d: path('m100, 150 h150');
-  }
-`;
-
-const SVG = styled.svg``;
 
 const Text = styled.text`
   text-align: center;
@@ -30,66 +23,60 @@ const Text = styled.text`
   font-weight: 1000;
   stroke: black;
 `;
-const TextKIM = styled.path`
-  animation: ${NameKeyframes} 6s infinite;
+
+const PressAnimation = styled.textPath`
+  font-size: 20px;
+  font-weight: normal;
+  fill: red;
+  animation: ${PressButtonMassage} 1s infinite;
+  animation-delay: 5.6s;
+  opacity: 0;
+  stroke: red;
 `;
 
-const TextBM = styled(Text)``;
-
 function OpenLogo() {
-  let [pathNameNum, setPathNameNum] = useState(0);
-  let [pathPortFolioNum, setPathPortFolioNum] = useState(0);
-  let [pathWebsiteNum, setPathWebsiteNum] = useState(0);
+  const [pathNameNum, setPathNameNum] = useState(0);
+  const [pathPortFolioNum, setPathPortFolioNum] = useState(0);
+  const [pathWebsiteNum, setPathWebsiteNum] = useState(0);
 
-  const addPathNum = () => {
-    setPathNameNum(pathNameNum++);
-  };
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      addPathNum();
+  useInterval(
+    () => {
+      setPathNameNum(pathNameNum + 1);
+    },
+    pathNameNum >= 300 ? null : 2,
+  );
+  useInterval(
+    () => {
       if (pathNameNum >= 300) {
-        clearInterval(interval);
-        const interval1 = setInterval(() => {
-          setPathPortFolioNum(pathPortFolioNum++);
-          if (pathPortFolioNum >= 300) {
-            clearInterval(interval1);
-            const interval2 = setInterval(() => {
-              setPathWebsiteNum(pathWebsiteNum++);
-              if (pathWebsiteNum >= 300) {
-                clearInterval(interval2);
-              }
-            }, 5);
-          }
-        }, 5);
+        setPathPortFolioNum(pathPortFolioNum + 1);
       }
-    }, 5);
-  }, []);
+    },
+    pathPortFolioNum >= 300 ? null : 2,
+  );
+  useInterval(
+    () => {
+      if (pathPortFolioNum >= 300) {
+        setPathWebsiteNum(pathWebsiteNum + 1);
+      }
+    },
+    pathWebsiteNum >= 300 ? null : 2,
+  );
 
   return (
-    <SVG width="100%" height="100%" viewBox="30 -50 600 500">
+    <svg width="100%" height="100%" viewBox="30 -50 600 500">
       <path id="test" d={`m100, 150 h${pathNameNum}`} />
       <path id="test1" d={`m100, 200 h${pathPortFolioNum}`} />
       <path id="test2" d={`m100, 250 h${pathWebsiteNum}`} />
+      <path id="test3" d={`m105, 270 h400`} />
 
+      <Logo />
       <Text>
         <textPath href="#test">BYUNGMIN's</textPath>
-        <textPath y="30%" href="#test1">
-          PORTFOLIO
-        </textPath>
-        <textPath x="8%" y="60%" href="#test2">
-          WEBSITE
-        </textPath>
-
-        {/* <TextKIM x="90">KIM</TextKIM> */}
-
-        {/* <TextComma x="52">`</TextComma> */}
-        {/* <Text x="60">s</Text> */}
-        {/* <Text x="0" y="30%">
-        RESUME
-      </Text> */}
+        <textPath href="#test1">PORTFOLIO</textPath>
+        <textPath href="#test2">WEBSITE</textPath>
+        <PressAnimation href="#test3">press power button in a remote controller</PressAnimation>
       </Text>
-    </SVG>
+    </svg>
   );
 }
 

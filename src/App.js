@@ -1,8 +1,10 @@
+import React, { useState } from 'react';
+
 import styled, { keyframes } from 'styled-components';
-import PowerSettingsNewIcon from '@mui/icons-material/PowerSettingsNew';
 
 import ToggleButton from './components/ToggleButton';
 import OpenLogo from './components/OpenLogo';
+import RemoteController from './components/RemoteController';
 
 //keyframes
 const grain = keyframes`
@@ -173,7 +175,10 @@ const MainScreen = styled.div`
   div:nth-child(1) {
     width: 97%;
     height: 97%;
-    box-shadow: rgba(255, 255, 255, 0.19) 0px 0px 40px 14px;
+
+    ${({ on }) => {
+      return on ? `box-shadow: rgba(255, 255, 255, 0.19) 0px 0px 40px 14px;transition-duration: 0.2s;` : null;
+    }};
 
     .background {
       width: 100%;
@@ -304,8 +309,7 @@ const Trapezoid = styled.div`
     rgba(255, 255, 255, 1) 0%,
     rgba(255, 255, 255, 0) 67%
   );
-  background-image: -moz-radial-gradient(50% 100%, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 47%);
-  background-image: -ms-radial-gradient(50% 100%, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 100%);
+  /* background-image: -moz-radial-gradient(50% 100%, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 47%); */
 
   position: absolute;
   top: -50%;
@@ -314,158 +318,24 @@ const Trapezoid = styled.div`
   width: 60vw;
   height: 60%;
   transform: translate(-50%, 0%);
+  transition-duration: 0.2s;
+  ${({ on }) => {
+    return on ? `opacity: 0.5;` : `opacity: 0;`;
+  }};
 `;
 
 const XRotateText = styled.div`
   transform: rotateX(60deg);
   perspective: 500px;
-`;
-
-const XRotateRPower = styled(PowerSettingsNewIcon)`
-  transform: rotateX(60deg);
-  perspective: 500px;
-  :hover {
-    cursor: pointer;
-  }
-`;
-
-const RemoteControl = styled.div`
-  position: fixed;
-  top: 70%;
-  height: 30%;
-  min-height: 200px;
-  width: 10%;
-  min-width: 100px;
-  border: 2px solid #606060;
-  border-radius: 5%;
-  box-shadow: 1px 1px #000000, 2px 2px #000000, 3px 3px #000000, 4px 4px #000000, 5px 5px #000000, 6px 6px #000000,
-    7px 7px #000000, 8px 8px #000000, 9px 9px #000000, 10px 10px #000000, 12px 12px #000000, 13px 13px #000000,
-    14px 14px #000000, 15px 15px #000000, 16px 16px #000000, 17px 17px #000000, 18px 18px #000000, 19px 19px #000000,
-    20px 20px #000000;
-  /* -webkit-transform: translateX(-3px);
-  transform: translateX(-3px); */
-  /* transform: rotate(30deg); */
-  background-color: #212121;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`;
-
-const RemoteLight = styled.div`
-  background-color: transparent;
-  width: 30px;
-  height: 15px;
-  position: absolute;
-  top: 15px;
-  display: inline-block;
-  box-shadow: rgba(255, 0, 0, 0.95) 0px -30px 50px 8px;
-`;
-
-const ArrowAndPowerSection = styled.div`
-  height: 20%;
-  width: 90%;
-  margin-top: 5%;
-  display: flex;
-  justify-content: space-between;
-`;
-
-const LeftDirectionWrap = styled.div`
-  height: 100%;
-  width: 25%;
-  filter: drop-shadow(1px 3px 2px #dadada);
-  position: relative;
-  :active {
-    filter: drop-shadow(0px 2px 1px #dadada);
-  }
-`;
-
-const LeftDirection = styled.div`
-  height: 100%;
-  width: 100%;
-  background: white;
-  clip-path: polygon(0% 50%, 100% 0%, 100% 100%);
-  transition-duration: 0.3s;
-  :active {
-    position: absolute;
-    top: 1px;
-    left: 1px;
-  }
-  :hover {
-    cursor: pointer;
-  }
-`;
-
-const RightDirectionWrap = styled.div`
-  height: 100%;
-  width: 25%;
-  filter: drop-shadow(1px 3px 2px #dadada);
-  position: relative;
-  :active {
-    filter: drop-shadow(0px 1px 1px #dadada);
-  }
-`;
-
-const RightDirection = styled.div`
-  height: 100%;
-  width: 100%;
-  background: white;
-  clip-path: polygon(0% 0%, 0% 100%, 100% 50%);
-  transition-duration: 0.3s;
-  :active {
-    position: absolute;
-    top: 1px;
-    left: 1px;
-  }
-  :hover {
-    cursor: pointer;
-  }
-`;
-
-const CircleWrap = styled.div`
-  width: 35%;
-  height: 100%;
-  position: relative;
-`;
-
-const Circle = styled.div`
-  width: 100%;
-  height: 100%;
-  background-color: #ff0000;
-  border-radius: 50%;
-  box-shadow: 1px 1px #b60000, 2px 2px #b60000, 3px 3px #b60000;
-  transition-duration: 0.3s;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  :active {
-    position: absolute;
-    top: 2px;
-    left: 2px;
-    box-shadow: 1px 1px #b60000, 2px 2px #b60000;
-  }
-`;
-
-const RemoteControllerButton = styled.div`
-  height: 15%;
-  width: 90%;
-  background-color: #404040;
-  margin: 5% 0 5% 0;
-  box-shadow: 3px 3px 3px black;
-  transition-duration: 0.3s;
-  border-radius: 5px;
-  position: relative;
-
-  :active {
-    box-shadow: 1px 1px 1px black;
-    top: 2px;
-    left: 1px;
-  }
-  :hover {
-    cursor: pointer;
-  }
+  height: 50px;
 `;
 
 function App() {
+  const [isOnOff, setIsOnOff] = useState(false);
+  const handleOnOff = () => {
+    setIsOnOff(!isOnOff);
+    console.log(isOnOff);
+  };
   return (
     <AppBody>
       <Test>
@@ -476,12 +346,10 @@ function App() {
               <div></div>
               <div></div>
             </TopStick>
-            <MainScreen>
+            <MainScreen on={isOnOff}>
               <OuterScratch className="outer-scratch">
                 <InnerScratch className="inner-scratch">
-                  <BackgroundGrain className="background grain">
-                    <OpenLogo />
-                  </BackgroundGrain>
+                  <BackgroundGrain className="background grain">{isOnOff ? <OpenLogo /> : null}</BackgroundGrain>
                 </InnerScratch>
               </OuterScratch>
             </MainScreen>
@@ -490,39 +358,19 @@ function App() {
         </ScreenSection>
 
         <ProjectSection>
-          <Trapezoid></Trapezoid>
+          <Trapezoid on={isOnOff}></Trapezoid>
           <ProjectTopWrap>
             <TopOfProjector>
-              <XRotateText>Kim's PR</XRotateText>
-              <XRotateRPower></XRotateRPower>
+              <XRotateText></XRotateText>
             </TopOfProjector>
           </ProjectTopWrap>
           <BackOfProjector>
-            <ToggleButton />
+            <ToggleButton handleOnOff={handleOnOff} />
             <LeftWheel></LeftWheel>
             <RightWheel></RightWheel>
           </BackOfProjector>
         </ProjectSection>
-        <RemoteControl>
-          <RemoteLight></RemoteLight>
-          <ArrowAndPowerSection>
-            <LeftDirectionWrap>
-              <LeftDirection></LeftDirection>
-            </LeftDirectionWrap>
-            <CircleWrap>
-              <Circle>
-                <PowerSettingsNewIcon
-                  style={{ color: 'white', fontWeight: '800', fontSize: '2em' }}></PowerSettingsNewIcon>
-              </Circle>
-            </CircleWrap>
-            <RightDirectionWrap>
-              <RightDirection></RightDirection>
-            </RightDirectionWrap>
-          </ArrowAndPowerSection>
-          <RemoteControllerButton onClick={() => {}}></RemoteControllerButton>
-          <RemoteControllerButton onClick={() => {}}></RemoteControllerButton>
-          <RemoteControllerButton onClick={() => {}}></RemoteControllerButton>
-        </RemoteControl>
+        <RemoteController />
       </Test>
     </AppBody>
   );
