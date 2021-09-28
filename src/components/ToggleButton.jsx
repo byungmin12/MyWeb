@@ -125,10 +125,16 @@ const Rocker = styled.label`
   }
 `;
 
-function ToggleButton({ handleOnOff }) {
+function ToggleButton({ handleOnOff, refCheckbox }) {
   return (
     <Rocker className="rocker-small">
-      <input type="checkbox" onChange={handleOnOff} />
+      <input
+        type="checkbox"
+        onClick={(e) => {
+          handleOnOff();
+        }}
+        ref={refCheckbox}
+      />
       <span className="switch-left">On</span>
       <span className="switch-right">Off</span>
     </Rocker>

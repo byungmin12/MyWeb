@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 
 import styled, { keyframes } from 'styled-components';
 
 import ToggleButton from './components/ToggleButton';
 import OpenLogo from './components/OpenLogo';
 import RemoteController from './components/RemoteController';
+import Intro from './components/Intro';
 
 //keyframes
 const grain = keyframes`
@@ -332,10 +333,24 @@ const XRotateText = styled.div`
 
 function App() {
   const [isOnOff, setIsOnOff] = useState(false);
+  const [isCheckPage, setIsCheckPage] = useState(0);
+  const refCheckbox = useRef();
+
   const handleOnOff = () => {
     setIsOnOff(!isOnOff);
-    console.log(isOnOff);
+    setIsCheckPage(0);
   };
+
+  const handleRemoteOnOff = () => {
+    if (isCheckPage !== 0) {
+      refCheckbox.current.checked = false;
+      setIsOnOff(false);
+      setIsCheckPage(0);
+    } else {
+      setIsCheckPage(1);
+    }
+  };
+
   return (
     <AppBody>
       <Test>
@@ -347,11 +362,15 @@ function App() {
               <div></div>
             </TopStick>
             <MainScreen on={isOnOff}>
-              <OuterScratch className="outer-scratch">
-                <InnerScratch className="inner-scratch">
-                  <BackgroundGrain className="background grain">{isOnOff ? <OpenLogo /> : null}</BackgroundGrain>
-                </InnerScratch>
-              </OuterScratch>
+              {isOnOff === true && isCheckPage === 1 ? (
+                <Intro />
+              ) : (
+                <OuterScratch className="outer-scratch">
+                  <InnerScratch className="inner-scratch">
+                    <BackgroundGrain className="background grain">{isOnOff ? <OpenLogo /> : null}</BackgroundGrain>
+                  </InnerScratch>
+                </OuterScratch>
+              )}
             </MainScreen>
             <BottomStick></BottomStick>
           </ScreenBody>
@@ -365,12 +384,12 @@ function App() {
             </TopOfProjector>
           </ProjectTopWrap>
           <BackOfProjector>
-            <ToggleButton handleOnOff={handleOnOff} />
+            <ToggleButton handleOnOff={handleOnOff} refCheckbox={refCheckbox} />
             <LeftWheel></LeftWheel>
             <RightWheel></RightWheel>
           </BackOfProjector>
         </ProjectSection>
-        <RemoteController />
+        <RemoteController handleRemoteOnOff={handleRemoteOnOff} refCheckbox={refCheckbox} />
       </Test>
     </AppBody>
   );

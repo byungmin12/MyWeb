@@ -138,7 +138,7 @@ const RemoteControllerButton = styled.div`
   }
 `;
 
-function RemoteController() {
+function RemoteController({ handleRemoteOnOff }) {
   return (
     <RemoteControl>
       <RemoteLight></RemoteLight>
@@ -147,7 +147,10 @@ function RemoteController() {
           <LeftDirection></LeftDirection>
         </LeftDirectionWrap>
         <CircleWrap>
-          <Circle>
+          <Circle
+            onClick={() => {
+              handleRemoteOnOff();
+            }}>
             <PowerSettingsNewIcon style={{ color: 'white', fontWeight: '800', fontSize: '2em' }}></PowerSettingsNewIcon>
           </Circle>
         </CircleWrap>
