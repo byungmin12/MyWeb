@@ -138,24 +138,42 @@ const RemoteControllerButton = styled.div`
   }
 `;
 
-function RemoteController({ handleRemoteOnOff }) {
+function RemoteController({ handleRemotePage, setIsCheckPage, isCheckPage }) {
+  const handleLeftPage = () => {
+    const pageNum = isCheckPage - 1;
+    if (pageNum < 2) {
+      handleRemotePage(4);
+    } else {
+      handleRemotePage(pageNum);
+    }
+  };
+
+  const handleRightPage = () => {
+    const pageNum = isCheckPage + 1;
+    if (pageNum > 4) {
+      handleRemotePage(2);
+    } else {
+      handleRemotePage(pageNum);
+    }
+  };
+
   return (
     <RemoteControl>
       <RemoteLight></RemoteLight>
       <ArrowAndPowerSection>
-        <LeftDirectionWrap>
+        <LeftDirectionWrap onClick={handleLeftPage}>
           <LeftDirection></LeftDirection>
         </LeftDirectionWrap>
         <CircleWrap>
           <Circle
             onClick={() => {
-              handleRemoteOnOff();
+              handleRemotePage(1);
             }}>
             <PowerSettingsNewIcon style={{ color: 'white', fontWeight: '800', fontSize: '2em' }}></PowerSettingsNewIcon>
           </Circle>
         </CircleWrap>
         <RightDirectionWrap>
-          <RightDirection></RightDirection>
+          <RightDirection onClick={handleRightPage}></RightDirection>
         </RightDirectionWrap>
       </ArrowAndPowerSection>
       <RemoteControllerButton onClick={() => {}}></RemoteControllerButton>

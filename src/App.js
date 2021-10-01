@@ -6,6 +6,10 @@ import ToggleButton from './components/ToggleButton';
 import OpenLogo from './components/OpenLogo';
 import RemoteController from './components/RemoteController';
 import Intro from './components/Intro';
+import Mypage from './components/Mypage';
+import Myskill from './components/Myskill';
+import Projects from './components/Projects';
+import Navbar from './components/Navbar';
 
 //keyframes
 const grain = keyframes`
@@ -102,6 +106,9 @@ const innerScrat = keyframes`
 `;
 
 //CSS
+//CSS
+//CSS
+//CSS
 
 const AppBody = styled.div`
   width: 100vw;
@@ -173,10 +180,9 @@ const MainScreen = styled.div`
   align-items: center;
   position: relative;
 
-  div:nth-child(1) {
+  .outer-scratch {
     width: 97%;
     height: 97%;
-
     ${({ on }) => {
       return on ? `box-shadow: rgba(255, 255, 255, 0.19) 0px 0px 40px 14px;transition-duration: 0.2s;` : null;
     }};
@@ -202,19 +208,21 @@ const OuterScratch = styled.div`
     position: absolute;
     top: 0;
     left: 0;
-    padding-left: 100px;
+    /* padding-left: 100px; */
     opacity: 0.08;
   }
 `;
 
 const InnerScratch = styled.div`
+  width: 97%;
+  height: 97%;
   ::after {
     width: 97%;
     height: 97%;
     position: absolute;
     top: 0;
     left: 0;
-    padding-left: 100px;
+    /* padding-left: 100px; */
     opacity: 0.08;
     left: 30%;
     -webkit-animation: ${innerScrat} 2s infinite;
@@ -331,6 +339,14 @@ const XRotateText = styled.div`
   height: 50px;
 `;
 
+//app
+//app
+//app
+//app
+//app
+//app
+//app
+
 function App() {
   const [isOnOff, setIsOnOff] = useState(false);
   const [isCheckPage, setIsCheckPage] = useState(0);
@@ -341,14 +357,8 @@ function App() {
     setIsCheckPage(0);
   };
 
-  const handleRemoteOnOff = () => {
-    if (isCheckPage !== 0) {
-      refCheckbox.current.checked = false;
-      setIsOnOff(false);
-      setIsCheckPage(0);
-    } else {
-      setIsCheckPage(1);
-    }
+  const handleRemotePage = (num) => {
+    setIsCheckPage(num);
   };
 
   return (
@@ -363,7 +373,32 @@ function App() {
             </TopStick>
             <MainScreen on={isOnOff}>
               {isOnOff === true && isCheckPage === 1 ? (
-                <Intro />
+                <OuterScratch className="outer-scratch">
+                  <InnerScratch className="inner-scratch" style={{ backgroundColor: 'white' }}>
+                    <Intro />
+                  </InnerScratch>
+                </OuterScratch>
+              ) : isOnOff === true && isCheckPage === 2 ? (
+                <OuterScratch className="outer-scratch">
+                  <InnerScratch className="inner-scratch" style={{ backgroundColor: 'white' }}>
+                    <Navbar page={2} />
+                    <Mypage />
+                  </InnerScratch>
+                </OuterScratch>
+              ) : isOnOff === true && isCheckPage === 3 ? (
+                <OuterScratch className="outer-scratch">
+                  <InnerScratch className="inner-scratch" style={{ backgroundColor: 'white' }}>
+                    <Navbar page={3} />
+                    <Myskill />
+                  </InnerScratch>
+                </OuterScratch>
+              ) : isOnOff === true && isCheckPage === 4 ? (
+                <OuterScratch className="outer-scratch">
+                  <InnerScratch className="inner-scratch" style={{ backgroundColor: 'white' }}>
+                    <Navbar page={4} />
+                    <Projects />
+                  </InnerScratch>
+                </OuterScratch>
               ) : (
                 <OuterScratch className="outer-scratch">
                   <InnerScratch className="inner-scratch">
@@ -389,7 +424,12 @@ function App() {
             <RightWheel></RightWheel>
           </BackOfProjector>
         </ProjectSection>
-        <RemoteController handleRemoteOnOff={handleRemoteOnOff} refCheckbox={refCheckbox} />
+        <RemoteController
+          handleRemotePage={handleRemotePage}
+          setIsCheckPage={setIsCheckPage}
+          isCheckPage={isCheckPage}
+          refCheckbox={refCheckbox}
+        />
       </Test>
     </AppBody>
   );

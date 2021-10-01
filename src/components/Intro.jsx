@@ -2,7 +2,7 @@ import React from 'react';
 import styled, { keyframes } from 'styled-components';
 
 const fadeIn = keyframes`
-   80% {
+   from {
     opacity: 0;
   }
 
@@ -70,7 +70,7 @@ const leftDisappearImgKeyframe = keyframes`
   to {
     opacity: 0;
     width: 0% ; 
-    left: 0%
+    left: 0%;
 
   }
 `;
@@ -103,6 +103,14 @@ const disappearAnimationTag = keyframes`
   }
   to {
     opacity: 0;
+  }
+`;
+const appearAnimationTag = keyframes`
+   from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
   }
 `;
 
@@ -151,43 +159,131 @@ const flipOutX = keyframes`
 }
 `;
 
-const appearMysubwayTextKeyframes = keyframes`
-   from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-`;
-
-const keepMysubwayTextKeyframes = keyframes`
-   from {
-    opacity: 1;
-  }
-  to {
-    opacity: 0.5;
-  }
-`;
-
-const disappearMysubwayTextKeyframes = keyframes`
-   from {
-    opacity: 0.5;
-  }
-  to {
-    opacity: 0;
-  }
-`;
-const appearMysubwayGif = keyframes`
+const startMysubwayTextKeyframes = keyframes`
   from{
-    linear-gradient(rgba(255,255,255,0), rgba(255,255,255,0));
+    opacity: 0;
   }
   to{
-    linear-gradient(rgba(255,255,255,1), rgba(255,255,255,1));
-    background: url('../../mysubway.gif');
+    opacity:1;
+  }
+`;
+const keepMysubwayTextKeyframes = keyframes`
+  from{
+    opacity: 1;
+  }
+  to{
+    opacity:0.5;
+  }
+`;
+const finishMysubwayTextKeyframes = keyframes`
+  
+  from{
+    opacity: 0.5;
+  }
+  to{
+   opacity: 0;
+  }
+`;
+const startMysubwayGif = keyframes`
+  from{
+    background:  linear-gradient(rgba(255,255,255,1), rgba(255,255,255,1)), url('../../mysubway.gif');
+  background-size: contain;
+  }
+  to{
+    background:  linear-gradient(rgba(255,255,255,0.5), rgba(255,255,255,0.5)), url('../../mysubway.gif');
   background-size: contain;
   }
 `;
 
+const keepMysubwayGif = keyframes`
+ from{
+    background:  linear-gradient(rgba(255,255,255,0.5), rgba(255,255,255,0.5)), url('../../mysubway.gif');
+  background-size: contain;
+  }
+  to{
+    background:  linear-gradient(rgba(255,255,255,0), rgba(255,255,255,0)), url('../../mysubway.gif');
+  background-size: contain;
+  }
+`;
+const finishMysubwayGif = keyframes`
+ from{
+    background:  linear-gradient(rgba(255,255,255,0), rgba(255,255,255,0)), url('../../mysubway.gif');
+  background-size: contain;
+  }
+  to{
+    background:  linear-gradient(rgba(255,255,255,1), rgba(255,255,255,1)), url('../../mysubway.gif');
+  background-size: contain;
+  }
+`;
+
+const startIsthisrightTextKeyframes = keyframes`
+  from{
+    opacity: 0;
+  }
+  to{
+    opacity:1;
+  }
+`;
+const keepIsthisrightTextKeyframes = keyframes`
+  from{
+    opacity: 1;
+  }
+  to{
+    opacity:0.5;
+  }
+`;
+const finishIsthisrightTextKeyframes = keyframes`
+  
+  from{
+    opacity: 0.5;
+  }
+  to{
+   opacity: 0;
+  }
+`;
+const startIsthisrightGif = keyframes`
+  from{
+    background:  linear-gradient(rgba(255,255,255,1), rgba(255,255,255,1)), url('../../isthisright.gif');
+  background-size: contain;
+  }
+  to{
+    background:  linear-gradient(rgba(255,255,255,0.5), rgba(255,255,255,0.5)), url('../../isthisright.gif');
+  background-size: contain;
+  }
+`;
+
+const keepIsthisrightGif = keyframes`
+ from{
+    background:  linear-gradient(rgba(255,255,255,0.5), rgba(255,255,255,0.5)), url('../../isthisright.gif');
+  background-size: contain;
+  }
+  to{
+    background:  linear-gradient(rgba(255,255,255,0), rgba(255,255,255,0)), url('../../isthisright.gif');
+  background-size: contain;
+  }
+`;
+const finishIsthisrightGif = keyframes`
+ from{
+    background:  linear-gradient(rgba(255,255,255,0), rgba(255,255,255,0)), url('../../isthisright.gif');
+  background-size: contain;
+  }
+  to{
+    background:  linear-gradient(rgba(255,255,255,1), rgba(255,255,255,1)), url('../../isthisright.gif');
+  background-size: contain;
+  }
+`;
+
+const changeColor = keyframes`
+  from{
+    color: red;
+  }
+  50%{
+    color: black;
+  }
+  to{
+    color: red;
+  }
+`;
 // 요기 까지가 애니메이션
 // 요기 까지가 애니메이션
 // 요기 까지가 애니메이션
@@ -210,6 +306,14 @@ const WideScreen = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  .lastText {
+    animation-name: ${appearAnimationTag}, ${changeColor};
+    animation-delay: 22.5s, 23.3s;
+    animation-duration: 1s, 1s;
+    animation-fill-mode: forwards;
+    animation-iteration-count: 1, infinite;
+    opacity: 0;
+  }
 `;
 
 //Image Section
@@ -224,8 +328,8 @@ const FirstImg = styled.img`
   opacity: 0;
 
   animation-name: ${fadeIn}, ${bounceOutLeft};
-  animation-delay: 0s, 1s;
-  animation-duration: 1s, 1s;
+  animation-delay: 0.8s, 2.3s;
+  animation-duration: 0.7s, 0.3s;
   animation-fill-mode: forwards;
 `;
 
@@ -240,7 +344,7 @@ const LeftImg = styled.img`
   transform: translate(-100%, 0%);
 
   animation-name: ${leftImgKeyframe}, ${leftDisappearImgKeyframe};
-  animation-delay: 2s, 5s;
+  animation-delay: 2.6s, 6s;
   animation-duration: 1s, 1s;
   animation-fill-mode: forwards;
 `;
@@ -250,7 +354,7 @@ const RightImg = styled(LeftImg)`
   opacity: 1;
   transform: translate(-100%, 0%);
   animation-name: ${leftImgKeyframe}, ${disappearAnimationTag};
-  animation-delay: 5s, 8.8s;
+  animation-delay: 6s, 8.8s;
   animation-duration: 1s, 1s;
 `;
 
@@ -261,19 +365,21 @@ const IntroText = styled.div`
   top: 55%;
   left: 0%;
   width: 100%;
-  animation: ${bounceOutLeft} 1.1s forwards;
-  animation-delay: 0.8s;
   opacity: 0;
+  animation-name: ${appearAnimationTag}, ${bounceOutLeft};
+  animation-delay: 0.8s, 2.3s;
+  animation-duration: 0.7s, 0.3s;
+  animation-fill-mode: forwards;
 `;
 const IntroUpText = styled.div`
   width: 100%;
   position: absolute;
   font-size: 5vw;
   font-weight: 1000;
-  top: 40%;
+  top: 35%;
   animation-name: ${textUp}, ${bounceOutLeft};
-  animation-delay: 0.8s, 0s;
-  animation-duration: 0.3s, 2.3s;
+  animation-delay: 0.8s, 2.3s;
+  animation-duration: 0.7s, 0.3s;
   animation-fill-mode: forwards;
 `;
 const IntroDownText = styled.div`
@@ -283,37 +389,37 @@ const IntroDownText = styled.div`
   font-weight: 1000;
   top: 45%;
   animation-name: ${textDown}, ${bounceOutLeft};
-  animation-delay: 0.8s, 0s;
-  animation-duration: 0.3s, 2.3s;
+  animation-delay: 0.8s, 2.3s;
+  animation-duration: 0.7s, 0.3s;
   animation-fill-mode: forwards;
 `;
 
 const LeftText = styled.div`
   position: absolute;
   font-size: 3vw;
-  font-weight: 800;
+  font-weight: 1000;
   width: 100%;
   opacity: 0;
   animation-name: ${leftTextFirstKeyframe}, ${disappearAnimationTag};
-  animation-delay: 2.3s, 4.8s;
+  animation-delay: 2.6s, 5.8s;
   animation-duration: 1s, 1s;
   animation-fill-mode: forwards;
 `;
 
 const LeftTextFirst = styled(LeftText)`
   top: 20%;
-  left: -25%;
+  left: -30%;
 `;
 
 const LeftTextSecond = styled(LeftText)`
   top: 40%;
   left: -20%;
-  animation-delay: 2.5s, 5s;
+  animation-delay: 2.8s, 6s;
 `;
 const LeftTextThird = styled(LeftText)`
   top: 60%;
   left: -22%;
-  animation-delay: 2.4s, 4.9s;
+  animation-delay: 2.7s, 6.9s;
 `;
 
 const RightText = styled.div`
@@ -325,27 +431,32 @@ const RightText = styled.div`
   font-weight: 1000;
   opacity: 0;
   animation-name: ${RightTextFirstKeyframe}, ${disappearAnimationTag};
-  animation-delay: 4.8s, 8.2s;
+  animation-delay: 5.8s, 8.2s;
   animation-duration: 1s, 1s;
   animation-fill-mode: forwards;
 `;
 
 const RightTextFirst = styled(RightText)`
-  animation-delay: 5s, 8.4s;
+  animation-delay: 6s, 8.4s;
 
   top: 18%;
 `;
 const RightTextSecond = styled(RightText)`
-  animation-delay: 5.2s, 8.6s;
-  top: 38%;
+  animation-delay: 6.4s, 8.8s;
+
+  top: 33%;
+  left: 88%;
 `;
 const RightTextThird = styled(RightText)`
-  animation-delay: 5.4s, 8.8s;
-  top: 58%;
+  animation-delay: 6.2s, 8.6s;
+
+  top: 50%;
+  left: 70%;
 `;
 const RightTextFourth = styled(RightText)`
-  animation-delay: 5.6s, 9s;
+  animation-delay: 6.6s, 9s;
   top: 75%;
+  left: 78%;
 `;
 
 const CenterText = styled.span`
@@ -393,9 +504,9 @@ const ProjectSeventh = styled(CenterText)`
 `;
 
 const WideScreenMysubway = styled(WideScreen)`
-  animation-name: ${appearMysubwayGif};
-  animation-delay: 15s;
-  animation-duration: 1s;
+  animation-name: ${startMysubwayGif}, ${keepMysubwayGif}, ${finishMysubwayGif};
+  animation-delay: 14s, 14.6s, 18s;
+  animation-duration: 1s, 1s, 1s;
   animation-fill-mode: forwards;
   opacity: 1;
 `;
@@ -406,12 +517,20 @@ const MysubwayText = styled.span`
   width: 100%;
   text-align: center;
   vertical-align: center;
-  background-color: blue;
+  background-color: #d3d3d3;
   opacity: 0;
-  animation-name: ${appearMysubwayTextKeyframes}, ${keepMysubwayTextKeyframes}, ${disappearMysubwayTextKeyframes};
-  animation-delay: 13.6s, 15s, 18s;
+  animation-name: ${startMysubwayTextKeyframes}, ${keepMysubwayTextKeyframes}, ${finishMysubwayTextKeyframes};
+  animation-delay: 14s, 14.6s, 18s;
   animation-duration: 1s, 1s, 1s;
   animation-fill-mode: forwards;
+`;
+const WideScreenIsthisright = styled(WideScreenMysubway)`
+  animation-name: ${startIsthisrightGif}, ${keepIsthisrightGif}, ${finishIsthisrightGif};
+  animation-delay: 18s, 19s, 22s;
+`;
+const IsthisrightText = styled(MysubwayText)`
+  animation-name: ${startIsthisrightTextKeyframes}, ${keepIsthisrightTextKeyframes}, ${finishIsthisrightTextKeyframes};
+  animation-delay: 18s, 19s, 22s;
 `;
 
 function Intro() {
@@ -421,8 +540,10 @@ function Intro() {
         <FirstImg src="../../pic1.jpeg" />
       </div>
       <IntroText>INTRODUCE MYSELF</IntroText>
-      <IntroUpText>Byungmin Kim</IntroUpText>
-      <IntroDownText>Front-end developer</IntroDownText>
+      <WideScreen>
+        <IntroUpText>Byungmin Kim</IntroUpText>
+        <IntroDownText>Front-end developer</IntroDownText>
+      </WideScreen>
 
       <LeftImg src="../../typing.gif" />
       <LeftTextFirst>BE INTENSE</LeftTextFirst>
@@ -442,7 +563,11 @@ function Intro() {
       <RightImg src="../../typing.gif" />
       <RightTextFirst>JS HTML CSS</RightTextFirst>
       <RightTextSecond>REACT</RightTextSecond>
-      <RightTextThird>STYLED COMPONENTS</RightTextThird>
+      <RightTextThird>
+        STYLED
+        <br />
+        COMPONENTS
+      </RightTextThird>
       <RightTextFourth>REDUX</RightTextFourth>
       <WideScreen
         style={{
@@ -474,6 +599,16 @@ function Intro() {
       <WideScreenMysubway>
         <MysubwayText>MYSUBWAY</MysubwayText>
       </WideScreenMysubway>
+      <WideScreenIsthisright>
+        <IsthisrightText>이거맞아?</IsthisrightText>
+      </WideScreenIsthisright>
+      <WideScreen style={{ fontWeight: '800' }}>
+        <span className="lastText">
+          Click
+          <br />
+          for detail
+        </span>
+      </WideScreen>
     </IntroSection>
   );
 }

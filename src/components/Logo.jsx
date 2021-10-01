@@ -27,7 +27,7 @@ function Logo() {
     <svg width="100%" height="100%" viewBox="-50 15 198.000000 198.000000" preserveAspectRatio="xMidYMid meet">
       <GTag transform="translate(0.000000,213.000000) scale(0.100000,-0.100000)" fill="#000000" stroke="none">
         <PathJewelry
-          calssName="jew"
+          className="jew"
           d="M1072 1602 l-52 -47 126 -140 c180 -201 161 -185 187 -154 12 15 76
 86 141 158 l119 132 -49 50 -48 49 -186 0 -185 0 -53 -48z m158 23 c0 -8 -5
 -26 -12 -40 -11 -23 -16 -25 -85 -25 -40 0 -73 3 -73 8 0 4 17 21 37 39 31 26
