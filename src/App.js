@@ -143,7 +143,6 @@ const ScreenSection = styled.div`
 const ScreenBody = styled.div`
   width: 70%;
   height: 90%;
-  text-align: center;
   display: flex;
   justify-content: center;
   align-items: center;

@@ -3,13 +3,16 @@ import styled, { keyframes } from 'styled-components';
 
 const Title = styled.div`
   width: 100%;
-  background-color: white;
+  height: 10%;
+  background-color: #fafafa;
   display: flex;
-  font-size: 2vw;
+  font-size: 1.7vw;
 `;
 
 const Shadow = styled.div`
   width: 100%;
+  height: 100%;
+
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -19,14 +22,16 @@ const Shadow = styled.div`
 
 const TitleMypage = styled.span`
   width: 100%;
+
   ${({ num }) => {
     return num === 2 ? `color: #8C5C03;` : null;
   }};
   ::after {
     content: '';
     display: block;
-    border-bottom: 10px solid #8c5c03;
+    border-bottom: 4px solid #8c5c03;
     transition-duration: 0.2s;
+
     width: 0px;
     ${({ num }) => {
       return num === 2 ? `width: 100%;` : null;
@@ -35,13 +40,14 @@ const TitleMypage = styled.span`
 `;
 const TitleSkill = styled.span`
   width: 100%;
+
   ${({ num }) => {
     return num === 3 ? `color: #8C5C03;` : null;
   }};
   ::after {
     content: '';
     display: block;
-    border-bottom: 10px solid #8c5c03;
+    border-bottom: 4px solid #8c5c03;
     transition-duration: 0.2s;
     width: 0px;
     ${({ num }) => {
@@ -51,13 +57,14 @@ const TitleSkill = styled.span`
 `;
 const TitleProject = styled.span`
   width: 100%;
+
   ${({ num }) => {
     return num === 4 ? `color: #8C5C03;` : null;
   }};
   ::after {
     content: '';
     display: block;
-    border-bottom: 10px solid #8c5c03;
+    border-bottom: 4px solid #8c5c03;
     transition-duration: 0.2s;
     width: 0px;
     ${({ num }) => {
