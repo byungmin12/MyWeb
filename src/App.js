@@ -117,7 +117,8 @@ const AppBody = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center; */
-  /* perspective: 500px; */
+  perspective: 500px;
+  text-align: center;
 `;
 
 const Test = styled.div`

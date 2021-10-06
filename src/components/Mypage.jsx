@@ -1,5 +1,16 @@
 import React from 'react';
 import styled, { keyframes } from 'styled-components';
+import Circle from './Circle.jsx';
+
+const spin = keyframes`
+ 0% { transform: rotate(0); }
+  25% { transform: rotate(180deg);
+    background-color: greenyellow;
+   }
+  50% { transform: rotate(180deg); }
+  75% { transform: rotate(360deg); }
+  100% { transform: rotate(360deg); }
+`;
 
 const Screen = styled.div`
   width: 100%;
@@ -7,6 +18,9 @@ const Screen = styled.div`
   background-color: #fafafa;
   overflow-y: scroll;
   overflow-x: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 const AboutMeAndSkill = styled.div`
@@ -14,6 +28,7 @@ const AboutMeAndSkill = styled.div`
   height: 100%;
 
   display: flex;
+  text-align: left;
 `;
 
 const AboutMe = styled.div`
@@ -25,19 +40,22 @@ const AboutMe = styled.div`
   align-items: center;
 `;
 
-const Contact = styled.div`
+const Skill = styled.div`
   width: 50%;
-  background-color: green;
+  background-color: #fafafa;
   height: 100%;
+  display: flex;
+  flex-wrap: wrap;
 `;
 
 const InfoText = styled.div`
   width: 70%;
-  font-size: 1.7rem;
+  font-size: 2vw;
   line-height: 1em;
   color: #5b5b5b;
+  margin-top: 30px;
   .name {
-    font-size: 3rem;
+    font-size: 3vw;
     font-weight: 800;
     color: #488cc4;
   }
@@ -50,10 +68,17 @@ const MyImgContainer = styled.div`
   justify-content: center;
   margin-top: 20px;
   margin-bottom: 20px;
+  width: 70%;
+  height: 70%;
+  > img {
+    width: 100%;
+    height: 100%;
+  }
 `;
 
 const InfoContainer = styled.div`
   width: 70%;
+  margin-bottom: 30px;
 `;
 
 function Mypage() {
@@ -82,13 +107,20 @@ function Mypage() {
             </div>
           </InfoContainer>
         </AboutMe>
-        <Contact>
-          <div>Mobile</div>
-          <div>E-mail</div>
-          <div>github</div>
-          <div>Blog</div>
-          <div>Kakao</div>
-        </Contact>
+        <Skill>
+          <div style={{ width: '50%', height: '50%' }}>
+            <Circle percent={80} skill={`REACT`} />
+          </div>
+          <div style={{ width: '50%', height: '50%' }}>
+            <Circle percent={70} skill={`JS`} />
+          </div>
+          <div style={{ width: '50%', height: '50%' }}>
+            <Circle percent={50} skill={`HTML`} />
+          </div>
+          <div style={{ width: '50%', height: '50%' }}>
+            <Circle percent={20} skill={`CSS`} />
+          </div>
+        </Skill>
       </AboutMeAndSkill>
     </Screen>
   );
