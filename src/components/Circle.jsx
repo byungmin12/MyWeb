@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import useInterval from 'use-interval';
 
@@ -17,9 +17,23 @@ const TextColor = styled.text`
   fill: #488cc4;
   font-size: 2.2rem;
   font-weight: bold;
+  white-space: pre-line;
+`;
+
+const TextColorLengthUp = styled.text`
+  fill: #488cc4;
+  font-size: 1.5rem;
+  font-weight: bold;
+  white-space: pre-line;
 `;
 function Circle({ percent, skill }) {
+  console.log(percent, skill);
   const [addPercentage, setAddPercentage] = useState(0);
+
+  useEffect(() => {
+    setAddPercentage(0);
+  }, []);
+
   useInterval(
     () => {
       setAddPercentage(addPercentage + 1);
@@ -27,6 +41,11 @@ function Circle({ percent, skill }) {
     addPercentage >= percent ? null : 20,
   );
   // Size of the enclosing square
+  let FirstSkillName;
+
+  if (skill.includes(' ')) {
+    FirstSkillName = skill.split(' ');
+  }
 
   const sqSize = 200;
   // SVG centers the stroke width on the radius, subtract out so circle fits in square
@@ -62,9 +81,21 @@ function Circle({ percent, skill }) {
       <text className="circle-text" x="50%" y="55%" dy=".3em" textAnchor="middle">
         {`${addPercentage}%`}
       </text>
-      <TextColor className="circle-text" x="50%" y="45%" dy=".3em" textAnchor="middle">
-        {skill}
-      </TextColor>
+
+      {skill.includes(' ') ? (
+        <>
+          <TextColorLengthUp className="circle-text" x="50%" y="35%" dy=".3em" textAnchor="middle">
+            {FirstSkillName[0]}
+          </TextColorLengthUp>
+          <TextColorLengthUp className="circle-text" x="50%" y="45%" dy=".3em" textAnchor="middle">
+            {FirstSkillName[1]}
+          </TextColorLengthUp>
+        </>
+      ) : (
+        <TextColor className="circle-text" x="50%" y="45%" dy=".3em" textAnchor="middle">
+          {skill}
+        </TextColor>
+      )}
     </svg>
   );
 }

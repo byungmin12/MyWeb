@@ -1,15 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled, { keyframes } from 'styled-components';
 import Circle from './Circle.jsx';
 
 const spin = keyframes`
- 0% { transform: rotate(0); }
-  25% { transform: rotate(180deg);
-    background-color: greenyellow;
-   }
-  50% { transform: rotate(180deg); }
-  75% { transform: rotate(360deg); }
-  100% { transform: rotate(360deg); }
+  from{
+    color: #63656e; 
+  }
+  50%{
+    color: transparent; 
+
+  }
+  to{
+    color: #63656e;
+  }
 `;
 
 const Screen = styled.div`
@@ -43,7 +46,35 @@ const AboutMe = styled.div`
 const Skill = styled.div`
   width: 50%;
   background-color: #fafafa;
-  height: 100%;
+  height: 95%;
+  margin-top: 3%;
+  .mainSkill {
+    width: 100%;
+    font-size: 2.3rem;
+    font-weight: 800;
+    display: flex;
+    justify-content: center;
+    height: 5%;
+    color: #488cc4;
+    position: relative;
+    :hover {
+      cursor: pointer;
+    }
+    .subSkill {
+      position: absolute;
+      left: 60%;
+      top: 100%;
+      font-size: 1rem;
+      color: #63656e;
+      animation: ${spin} 1.5s infinite;
+      width: 100%;
+    }
+  }
+`;
+
+const SkillContainer = styled.div`
+  width: 100%;
+  height: 90%;
   display: flex;
   flex-wrap: wrap;
 `;
@@ -82,6 +113,28 @@ const InfoContainer = styled.div`
 `;
 
 function Mypage() {
+  const [skillName, setSkillName] = useState('Main');
+
+  const skillData = [
+    { skill: 'HTML', proficiency: 70 },
+    { skill: 'CSS', proficiency: 75 },
+    { skill: 'JS', proficiency: 83 },
+    { skill: 'REACT', proficiency: 87 },
+    { skill: 'REDUX', proficiency: 60 },
+    { skill: `STYLED COMPONENTS`, proficiency: 60 },
+  ];
+  const subSkillData = [
+    { skill: 'Node.js', proficiency: 50 },
+    { skill: 'Express', proficiency: 50 },
+    { skill: 'MySQL', proficiency: 50 },
+    { skill: 'Sequelize', proficiency: 50 },
+  ];
+  const [skillInfo, setSkillInfo] = useState(skillData);
+
+  const handleSkillName = (name) => {
+    setSkillName(name);
+  };
+
   return (
     <Screen>
       <AboutMeAndSkill>
@@ -108,18 +161,35 @@ function Mypage() {
           </InfoContainer>
         </AboutMe>
         <Skill>
-          <div style={{ width: '50%', height: '50%' }}>
-            <Circle percent={80} skill={`REACT`} />
-          </div>
-          <div style={{ width: '50%', height: '50%' }}>
-            <Circle percent={70} skill={`JS`} />
-          </div>
-          <div style={{ width: '50%', height: '50%' }}>
-            <Circle percent={50} skill={`HTML`} />
-          </div>
-          <div style={{ width: '50%', height: '50%' }}>
-            <Circle percent={20} skill={`CSS`} />
-          </div>
+          {skillName === 'Main' ? (
+            <div className="mainSkill" onClick={() => handleSkillName('Sub')}>
+              MAIN SKILL
+              <div className="subSkill">SUB SKILL</div>
+            </div>
+          ) : (
+            <div className="mainSkill" onClick={() => handleSkillName('Main')}>
+              SUB SKILL
+              <div className="subSkill">MAIN SKILL</div>
+            </div>
+          )}
+
+          <SkillContainer>
+            {skillName === 'Main'
+              ? skillData.map((el) => {
+                  return (
+                    <div style={{ width: '50%', height: '30%' }}>
+                      <Circle percent={el.proficiency} skill={el.skill} />
+                    </div>
+                  );
+                })
+              : subSkillData.map((el) => {
+                  return (
+                    <div style={{ width: '50%', height: '50%' }}>
+                      <Circle percent={el.proficiency} skill={el.skill} />
+                    </div>
+                  );
+                })}
+          </SkillContainer>
         </Skill>
       </AboutMeAndSkill>
     </Screen>
