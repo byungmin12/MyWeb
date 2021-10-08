@@ -7,6 +7,7 @@ const Title = styled.div`
   background-color: #fafafa;
   display: flex;
   font-size: 1.7vw;
+  scroll-snap-align: center;
 `;
 
 const Shadow = styled.div`

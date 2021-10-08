@@ -10,6 +10,7 @@ import Mypage from './components/Mypage';
 import Myskill from './components/Myskill';
 import Projects from './components/Projects';
 import Navbar from './components/Navbar';
+import Question from './components/Question';
 
 //keyframes
 const grain = keyframes`
@@ -216,6 +217,10 @@ const OuterScratch = styled.div`
 const InnerScratch = styled.div`
   width: 97%;
   height: 97%;
+  overflow-x: hidden;
+  scroll-snap-type: y mandatory;
+  scroll-padding: 50px;
+
   ::after {
     width: 97%;
     height: 97%;
@@ -351,6 +356,23 @@ function App() {
   const [isOnOff, setIsOnOff] = useState(false);
   const [isCheckPage, setIsCheckPage] = useState(0);
   const refCheckbox = useRef();
+  const resume = [
+    {
+      title: '개발을 시작하게 된 이유와 개발자가 되려는 이유가 무엇인가요?',
+      content:
+        'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eligendi aliquam tenetur deserunt quidem distinctio id itaque rerum odit ad sint explicabo, quis similique, eveniet eius aut nobis necessitatibus. Quibusdam, porro!Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eligendi aliquam tenetur deserunt quidem distinctio id itaque rerum odit ad sint explicabo, quis similique, eveniet eius aut nobis necessitatibus. Quibusdam, porro!Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eligendi aliquam tenetur deserunt quidem distinctio id itaque rerum odit ad sint explicabo, quis similique, eveniet eius aut nobis necessitatibus. Quibusdam, porro!Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eligendi aliquam tenetur deserunt quidem distinctio id itaque rerum odit ad sint explicabo, quis similique, eveniet eius aut nobis necessitatibus. Quibusdam, porro!',
+    },
+    {
+      title: '개발 경험이 있으시다면 어떤 역할을 수행하셨나요?',
+      content:
+        'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eligendi aliquam tenetur deserunt quidem distinctio id itaque rerum odit ad sint explicabo, quis similique, eveniet eius aut nobis necessitatibus. Quibusdam, porro!Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eligendi aliquam tenetur deserunt quidem distinctio id itaque rerum odit ad sint explicabo, quis similique, eveniet eius aut nobis necessitatibus. Quibusdam, porro!Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eligendi aliquam tenetur deserunt quidem distinctio id itaque rerum odit ad sint explicabo, quis similique, eveniet eius aut nobis necessitatibus. Quibusdam, porro!Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eligendi aliquam tenetur deserunt quidem distinctio id itaque rerum odit ad sint explicabo, quis similique, eveniet eius aut nobis necessitatibus. Quibusdam, porro!',
+    },
+    {
+      title: '되고 싶은 개발자는 무엇인가요?',
+      content:
+        'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eligendi aliquam tenetur deserunt quidem distinctio id itaque rerum odit ad sint explicabo, quis similique, eveniet eius aut nobis necessitatibus. Quibusdam, porro!Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eligendi aliquam tenetur deserunt quidem distinctio id itaque rerum odit ad sint explicabo, quis similique, eveniet eius aut nobis necessitatibus. Quibusdam, porro!Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eligendi aliquam tenetur deserunt quidem distinctio id itaque rerum odit ad sint explicabo, quis similique, eveniet eius aut nobis necessitatibus. Quibusdam, porro!Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eligendi aliquam tenetur deserunt quidem distinctio id itaque rerum odit ad sint explicabo, quis similique, eveniet eius aut nobis necessitatibus. Quibusdam, porro!Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eligendi aliquam tenetur deserunt quidem distinctio id itaque rerum odit ad sint explicabo, quis similique, eveniet eius aut nobis necessitatibus. Quibusdam, porro!Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eligendi aliquam tenetur deserunt quidem distinctio id itaque rerum odit ad sint explicabo, quis similique, eveniet eius aut nobis necessitatibus. Quibusdam, porro!Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eligendi aliquam tenetur deserunt quidem distinctio id itaque rerum odit ad sint explicabo, quis similique, eveniet eius aut nobis necessitatibus. Quibusdam, porro!Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eligendi aliquam tenetur deserunt quidem distinctio id itaque rerum odit ad sint explicabo, quis similique, eveniet eius aut nobis necessitatibus. Quibusdam, porro!Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eligendi aliquam tenetur deserunt quidem distinctio id itaque rerum odit ad sint explicabo, quis similique, eveniet eius aut nobis necessitatibus. Quibusdam, porro!Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eligendi aliquam tenetur deserunt quidem distinctio id itaque rerum odit ad sint explicabo, quis similique, eveniet eius aut nobis necessitatibus. Quibusdam, porro!Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eligendi aliquam tenetur deserunt quidem distinctio id itaque rerum odit ad sint explicabo, quis similique, eveniet eius aut nobis necessitatibus. Quibusdam, porro!Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eligendi aliquam tenetur deserunt quidem distinctio id itaque rerum odit ad sint explicabo, quis similique, eveniet eius aut nobis necessitatibus. Quibusdam, porro!Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eligendi aliquam tenetur deserunt quidem distinctio id itaque rerum odit ad sint explicabo, quis similique, eveniet eius aut nobis necessitatibus. Quibusdam, porro!Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eligendi aliquam tenetur deserunt quidem distinctio id itaque rerum odit ad sint explicabo, quis similique, eveniet eius aut nobis necessitatibus. Quibusdam, porro!Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eligendi aliquam tenetur deserunt quidem distinctio id itaque rerum odit ad sint explicabo, quis similique, eveniet eius aut nobis necessitatibus. Quibusdam, porro!Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eligendi aliquam tenetur deserunt quidem distinctio id itaque rerum odit ad sint explicabo, quis similique, eveniet eius aut nobis necessitatibus. Quibusdam, porro!',
+    },
+  ];
 
   const handleOnOff = () => {
     setIsOnOff(!isOnOff);
@@ -380,9 +402,13 @@ function App() {
                 </OuterScratch>
               ) : isOnOff === true && isCheckPage === 2 ? (
                 <OuterScratch className="outer-scratch">
-                  <InnerScratch className="inner-scratch" style={{ backgroundColor: 'white' }}>
+                  <InnerScratch className="inner-scratch" style={{ backgroundColor: 'white', overflowY: 'scroll' }}>
                     <Navbar page={2} />
                     <Mypage />
+
+                    {resume.map((el, idx) => {
+                      return <Question index={idx} title={el.title} content={el.content} />;
+                    })}
                   </InnerScratch>
                 </OuterScratch>
               ) : isOnOff === true && isCheckPage === 3 ? (

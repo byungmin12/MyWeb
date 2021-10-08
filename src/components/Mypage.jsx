@@ -19,19 +19,25 @@ const Screen = styled.div`
   width: 100%;
   height: 90%;
   background-color: #fafafa;
-  overflow-y: scroll;
-  overflow-x: hidden;
+
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
 `;
 
 const AboutMeAndSkill = styled.div`
   width: 100%;
   height: 100%;
-
   display: flex;
   text-align: left;
+`;
+const AboutResume = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  text-align: left;
+  flex-direction: column;
 `;
 
 const AboutMe = styled.div`

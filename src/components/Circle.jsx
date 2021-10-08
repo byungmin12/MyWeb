@@ -27,12 +27,12 @@ const TextColorLengthUp = styled.text`
   white-space: pre-line;
 `;
 function Circle({ percent, skill }) {
-  console.log(percent, skill);
   const [addPercentage, setAddPercentage] = useState(0);
+  const [addSkill, setAddSkill] = useState(0);
 
   useEffect(() => {
     setAddPercentage(0);
-  }, []);
+  }, [percent]);
 
   useInterval(
     () => {
