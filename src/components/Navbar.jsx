@@ -7,7 +7,10 @@ const Title = styled.div`
   background-color: #fafafa;
   display: flex;
   font-size: 1.7vw;
-  scroll-snap-align: center;
+
+  ${({ num }) => {
+    return num === 2 ? `scroll-snap-align: center;` : null;
+  }};
 `;
 
 const Shadow = styled.div`
@@ -23,7 +26,9 @@ const Shadow = styled.div`
 
 const TitleMypage = styled.span`
   width: 100%;
-
+  :hover {
+    cursor: pointer;
+  }
   ${({ num }) => {
     return num === 2 ? `color: #8C5C03;` : null;
   }};
@@ -39,9 +44,12 @@ const TitleMypage = styled.span`
     }};
   }
 `;
-const TitleSkill = styled.span`
-  width: 100%;
 
+const TitleProject = styled.span`
+  width: 100%;
+  :hover {
+    cursor: pointer;
+  }
   ${({ num }) => {
     return num === 3 ? `color: #8C5C03;` : null;
   }};
@@ -56,31 +64,24 @@ const TitleSkill = styled.span`
     }};
   }
 `;
-const TitleProject = styled.span`
-  width: 100%;
 
-  ${({ num }) => {
-    return num === 4 ? `color: #8C5C03;` : null;
-  }};
-  ::after {
-    content: '';
-    display: block;
-    border-bottom: 4px solid #8c5c03;
-    transition-duration: 0.2s;
-    width: 0px;
-    ${({ num }) => {
-      return num === 4 ? `width: 100%;` : null;
-    }};
-  }
-`;
-
-function Navbar({ page }) {
+function Navbar({ page, setIsCheckPage }) {
+  const movePage = (num) => {
+    setIsCheckPage(num);
+  };
   return (
-    <Title>
+    <Title num={page}>
       <Shadow>
-        <TitleMypage num={page}>{`<AboutMe />`}</TitleMypage>
-        <TitleSkill num={page}>{`<Skill />`}</TitleSkill>
-        <TitleProject num={page}>{`<Project />`}</TitleProject>
+        <TitleMypage
+          num={page}
+          onClick={() => {
+            movePage(2);
+          }}>{`<AboutMe />`}</TitleMypage>
+        <TitleProject
+          num={page}
+          onClick={() => {
+            movePage(3);
+          }}>{`<Project />`}</TitleProject>
       </Shadow>
     </Title>
   );

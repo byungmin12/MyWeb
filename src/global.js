@@ -10,7 +10,6 @@ const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
     background-color:   #322c3a;
     overflow: hidden;
-  perspective: 400px;
   }
 
  

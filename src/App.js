@@ -219,7 +219,7 @@ const InnerScratch = styled.div`
   height: 97%;
   overflow-x: hidden;
   scroll-snap-type: y mandatory;
-  scroll-padding: 50px;
+  scroll-padding: 100px;
 
   ::after {
     width: 97%;
@@ -403,7 +403,7 @@ function App() {
               ) : isOnOff === true && isCheckPage === 2 ? (
                 <OuterScratch className="outer-scratch">
                   <InnerScratch className="inner-scratch" style={{ backgroundColor: 'white', overflowY: 'scroll' }}>
-                    <Navbar page={2} />
+                    <Navbar page={2} setIsCheckPage={setIsCheckPage} />
                     <Mypage />
 
                     {resume.map((el, idx) => {
@@ -414,14 +414,7 @@ function App() {
               ) : isOnOff === true && isCheckPage === 3 ? (
                 <OuterScratch className="outer-scratch">
                   <InnerScratch className="inner-scratch" style={{ backgroundColor: 'white' }}>
-                    <Navbar page={3} />
-                    <Myskill />
-                  </InnerScratch>
-                </OuterScratch>
-              ) : isOnOff === true && isCheckPage === 4 ? (
-                <OuterScratch className="outer-scratch">
-                  <InnerScratch className="inner-scratch" style={{ backgroundColor: 'white' }}>
-                    <Navbar page={4} />
+                    <Navbar page={3} setIsCheckPage={setIsCheckPage} />
                     <Projects />
                   </InnerScratch>
                 </OuterScratch>
@@ -455,6 +448,7 @@ function App() {
           setIsCheckPage={setIsCheckPage}
           isCheckPage={isCheckPage}
           refCheckbox={refCheckbox}
+          isOnOff={isOnOff}
         />
       </Test>
     </AppBody>
