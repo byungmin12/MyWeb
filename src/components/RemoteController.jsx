@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled, { keyframes } from 'styled-components';
 import PowerSettingsNewIcon from '@mui/icons-material/PowerSettingsNew';
 
 const RemoteControl = styled.div`
   position: fixed;
-  top: 70%;
+
   height: 30%;
   min-height: 200px;
   width: 10%;
@@ -17,11 +17,16 @@ const RemoteControl = styled.div`
     20px 20px #000000;
   /* -webkit-transform: translateX(-3px);
   transform: translateX(-3px); */
-  /* transform: rotate(30deg); */
+  transform: rotate(30deg);
   background-color: #212121;
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  transition-duration: 1s;
+  ${({ isOnOff }) => {
+    return isOnOff ? `top: 70%;` : `top: 200%;`;
+  }};
 `;
 
 const RemoteLight = styled.div`
@@ -32,6 +37,10 @@ const RemoteLight = styled.div`
   top: 15px;
   display: inline-block;
   box-shadow: rgba(255, 0, 0, 0.95) 0px -30px 50px 8px;
+  transition-duration: 0.5s;
+  ${({ onLight }) => {
+    return onLight ? `display: block;` : `display: none;`;
+  }};
 `;
 
 const ArrowAndPowerSection = styled.div`
@@ -116,6 +125,9 @@ const Circle = styled.div`
     left: 2px;
     box-shadow: 1px 1px #b60000, 2px 2px #b60000;
   }
+  :hover {
+    cursor: pointer;
+  }
 `;
 
 const RemoteControllerButton = styled.div`
@@ -138,28 +150,44 @@ const RemoteControllerButton = styled.div`
   }
 `;
 
-function RemoteController({ handleRemotePage, setIsCheckPage, isCheckPage }) {
+function RemoteController({ handleRemotePage, setIsCheckPage, isCheckPage, isOnOff }) {
+  const [onLight, setOnLight] = useState(false);
   const handleLeftPage = () => {
     const pageNum = isCheckPage - 1;
+    if (isCheckPage === 0) {
+      return;
+    }
     if (pageNum < 2) {
-      handleRemotePage(4);
+      handleRemotePage(3);
     } else {
       handleRemotePage(pageNum);
     }
+    handleLight();
   };
 
   const handleRightPage = () => {
     const pageNum = isCheckPage + 1;
-    if (pageNum > 4) {
+    if (isCheckPage === 0) {
+      return;
+    }
+    if (pageNum > 3) {
       handleRemotePage(2);
     } else {
       handleRemotePage(pageNum);
     }
+    handleLight();
+  };
+
+  const handleLight = () => {
+    setOnLight(true);
+    setTimeout(() => {
+      setOnLight(false);
+    }, 300);
   };
 
   return (
-    <RemoteControl>
-      <RemoteLight></RemoteLight>
+    <RemoteControl isOnOff={isOnOff}>
+      <RemoteLight onLight={onLight}></RemoteLight>
       <ArrowAndPowerSection>
         <LeftDirectionWrap onClick={handleLeftPage}>
           <LeftDirection></LeftDirection>
@@ -168,6 +196,7 @@ function RemoteController({ handleRemotePage, setIsCheckPage, isCheckPage }) {
           <Circle
             onClick={() => {
               handleRemotePage(1);
+              handleLight();
             }}>
             <PowerSettingsNewIcon style={{ color: 'white', fontWeight: '800', fontSize: '2em' }}></PowerSettingsNewIcon>
           </Circle>
