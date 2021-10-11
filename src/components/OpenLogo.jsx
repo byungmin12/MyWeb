@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import styled, { keyframes } from 'styled-components';
 import useInterval from 'use-interval';
 import Logo from './Logo.jsx';
+import NameSVG from './NameSVG.jsx';
 
 const PressButtonMassage = keyframes`
     0% {
@@ -13,6 +14,13 @@ const PressButtonMassage = keyframes`
   }
   100% {
     opacity: 1;
+  }
+`;
+
+const showTextKeyframes = keyframes`
+  to{
+    fill: #000000;
+    stroke-dashoffset: 0;
   }
 `;
 
@@ -34,49 +42,114 @@ const PressAnimation = styled.textPath`
   stroke: red;
 `;
 
+const SVG = styled.svg`
+  path {
+    fill: transparent;
+    stroke: #000000;
+    stroke-width: 40;
+    stroke-dasharray: 5000;
+    stroke-dashoffset: 5000;
+    animation: ${showTextKeyframes} 2s linear;
+    animation-fill-mode: forwards;
+  }
+  path:nth-child(1) {
+    animation-delay: 0s;
+  }
+  path:nth-child(2) {
+    animation-delay: 0.1s;
+  }
+  path:nth-child(3) {
+    animation-delay: 0.2s;
+  }
+  path:nth-child(4) {
+    animation-delay: 0.3s;
+  }
+  path:nth-child(5) {
+    animation-delay: 0.4s;
+  }
+  path:nth-child(6) {
+    animation-delay: 0.5s;
+  }
+  path:nth-child(7) {
+    animation-delay: 0.6s;
+  }
+  path:nth-child(8) {
+    animation-delay: 0.7s;
+  }
+  path:nth-child(9) {
+    animation-delay: 0.8s;
+  }
+  path:nth-child(10) {
+    animation-delay: 0.9s;
+  }
+  path:nth-child(11) {
+    animation-delay: 1s;
+  }
+  path:nth-child(12) {
+    animation-delay: 1.2s;
+  }
+  path:nth-child(13) {
+    animation-delay: 1.3s;
+  }
+  path:nth-child(14) {
+    animation-delay: 1.5s;
+  }
+  path:nth-child(15) {
+    animation-delay: 1.3s;
+  }
+  path:nth-child(16) {
+    animation-delay: 1.7s;
+  }
+  path:nth-child(17) {
+    animation-delay: 1.6s;
+  }
+  path:nth-child(18) {
+    animation-delay: 2s;
+  }
+  path:nth-child(19) {
+    animation-delay: 1.9s;
+  }
+  path:nth-child(20) {
+    animation-delay: 2.3s;
+  }
+  path:nth-child(21) {
+    animation-delay: 2.1s;
+  }
+  path:nth-child(22) {
+    animation-delay: 2.6s;
+  }
+  path:nth-child(23) {
+    animation-delay: 2.8s;
+  }
+  path:nth-child(24) {
+    animation-delay: 2.5s;
+  }
+  path:nth-child(25) {
+    animation-delay: 2.9s;
+  }
+  path:nth-child(26) {
+    animation-delay: 3s;
+  }
+  .text {
+    opacity: 0;
+    fill: red;
+    animation: ${PressButtonMassage} 1s infinite;
+    animation-delay: 5.2s;
+  }
+`;
+
 function OpenLogo() {
-  const [pathNameNum, setPathNameNum] = useState(0);
-  const [pathPortFolioNum, setPathPortFolioNum] = useState(0);
-  const [pathWebsiteNum, setPathWebsiteNum] = useState(0);
-
-  useInterval(
-    () => {
-      setPathNameNum(pathNameNum + 1);
-    },
-    pathNameNum >= 300 ? null : 1 / 1000,
-  );
-  useInterval(
-    () => {
-      if (pathNameNum >= 300) {
-        setPathPortFolioNum(pathPortFolioNum + 1);
-      }
-    },
-    pathPortFolioNum >= 300 ? null : 1,
-  );
-  useInterval(
-    () => {
-      if (pathPortFolioNum >= 300) {
-        setPathWebsiteNum(pathWebsiteNum + 1);
-      }
-    },
-    pathWebsiteNum >= 300 ? null : 1,
-  );
-
   return (
-    <svg width="100%" height="100%" viewBox="30 -50 600 500">
-      <path id="test" d={`m100, 150 h${pathNameNum}`} />
-      <path id="test1" d={`m100, 200 h${pathPortFolioNum}`} />
-      <path id="test2" d={`m100, 250 h${pathWebsiteNum}`} />
-      <path id="test3" d={`m105, 270 h400`} />
-
+    <SVG width="100%" height="100%" viewBox="30 -50 600 500">
+      <NameSVG />
       <Logo />
-      <Text>
-        <textPath href="#test">BYUNGMIN's</textPath>
-        <textPath href="#test1">PORTFOLIO</textPath>
-        <textPath href="#test2">WEBSITE</textPath>
-        <PressAnimation href="#test3">press power button in a remote controller</PressAnimation>
-      </Text>
-    </svg>
+      <text x="130" y="300" className="text">
+        please press the button
+      </text>
+      <text x="131" y="320" className="text">
+        in remoteController
+      </text>
+    </SVG>
   );
 }
 
