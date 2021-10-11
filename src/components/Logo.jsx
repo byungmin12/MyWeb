@@ -22,6 +22,10 @@ const PathWeb = styled.path``;
 const PathCss = styled.path``;
 const GTag = styled.g`
   /* animation-delay: 3s; */
+  path {
+    fill: #000000;
+    stroke-width: 1;
+  }
 
   .jew {
     fill: none;
@@ -44,7 +48,7 @@ const GTag = styled.g`
   .restPath {
     opacity: 0;
     animation: ${OpacityAnimation} 0.4s forwards;
-    animation-delay: 6s;
+    animation-delay: 4s;
   }
 `;
 
@@ -63,7 +67,7 @@ function Logo() {
   console.log(jewelry);
 
   return (
-    <svg width="100%" height="100%" viewBox="-50 -180 198.000000 198.000000" preserveAspectRatio="xMidYMid meet">
+    <svg width="100%" height="100%" viewBox="-80 -210 230.000000 210.000000" preserveAspectRatio="xMidYMid meet">
       <GTag transform="scale(0.100000,-0.100000)" fill="#000000">
         <PathJewelry
           ref={jewRef}
