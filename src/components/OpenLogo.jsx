@@ -43,7 +43,7 @@ function OpenLogo() {
     () => {
       setPathNameNum(pathNameNum + 1);
     },
-    pathNameNum >= 300 ? null : 2,
+    pathNameNum >= 300 ? null : 1 / 1000,
   );
   useInterval(
     () => {
@@ -51,7 +51,7 @@ function OpenLogo() {
         setPathPortFolioNum(pathPortFolioNum + 1);
       }
     },
-    pathPortFolioNum >= 300 ? null : 2,
+    pathPortFolioNum >= 300 ? null : 1,
   );
   useInterval(
     () => {
@@ -59,7 +59,7 @@ function OpenLogo() {
         setPathWebsiteNum(pathWebsiteNum + 1);
       }
     },
-    pathWebsiteNum >= 300 ? null : 2,
+    pathWebsiteNum >= 300 ? null : 1,
   );
 
   return (

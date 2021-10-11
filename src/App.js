@@ -237,7 +237,6 @@ const InnerScratch = styled.div`
 
 const BackgroundGrain = styled.div`
   ::after {
-    content: '';
     width: 98%;
     height: 98%;
     position: absolute;
@@ -247,6 +246,10 @@ const BackgroundGrain = styled.div`
     background: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/662025/grain.jpg') repeat center center;
     -webkit-animation: ${grain} 0.5s steps(1) infinite;
     animation: ${grain} 0.5s steps(1) infinite;
+
+    ${({ isOnOff }) => {
+      return isOnOff ? `content: '';` : null;
+    }};
   }
 `;
 
@@ -421,7 +424,9 @@ function App() {
               ) : (
                 <OuterScratch className="outer-scratch">
                   <InnerScratch className="inner-scratch">
-                    <BackgroundGrain className="background grain">{isOnOff ? <OpenLogo /> : null}</BackgroundGrain>
+                    <BackgroundGrain className="background grain" isOnOff={isOnOff}>
+                      {isOnOff ? <OpenLogo /> : null}
+                    </BackgroundGrain>
                   </InnerScratch>
                 </OuterScratch>
               )}
