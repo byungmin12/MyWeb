@@ -8,9 +8,9 @@ const Title = styled.div`
   display: flex;
   font-size: 1.7vw;
 
-  ${({ num }) => {
+  /* ${({ num }) => {
     return num === 2 ? `scroll-snap-align: center;` : null;
-  }};
+  }}; */
 `;
 
 const Shadow = styled.div`

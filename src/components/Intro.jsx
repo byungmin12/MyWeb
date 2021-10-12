@@ -533,7 +533,13 @@ const IsthisrightText = styled(MysubwayText)`
   animation-delay: 18s, 19s, 22s;
 `;
 
-function Intro() {
+const DetailSpan = styled.span`
+  :hover {
+    cursor: pointer;
+  }
+`;
+
+function Intro({ setIsCheckPage }) {
   return (
     <IntroSection>
       <div style={{ width: '100%', height: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
@@ -603,11 +609,15 @@ function Intro() {
         <IsthisrightText>이거맞아?</IsthisrightText>
       </WideScreenIsthisright>
       <WideScreen style={{ fontWeight: '800' }}>
-        <span className="lastText">
+        <DetailSpan
+          className="lastText"
+          onClick={() => {
+            setIsCheckPage(2);
+          }}>
           Click
           <br />
           for detail
-        </span>
+        </DetailSpan>
       </WideScreen>
     </IntroSection>
   );

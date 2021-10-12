@@ -120,9 +120,11 @@ const AppBody = styled.div`
   align-items: center; */
   perspective: 500px;
   text-align: center;
+  position: relative;
+  z-index: 10;
 `;
 
-const Test = styled.div`
+const Perspective = styled.div`
   width: 100vw;
   height: 100vh;
   /* display: flex;
@@ -218,7 +220,7 @@ const InnerScratch = styled.div`
   width: 97%;
   height: 97%;
   overflow-x: hidden;
-  scroll-snap-type: y mandatory;
+  /* scroll-snap-type: y mandatory; */
   scroll-padding: 100px;
 
   ::after {
@@ -388,7 +390,7 @@ function App() {
 
   return (
     <AppBody>
-      <Test>
+      <Perspective>
         <ScreenSection>
           <ScreenBody>
             <TopStick>
@@ -400,7 +402,7 @@ function App() {
               {isOnOff === true && isCheckPage === 1 ? (
                 <OuterScratch className="outer-scratch">
                   <InnerScratch className="inner-scratch" style={{ backgroundColor: 'white' }}>
-                    <Intro />
+                    <Intro setIsCheckPage={setIsCheckPage} />
                   </InnerScratch>
                 </OuterScratch>
               ) : isOnOff === true && isCheckPage === 2 ? (
@@ -408,10 +410,11 @@ function App() {
                   <InnerScratch className="inner-scratch" style={{ backgroundColor: 'white', overflowY: 'scroll' }}>
                     <Navbar page={2} setIsCheckPage={setIsCheckPage} />
                     <Mypage />
-
-                    {resume.map((el, idx) => {
-                      return <Question index={idx} title={el.title} content={el.content} />;
-                    })}
+                    <div style={{ marginBottom: '100px' }}>
+                      {resume.map((el, idx) => {
+                        return <Question index={idx} title={el.title} content={el.content} />;
+                      })}
+                    </div>
                   </InnerScratch>
                 </OuterScratch>
               ) : isOnOff === true && isCheckPage === 3 ? (
@@ -455,7 +458,7 @@ function App() {
           refCheckbox={refCheckbox}
           isOnOff={isOnOff}
         />
-      </Test>
+      </Perspective>
     </AppBody>
   );
 }
