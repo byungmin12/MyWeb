@@ -101,6 +101,12 @@ const innerScrat = keyframes`
   }
 `;
 
+const appearScreen = keyframes`
+    to{
+        height: 95%;
+    }
+`;
+
 const ScreenSection = styled.div`
   width: 100%;
   height: 80%;
@@ -114,7 +120,6 @@ const ScreenBody = styled.div`
   width: 70%;
   height: 90%;
   display: flex;
-  justify-content: center;
   align-items: center;
   flex-direction: column;
 `;
@@ -142,16 +147,18 @@ const TopStick = styled.div`
 
 const MainScreen = styled.div`
   width: 98%;
-  height: 95%;
+  height: 0%;
   background-color: black;
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
-
+  animation: ${appearScreen} 2s forwards;
+  animation-delay: 1s;
   .outer-scratch {
     width: 97%;
     height: 97%;
+
     ${({ on }) => {
       return on ? `box-shadow: rgba(255, 255, 255, 0.19) 0px 0px 40px 14px;transition-duration: 0.2s;` : null;
     }};

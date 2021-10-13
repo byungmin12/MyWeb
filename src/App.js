@@ -2,7 +2,6 @@ import React, { useState, useRef } from 'react';
 
 import styled from 'styled-components';
 
-import ToggleButton from './components/ToggleButton';
 import RemoteController from './components/RemoteController';
 import Screen from './components/Screen';
 import Projector from './components/Projector';

@@ -2,6 +2,12 @@ import React, { useRef } from 'react';
 import styled, { keyframes } from 'styled-components';
 import ToggleButton from './ToggleButton';
 
+const appearProjector = keyframes`
+    to{
+        top: 150% ;
+    }
+`;
+
 const ProjectSection = styled.div`
   /* background-color: blue; */
   width: 15%;
@@ -12,6 +18,8 @@ const ProjectSection = styled.div`
   left: 50%;
   min-width: 300px;
   min-height: 300px;
+  animation: ${appearProjector} 1s forwards;
+  animation-direction: reverse;
 `;
 
 const ProjectTopWrap = styled.div`
