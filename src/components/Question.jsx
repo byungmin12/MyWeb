@@ -18,12 +18,10 @@ const QuestionTitle = styled.div`
   margin-bottom: 10px;
   text-align: left;
   white-space: normal;
-  height: 0;
-
+  height: auto;
   :hover {
     cursor: pointer;
   }
-  transition: height 0.35s ease, background 0.35s ease;
 `;
 
 const QuestionColor = styled.span`
@@ -31,9 +29,16 @@ const QuestionColor = styled.span`
   font-size: 2rem;
 `;
 
+const QuestionWrap = styled.div`
+  width: 100%;
+  height: 0;
+  transition: height 0.5s ease, background 0.5s ease;
+  overflow: hidden;
+`;
+
 const QuestionContent = styled.div`
   width: 100%;
-  overflow: hidden;
+  background-color: white;
 
   /* ${({ isOpen }) => {
     return isOpen ? `height:auto; border: 2px solid red;` : 'height:0px; display:none;';
@@ -62,7 +67,7 @@ function Question({ index, title, content }) {
         parentRef.current.style.background = 'white';
       } else {
         parentRef.current.style.height = `${childRef.current.clientHeight}px`;
-        parentRef.current.style.background = 'lightgray';
+        parentRef.current.style.background = 'white';
       }
       setIsOpen(true);
     },
@@ -71,12 +76,14 @@ function Question({ index, title, content }) {
 
   return (
     <QuestionContainer>
-      <QuestionTitle onClick={handleAccordion} ref={parentRef}>
-        <QuestionColor>Q.{index}</QuestionColor> {title}❓
+      <QuestionTitle onClick={handleAccordion}>
+        <QuestionColor>Q.{index + 1}</QuestionColor> {title}
+      </QuestionTitle>
+      <QuestionWrap ref={parentRef}>
         <QuestionContent isOpen={isOpen} ref={childRef}>
           {content}
         </QuestionContent>
-      </QuestionTitle>
+      </QuestionWrap>
     </QuestionContainer>
   );
 }

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import styled, { keyframes } from 'styled-components';
+import styled, { keyframes, css } from 'styled-components';
 import Circle from './Circle.jsx';
 
 const spin = keyframes`
@@ -13,6 +13,12 @@ const spin = keyframes`
   to{
     color: #63656e;
   }
+`;
+const testKey = keyframes`
+  to{
+    
+  }
+  
 `;
 
 const Screen = styled.div`
@@ -54,28 +60,68 @@ const Skill = styled.div`
   background-color: #fafafa;
   height: 95%;
   margin-top: 3%;
-  .mainSkill {
-    width: 100%;
-    font-size: 2.3rem;
-    font-weight: 800;
-    display: flex;
-    justify-content: center;
-    height: 5%;
-    color: #488cc4;
-    position: relative;
-    :hover {
-      cursor: pointer;
-    }
-    .subSkill {
-      position: absolute;
-      left: 60%;
-      top: 100%;
-      font-size: 1rem;
-      color: #63656e;
-      animation: ${spin} 1.5s infinite;
-      width: 100%;
-    }
-  }
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+
+const MainSubSkillContainer = styled.div`
+  width: 100%;
+  position: relative;
+  height: 5%;
+`;
+
+const MainSkill = styled.div`
+  position: absolute;
+  top: 70%;
+  left: 60%;
+  font-size: 1.5rem;
+  color: #63656e;
+  z-index: 1;
+  transition-duration: 1s;
+
+  ${({ skillName }) => {
+    return skillName === 'Main'
+      ? `left: 42%; top: 2%; transform: scale(2); font-weight: 800;color: #488cc4; 
+  z-index: 20;
+      
+      :hover {
+    cursor: pointer; 
+  }`
+      : null;
+  }};
+
+  animation: ${(props) =>
+    props.skillName === 'Sub'
+      ? css`
+          ${spin} 1s infinite
+        `
+      : ''};
+`;
+
+const SubSkill = styled.div`
+  position: absolute;
+  top: 70%;
+  left: 60%;
+  font-size: 1.5rem;
+  color: #63656e;
+  z-index: 1;
+  transition-duration: 1s;
+
+  ${({ skillName }) => {
+    return skillName === 'Sub'
+      ? `left: 42%; top: 2%; transform: scale(2); font-weight: 800;color: #488cc4; z-index: 20; :hover {
+    cursor: pointer;
+  }`
+      : null;
+  }};
+  animation: ${(props) =>
+    props.skillName === 'Main'
+      ? css`
+          ${spin} 1s infinite
+        `
+      : ''};
 `;
 
 const SkillContainer = styled.div`
@@ -167,8 +213,8 @@ function Mypage() {
           </InfoContainer>
         </AboutMe>
         <Skill>
-          {skillName === 'Main' ? (
-            <div className="mainSkill" onClick={() => handleSkillName('Sub')}>
+          {/* {skillName === 'Main' ? (
+            <div className="mainSkill" onClick={() => handleSkillName('Sub')} skillName={skillName}>
               MAIN SKILL
               <div className="subSkill">SUB SKILL</div>
             </div>
@@ -177,8 +223,29 @@ function Mypage() {
               SUB SKILL
               <div className="subSkill">MAIN SKILL</div>
             </div>
-          )}
-
+          )} */}
+          <MainSubSkillContainer>
+            <MainSkill
+              className="mainSkill"
+              onClick={() => {
+                if (skillName === 'Main') {
+                  handleSkillName('Sub');
+                }
+              }}
+              skillName={skillName}>
+              MAIN SKILL
+            </MainSkill>
+            <SubSkill
+              className="subSkill"
+              onClick={() => {
+                if (skillName === 'Sub') {
+                  handleSkillName('Main');
+                }
+              }}
+              skillName={skillName}>
+              SUB SKILL
+            </SubSkill>
+          </MainSubSkillContainer>
           <SkillContainer>
             {skillName === 'Main'
               ? skillData.map((el) => {
