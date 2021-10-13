@@ -44,13 +44,6 @@ const PressAnimation = styled.textPath`
 
 const SVG = styled.svg`
   path {
-    fill: transparent;
-    stroke: #000000;
-    stroke-width: 40;
-    stroke-dasharray: 5000;
-    stroke-dashoffset: 5000;
-    animation: ${showTextKeyframes} 2s linear;
-    animation-fill-mode: forwards;
   }
   path:nth-child(1) {
     animation-delay: 0s;

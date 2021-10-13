@@ -19,7 +19,11 @@ const jewelryAnimation = keyframes`
 
 const PathJewelry = styled.path``;
 const PathWeb = styled.path``;
-const PathCss = styled.path``;
+const PathCss = styled.path`
+  opacity: 0;
+  animation: ${OpacityAnimation} 0.4s forwards;
+  animation-delay: 4s;
+`;
 const GTag = styled.g`
   /* animation-delay: 3s; */
   path {
@@ -44,11 +48,6 @@ const GTag = styled.g`
     stroke-dasharray: 8178;
     stroke-dashoffset: 8178;
     animation: ${jewelryAnimation} 15s forwards;
-  }
-  .restPath {
-    opacity: 0;
-    animation: ${OpacityAnimation} 0.4s forwards;
-    animation-delay: 4s;
   }
 `;
 
