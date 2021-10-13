@@ -122,6 +122,9 @@ const ScreenBody = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
+  @media screen and (max-width: 750px) {
+    width: 100%;
+  }
 `;
 
 const TopStick = styled.div`

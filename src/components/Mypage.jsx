@@ -14,6 +14,19 @@ const spin = keyframes`
     color: #63656e;
   }
 `;
+
+// const spin = keyframes`
+//   from{
+//     color: #63656e;
+//   }
+//   50%{
+//     color: transparent;
+
+//   }
+//   to{
+//     color: #63656e;
+//   }
+// `;
 const testKey = keyframes`
   to{
     
@@ -74,18 +87,25 @@ const MainSubSkillContainer = styled.div`
 
 const MainSkill = styled.div`
   position: absolute;
-  top: 70%;
-  left: 60%;
-  font-size: 1.5rem;
+  top: 20%;
+  left: 15%;
+  justify-content: center;
+  width: 100%;
+  display: flex;
+  font-size: 1.3vw;
   color: #63656e;
   z-index: 1;
   transition-duration: 1s;
-
+  @media screen and (max-width: 1200px) {
+    font-size: 20px;
+  }
   ${({ skillName }) => {
     return skillName === 'Main'
-      ? `left: 42%; top: 2%; transform: scale(2); font-weight: 800;color: #488cc4; 
+      ? `top: -50%; left: 0; width: 100%; display:flex; justify-content: center; transform: scale(2); font-weight: 800;color: #488cc4; 
   z-index: 20;
-      
+  @media screen and (max-width: 1200px) {
+    font-size: 20px;
+  }
       :hover {
     cursor: pointer; 
   }`
@@ -102,16 +122,21 @@ const MainSkill = styled.div`
 
 const SubSkill = styled.div`
   position: absolute;
-  top: 70%;
-  left: 60%;
-  font-size: 1.5rem;
+  top: 20%;
+  left: 15%;
+  justify-content: center;
+  width: 100%;
+  display: flex;
+  font-size: 1.3vw;
   color: #63656e;
   z-index: 1;
   transition-duration: 1s;
-
+  @media screen and (max-width: 1200px) {
+    font-size: 20px;
+  }
   ${({ skillName }) => {
     return skillName === 'Sub'
-      ? `left: 42%; top: 2%; transform: scale(2); font-weight: 800;color: #488cc4; z-index: 20; :hover {
+      ? `top: -50%; left: 0; width: 100%; display:flex; justify-content: center; transform: scale(2); font-weight: 800;color: #488cc4; z-index: 20; :hover {
     cursor: pointer;
   }`
       : null;
@@ -233,7 +258,7 @@ function Mypage() {
                 }
               }}
               skillName={skillName}>
-              MAIN SKILL
+              <span>MAIN SKILL</span>
             </MainSkill>
             <SubSkill
               className="subSkill"
@@ -243,7 +268,7 @@ function Mypage() {
                 }
               }}
               skillName={skillName}>
-              SUB SKILL
+              <span>SUB SKILL</span>
             </SubSkill>
           </MainSubSkillContainer>
           <SkillContainer>

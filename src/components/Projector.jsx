@@ -20,6 +20,9 @@ const ProjectSection = styled.div`
   min-height: 300px;
   animation: ${appearProjector} 1s forwards;
   animation-direction: reverse;
+  @media screen and (max-width: 400px) {
+    display: none;
+  }
 `;
 
 const ProjectTopWrap = styled.div`

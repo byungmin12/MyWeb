@@ -32,10 +32,10 @@ const Detail = styled.div`
   top: 70%;
   left: 75%;
   background-color: rgba(0, 0, 0, 0.3);
-  width: 130px;
+  width: 20%;
   padding: 10px;
   border-radius: 10px;
-  font-size: 1.5em;
+  font-size: 2vw;
   font-weight: 500;
   border: 2px solid white;
   color: white;
@@ -47,6 +47,12 @@ const Detail = styled.div`
   ${({ on }) => {
     return !on ? `display: block` : `display:none`;
   }};
+  @media screen and (min-width: 1200px) {
+    font-size: 24px;
+  }
+  @media screen and (max-width: 650px) {
+    font-size: 18px;
+  }
 `;
 
 const DetailPage = styled.div`
