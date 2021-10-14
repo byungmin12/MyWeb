@@ -110,6 +110,14 @@ const Contents = styled.div`
     color: white;
     margin-bottom: 10px;
   }
+  .stack {
+    width: auto;
+    margin: 0px 3px 10px 3px;
+    border: 1px solid #488cc4;
+    border-radius: 30px;
+    padding: 5px;
+    line-height: 10px;
+  }
 `;
 
 function ProjectScene({ data }) {
@@ -142,11 +150,11 @@ function ProjectScene({ data }) {
           <div>
             stack :
             {data.stack.map((el) => {
-              return <span>{el}</span>;
+              return <span className="stack">{el}</span>;
             })}
           </div>
           <div className="contribution">
-            기여 :{' '}
+            `#기여
             {data.contribution.map((el, idx) => {
               return (
                 <div>
