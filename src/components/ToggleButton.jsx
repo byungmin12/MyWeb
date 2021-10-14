@@ -131,6 +131,7 @@ function ToggleButton({ handleOnOff, refCheckbox }) {
       <input
         type="checkbox"
         onClick={(e) => {
+          console.log(e);
           handleOnOff();
         }}
         ref={refCheckbox}

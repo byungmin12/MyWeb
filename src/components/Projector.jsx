@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useEffect } from 'react';
 import styled, { keyframes } from 'styled-components';
 import ToggleButton from './ToggleButton';
 
@@ -103,6 +103,14 @@ const XRotateText = styled.div`
 
 function Projector({ isOnOff, handleOnOff }) {
   const refCheckbox = useRef();
+
+  useEffect(() => {
+    console.log(refCheckbox);
+    setTimeout(() => {
+      handleOnOff();
+      return (refCheckbox.current.checked = true);
+    }, 3000);
+  }, [refCheckbox]);
 
   return (
     <ProjectSection>
