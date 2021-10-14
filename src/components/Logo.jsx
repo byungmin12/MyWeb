@@ -60,10 +60,7 @@ function Logo() {
   useEffect(() => {
     const pathRefOne = webRef.current.getTotalLength();
     setJewelry(pathRefOne);
-    console.log(pathRefOne);
   }, []);
-
-  console.log(jewelry);
 
   return (
     <svg width="100%" height="100%" viewBox="-80 -210 230.000000 210.000000" preserveAspectRatio="xMidYMid meet">
