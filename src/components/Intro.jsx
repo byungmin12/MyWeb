@@ -308,7 +308,7 @@ const WideScreen = styled.div`
   align-items: center;
   .lastText {
     animation-name: ${appearAnimationTag}, ${changeColor};
-    animation-delay: 22.5s, 23.3s;
+    animation-delay: 20.9s, 20.9s;
     animation-duration: 1s, 1s;
     animation-fill-mode: forwards;
     animation-iteration-count: 1, infinite;
@@ -482,30 +482,30 @@ const CenterTextFifth = styled(CenterText)`
 `;
 
 const ProjectFirst = styled(CenterText)`
-  animation-delay: 11.8s, 13s;
+  animation-delay: 8.8s, 10.4s;
 `;
 const ProjectSecond = styled(CenterText)`
-  animation-delay: 11.9s, 13.1s;
+  animation-delay: 8.9s, 10.5s;
 `;
 const ProjectThird = styled(CenterText)`
-  animation-delay: 12s, 13.2s;
+  animation-delay: 9s, 10.6s;
 `;
 const ProjectFourth = styled(CenterText)`
-  animation-delay: 12.1s, 13.3s;
+  animation-delay: 9.1s, 10.7s;
 `;
 const ProjectFifth = styled(CenterText)`
-  animation-delay: 12.2s, 13.4s;
+  animation-delay: 9.2s, 10.8s;
 `;
 const ProjectSixth = styled(CenterText)`
-  animation-delay: 12.3s, 13.5s;
+  animation-delay: 9.3s, 10.9s;
 `;
 const ProjectSeventh = styled(CenterText)`
-  animation-delay: 12.4s, 13.6s;
+  animation-delay: 9.4s, 11s;
 `;
 
 const WideScreenMysubway = styled(WideScreen)`
   animation-name: ${startMysubwayGif}, ${keepMysubwayGif}, ${finishMysubwayGif};
-  animation-delay: 14s, 14.6s, 18s;
+  animation-delay: 11.5s, 12.1s, 15.5s;
   animation-duration: 1s, 1s, 1s;
   animation-fill-mode: forwards;
   opacity: 1;
@@ -520,17 +520,17 @@ const MysubwayText = styled.span`
   background-color: #d3d3d3;
   opacity: 0;
   animation-name: ${startMysubwayTextKeyframes}, ${keepMysubwayTextKeyframes}, ${finishMysubwayTextKeyframes};
-  animation-delay: 14s, 14.6s, 18s;
+  animation-delay: 11.5s, 12.1s, 15.5s;
   animation-duration: 1s, 1s, 1s;
   animation-fill-mode: forwards;
 `;
 const WideScreenIsthisright = styled(WideScreenMysubway)`
   animation-name: ${startIsthisrightGif}, ${keepIsthisrightGif}, ${finishIsthisrightGif};
-  animation-delay: 18s, 19s, 22s;
+  animation-delay: 16s, 17s, 20.4s;
 `;
 const IsthisrightText = styled(MysubwayText)`
   animation-name: ${startIsthisrightTextKeyframes}, ${keepIsthisrightTextKeyframes}, ${finishIsthisrightTextKeyframes};
-  animation-delay: 18s, 19s, 22s;
+  animation-delay: 16s, 17s, 20.4s;
 `;
 
 const DetailSpan = styled.span`
@@ -575,7 +575,7 @@ function Intro({ setIsCheckPage }) {
         COMPONENTS
       </RightTextThird>
       <RightTextFourth>REDUX</RightTextFourth>
-      <WideScreen
+      {/* <WideScreen
         style={{
           justifyContent: 'space-evenly',
           flexDirection: 'column',
@@ -588,7 +588,7 @@ function Intro({ setIsCheckPage }) {
         <CenterTextThird>SEQUELIZE</CenterTextThird>
         <CenterTextFourth>GITHUB</CenterTextFourth>
         <CenterTextFifth>POSTMAN</CenterTextFifth>
-      </WideScreen>
+      </WideScreen> */}
       <WideScreen
         style={{
           fontSize: '10vw',
