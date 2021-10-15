@@ -8,24 +8,6 @@ const Screen = styled.div`
   height: 100%;
 `;
 
-const FirstProject = styled.div`
-  width: 100%;
-  height: 100%;
-  background-color: red;
-`;
-
-const FinalProject = styled.div`
-  width: 100%;
-  height: 100%;
-  background-color: blue;
-`;
-
-const PortFolioProject = styled.div`
-  width: 100%;
-  height: 100%;
-  background-color: green;
-`;
-
 function Projects() {
   const ProjectsData = [
     {

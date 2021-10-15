@@ -67,7 +67,6 @@ const DetailPage = styled.div`
   }};
   display: flex;
   justify-content: center;
-  align-items: center;
 `;
 
 const Close = styled.div`
@@ -105,18 +104,32 @@ const Contents = styled.div`
     text-align: center;
     color: #488cc4;
     margin-bottom: 15px;
+    margin-top: 10%;
+    @media screen and (min-width: 750px) {
+      margin-top: 0%;
+    }
   }
+
+  .explain {
+    margin-bottom: 20px;
+  }
+
   > div {
     color: white;
     margin-bottom: 10px;
   }
   .stack {
+    display: inline-block;
     width: auto;
     margin: 0px 3px 10px 3px;
     border: 1px solid #488cc4;
     border-radius: 30px;
     padding: 5px;
     line-height: 10px;
+    margin-left: 20%;
+  }
+  .contribution {
+    margin-top: 20px;
   }
 `;
 
@@ -146,22 +159,30 @@ function ProjectScene({ data }) {
         <Contents>
           <h1 className="title">{data.title}</h1>
           <div className="explain">{data.explain}</div>
-          <div className="role">역할 : Front</div>
           <div>
-            stack :
-            {data.stack.map((el) => {
-              return <span className="stack">{el}</span>;
-            })}
+            #&nbsp;stack &nbsp;&nbsp;&#123;
+            <div>
+              {data.stack.map((el) => {
+                return (
+                  <>
+                    <div className="stack">{el}</div>
+                    <br />
+                  </>
+                );
+              })}
+            </div>
+            &#125;
           </div>
           <div className="contribution">
-            `#기여
+            #&nbsp;contribution &nbsp;&nbsp;&#123;
             {data.contribution.map((el, idx) => {
               return (
-                <div>
-                  {idx + 1}.{el}
+                <div style={{ marginLeft: '20%' }}>
+                  {idx + 1}. &nbsp; {el} ;
                 </div>
               );
             })}
+            &#125;
           </div>
         </Contents>
       </DetailPage>
