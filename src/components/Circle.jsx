@@ -2,6 +2,21 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import useInterval from 'use-interval';
 
+const SVG = styled.svg`
+  transition-duration: 0.6s;
+  position: relative;
+
+  :hover {
+    transform: scale(1.2);
+
+    .circle-percentage {
+      width: 100%;
+      font-weight: bold;
+      font-size: 2rem;
+    }
+  }
+`;
+
 const CircleBackground = styled.circle`
   fill: none;
   stroke: #ddd;
@@ -18,6 +33,8 @@ const TextColor = styled.text`
   font-size: 2.2rem;
   font-weight: bold;
   white-space: pre-line;
+  position: relative;
+  z-index: -1;
 `;
 
 const TextColorLengthUp = styled.text`
@@ -26,9 +43,16 @@ const TextColorLengthUp = styled.text`
   font-weight: bold;
   white-space: pre-line;
 `;
+
+const TextPercentage = styled.text`
+  :hover {
+    font-weight: bold;
+    font-size: 2.5rem;
+  }
+`;
+
 function Circle({ percent, skill }) {
   const [addPercentage, setAddPercentage] = useState(0);
-  const [addSkill, setAddSkill] = useState(0);
 
   useEffect(() => {
     setAddPercentage(0);
@@ -57,7 +81,7 @@ function Circle({ percent, skill }) {
   // Scale 100% coverage overlay with the actual percent
   const dashOffset = dashArray - (dashArray * `${addPercentage}`) / 100;
   return (
-    <svg width="100%" height="100%" viewBox={viewBox}>
+    <SVG width="100%" height="100%" viewBox={viewBox}>
       <CircleBackground
         className="circle-background"
         cx={sqSize / 2}
@@ -78,9 +102,6 @@ function Circle({ percent, skill }) {
           strokeDashoffset: dashOffset,
         }}
       />
-      <text className="circle-text" x="50%" y="55%" dy=".3em" textAnchor="middle">
-        {`${addPercentage}%`}
-      </text>
 
       {skill.includes(' ') ? (
         <>
@@ -96,7 +117,10 @@ function Circle({ percent, skill }) {
           {skill}
         </TextColor>
       )}
-    </svg>
+      <TextPercentage className="circle-percentage" x="50%" y="55%" dy=".3em" textAnchor="middle">
+        {`${addPercentage}%`}
+      </TextPercentage>
+    </SVG>
   );
 }
 
