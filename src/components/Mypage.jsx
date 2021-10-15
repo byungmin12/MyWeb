@@ -81,16 +81,17 @@ const Skill = styled.div`
 
 const MainSubSkillContainer = styled.div`
   width: 100%;
+  display: flex;
+  justify-content: center;
   position: relative;
   height: 5%;
 `;
 
 const MainSkill = styled.div`
   position: absolute;
-  top: 20%;
-  left: 15%;
+  top: 50%;
+  left: 65%;
   justify-content: center;
-  width: 100%;
   display: flex;
   font-size: 1.3vw;
   color: #63656e;
@@ -101,7 +102,7 @@ const MainSkill = styled.div`
   }
   ${({ skillName }) => {
     return skillName === 'Main'
-      ? `top: -50%; left: 0; width: 100%; display:flex; justify-content: center; transform: scale(2); font-weight: 800;color: #488cc4; 
+      ? `top: -90%; left: 50%;  display:flex; justify-content: center; transform: scale(2) translate(-20%, 50%); font-weight: 800;color: #488cc4; 
   z-index: 20;
   @media screen and (max-width: 1200px) {
     font-size: 20px;
@@ -122,10 +123,9 @@ const MainSkill = styled.div`
 
 const SubSkill = styled.div`
   position: absolute;
-  top: 20%;
-  left: 15%;
+  top: 50%;
+  left: 65%;
   justify-content: center;
-  width: 100%;
   display: flex;
   font-size: 1.3vw;
   color: #63656e;
@@ -136,8 +136,8 @@ const SubSkill = styled.div`
   }
   ${({ skillName }) => {
     return skillName === 'Sub'
-      ? `top: -50%; left: 0; width: 100%; display:flex; justify-content: center; transform: scale(2); font-weight: 800;color: #488cc4; z-index: 20; :hover {
-    cursor: pointer;
+      ? `top: -90%; left: 50%;  display:flex; justify-content: center; transform: scale(2) translate(-20%, 50%); font-weight: 800;color: #488cc4; z-index: 20;  :hover {
+    cursor: pointer; 
   }`
       : null;
   }};
