@@ -2,13 +2,16 @@ import React, { useState, useRef, useCallback } from 'react';
 import styled, { keyframes } from 'styled-components';
 
 const QuestionContainer = styled.div`
-  width: 90%;
+  width: 85%;
   /* height: 100%; */
   /* scroll-snap-align: start; */
   position: relative;
   padding-left: 5%;
   padding-right: 5%;
-  transition-duration: 1s;
+  margin: 10px 2.5% 10px 2.5%;
+  :hover {
+    border: 2px solid #488cc4;
+  }
 `;
 
 const QuestionTitle = styled.div`
