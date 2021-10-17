@@ -11,7 +11,7 @@ const Screen = styled.div`
 function Projects() {
   const ProjectsData = [
     {
-      url: '../../mysubway.gif',
+      url: '../../mywebsize.gif',
       title: 'PORTFOLIO',
       explain: '순수 CSS를 활용하여 나를 소개할 수 있는 웹 사이트',
       stack: ['React', 'STYLED COMPONENTS', 'JS'],

@@ -551,7 +551,7 @@ function Intro({ setIsCheckPage }) {
         <IntroDownText>Front-end developer</IntroDownText>
       </WideScreen>
 
-      <LeftImg src="../../typing.gif" />
+      <LeftImg src="../../mypic.jpg" />
       <LeftTextFirst>BE INTENSE</LeftTextFirst>
       <LeftTextSecond>
         BE A LIFE OF
