@@ -12,6 +12,10 @@ const QuestionContainer = styled.div`
   :hover {
     border: 2px solid #488cc4;
   }
+
+  ${({ isOpen }) => {
+    return isOpen === true ? `border: 2px solid #488cc4;` : `border: 0px solid #488cc4;`;
+  }};
 `;
 
 const QuestionTitle = styled.div`
@@ -42,6 +46,7 @@ const QuestionWrap = styled.div`
 const QuestionContent = styled.div`
   width: 100%;
   background-color: white;
+  text-align: left;
 
   /* ${({ isOpen }) => {
     return isOpen ? `height:auto; border: 2px solid red;` : 'height:0px; display:none;';
@@ -72,20 +77,18 @@ function Question({ index, title, content }) {
         parentRef.current.style.height = `${childRef.current.clientHeight}px`;
         parentRef.current.style.background = 'white';
       }
-      setIsOpen(true);
+      setIsOpen(!isOpen);
     },
     [isOpen],
   );
 
   return (
-    <QuestionContainer>
+    <QuestionContainer isOpen={isOpen}>
       <QuestionTitle onClick={handleAccordion}>
         <QuestionColor>Q.{index + 1}</QuestionColor> {title}
       </QuestionTitle>
       <QuestionWrap ref={parentRef}>
-        <QuestionContent isOpen={isOpen} ref={childRef}>
-          {content}
-        </QuestionContent>
+        <QuestionContent ref={childRef}>{content}</QuestionContent>
       </QuestionWrap>
     </QuestionContainer>
   );
