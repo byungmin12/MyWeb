@@ -5,7 +5,7 @@ import PowerSettingsNewIcon from '@mui/icons-material/PowerSettingsNew';
 const RemoteControl = styled.div`
   position: fixed;
 
-  height: 300px;
+  height: 150px;
   min-height: 200px;
   width: 150px;
   min-width: 100px;
@@ -15,18 +15,27 @@ const RemoteControl = styled.div`
     7px 7px #000000, 8px 8px #000000, 9px 9px #000000, 10px 10px #000000, 12px 12px #000000, 13px 13px #000000,
     14px 14px #000000, 15px 15px #000000, 16px 16px #000000, 17px 17px #000000, 18px 18px #000000, 19px 19px #000000,
     20px 20px #000000;
-  /* -webkit-transform: translateX(-3px);
-  transform: translateX(-3px); */
+
   transform: rotate(30deg);
   background-color: #212121;
   display: flex;
   flex-direction: column;
   align-items: center;
 
+  transform: rotateX(48deg);
+  transform-origin: 500% 100% 0px;
+  left: 10%;
   transition-duration: 1s;
   ${({ isOnOff }) => {
-    return isOnOff ? `top: 70%;` : `top: 200%;`;
+    return isOnOff ? `top: 75%;` : `top: 200%;`;
   }};
+
+  @media screen and (max-width: 400px) {
+    transform: rotate(0deg);
+    left: 25%;
+    transform: rotateX(48deg);
+    transform-origin: 50% 50% 0px;
+  }
 `;
 
 const RemoteLight = styled.div`

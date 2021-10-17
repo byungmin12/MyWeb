@@ -34,6 +34,8 @@ const Perspective = styled.div`
   align-items: center; */
   /* transform-style: preserve-3d; */
   transform: translateZ(-50px);
+  position: absolute;
+  perspective: 500px;
 `;
 
 //app
