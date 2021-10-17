@@ -274,7 +274,7 @@ function Screen({ isOnOff, isCheckPage, setIsCheckPage }) {
           ) : isOnOff === true && isCheckPage === 2 ? (
             <OuterScratch className="outer-scratch">
               <InnerScratch className="inner-scratch" style={{ backgroundColor: 'white', overflowY: 'scroll' }}>
-                <Navbar page={2} setIsCheckPage={setIsCheckPage} />
+                {/* <Navbar page={2} setIsCheckPage={setIsCheckPage} /> */}
                 <Mypage />
                 <div style={{ marginBottom: '100px' }}>
                   {resume.map((el, idx) => {
@@ -286,7 +286,7 @@ function Screen({ isOnOff, isCheckPage, setIsCheckPage }) {
           ) : isOnOff === true && isCheckPage === 3 ? (
             <OuterScratch className="outer-scratch">
               <InnerScratch className="inner-scratch" style={{ backgroundColor: 'white' }}>
-                <Navbar page={3} setIsCheckPage={setIsCheckPage} />
+                {/* <Navbar page={3} setIsCheckPage={setIsCheckPage} /> */}
                 <Projects />
               </InnerScratch>
             </OuterScratch>

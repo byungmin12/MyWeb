@@ -3,10 +3,9 @@ import styled, { keyframes } from 'styled-components';
 
 const Title = styled.div`
   width: 100%;
-  height: 10%;
   background-color: #fafafa;
   display: flex;
-  font-size: 1.7vw;
+  margin-bottom: 10px;
 
   /* ${({ num }) => {
     return num === 2 ? `scroll-snap-align: center;` : null;
@@ -26,10 +25,15 @@ const Shadow = styled.div`
 
 const TitleMypage = styled.span`
   width: 100%;
+  font-size: 5vw;
+  font-weight: 800;
+  color: transparent;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: black;
   :hover {
     cursor: pointer;
   }
-  ${({ num }) => {
+  /* ${({ num }) => {
     return num === 2 ? `color: #8C5C03;` : null;
   }};
   ::after {
@@ -40,17 +44,26 @@ const TitleMypage = styled.span`
 
     width: 0px;
     ${({ num }) => {
-      return num === 2 ? `width: 100%;` : null;
-    }};
-  }
+    return num === 2 ? `width: 100%;` : null;
+  }};
+  } */
 `;
 
 const TitleProject = styled.span`
   width: 100%;
+  font-size: 2vw;
+  font-weight: 800;
+  color: transparent;
+  -webkit-text-stroke-width: 0.5px;
+  -webkit-text-stroke-color: black;
+  -webkit-background-clip: text;
+  background-image: linear-gradient(135deg, #0a3e92, #007ebe);
+  /* size it at 3.75vw  */
+  /* (5 * 1.5 [i.e. 150%]) * .5 [i.e. 50%] */
   :hover {
     cursor: pointer;
   }
-  ${({ num }) => {
+  /* ${({ num }) => {
     return num === 3 ? `color: #8C5C03;` : null;
   }};
   ::after {
@@ -60,9 +73,9 @@ const TitleProject = styled.span`
     transition-duration: 0.2s;
     width: 0px;
     ${({ num }) => {
-      return num === 3 ? `width: 100%;` : null;
-    }};
-  }
+    return num === 3 ? `width: 100%;` : null;
+  }};
+  } */
 `;
 
 function Navbar({ page, setIsCheckPage }) {
