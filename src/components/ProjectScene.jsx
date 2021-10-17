@@ -184,6 +184,15 @@ function ProjectScene({ data }) {
             })}
             &#125;
           </div>
+          <div>
+            #&nbsp;repository&nbsp;&nbsp;&#123;
+            <div>
+              <a href={data.repository} style={{ marginLeft: '20%' }}>
+                rink
+              </a>
+            </div>{' '}
+            &#125;
+          </div>
         </Contents>
       </DetailPage>
     </Project>

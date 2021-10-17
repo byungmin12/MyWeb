@@ -23,6 +23,7 @@ function Projects() {
         'detail page 구현',
         'post card 구현',
       ],
+      repository: 'https://github.com/codestates/My-subway',
     },
     {
       url: '../../mysubway.gif',
@@ -37,6 +38,7 @@ function Projects() {
         'detail page 구현',
         'post card 구현',
       ],
+      repository: 'https://github.com/codestates/My-subway',
     },
     {
       url: '../../mysubway.gif',
@@ -51,6 +53,7 @@ function Projects() {
         'detail page 구현',
         'post card 구현',
       ],
+      repository: 'https://github.com/codestates/My-subway',
     },
   ];
 
