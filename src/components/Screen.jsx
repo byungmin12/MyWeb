@@ -198,7 +198,9 @@ const InnerScratch = styled.div`
   overflow-x: hidden;
   /* scroll-snap-type: y mandatory; */
   scroll-padding: 100px;
-
+  ::-webkit-scrollbar {
+    display: none;
+  }
   ::after {
     width: 97%;
     height: 97%;

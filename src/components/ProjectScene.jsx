@@ -25,12 +25,14 @@ const Project = styled.div`
   ${({ data }) => {
     return data ? `background-image: url("${data.url}");` : null;
   }};
+  border-bottom: 10px solid blue;
+  border-top: 10px solid blue;
 `;
 
 const Detail = styled.div`
   position: absolute;
   top: 70%;
-  left: 75%;
+  left: 80%;
   background-color: rgba(0, 0, 0, 0.3);
   width: 20%;
   padding: 10px;
@@ -61,12 +63,22 @@ const DetailPage = styled.div`
   position: absolute;
   background-color: rgba(0, 0, 0, 0.7);
   left: 100%;
+
+  overflow-y: scroll;
+  ::-webkit-scrollbar {
+    display: none;
+  }
   transition-duration: 1s;
   ${({ on }) => {
     return on ? `left: 40%;` : `left: 100%;`;
   }};
+
   display: flex;
   justify-content: center;
+  @media screen and (max-width: 540px) {
+    font-size: 12px;
+    overflow-y: scroll;
+  }
 `;
 
 const Close = styled.div`
@@ -133,6 +145,12 @@ const Contents = styled.div`
   }
 `;
 
+const Repository = styled.a`
+  margin-left: 20%;
+  text-decoration: none;
+  color: white;
+`;
+
 function ProjectScene({ data }) {
   const [isDetail, setIsDetail] = useState(false);
   const handleDeTailPage = (e) => {
@@ -185,11 +203,9 @@ function ProjectScene({ data }) {
             &#125;
           </div>
           <div>
-            #&nbsp;repository&nbsp;&nbsp;&#123;
+            #&nbsp;link&nbsp;&nbsp;&#123;
             <div>
-              <a href={data.repository} style={{ marginLeft: '20%' }}>
-                rink
-              </a>
+              <Repository href={data.repository}>1.&nbsp; GIthub</Repository>
             </div>{' '}
             &#125;
           </div>
