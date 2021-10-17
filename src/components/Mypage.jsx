@@ -15,25 +15,6 @@ const spin = keyframes`
   }
 `;
 
-// const spin = keyframes`
-//   from{
-//     color: #63656e;
-//   }
-//   50%{
-//     color: transparent;
-
-//   }
-//   to{
-//     color: #63656e;
-//   }
-// `;
-const testKey = keyframes`
-  to{
-    
-  }
-  
-`;
-
 const Screen = styled.div`
   width: 100%;
   height: 90%;
@@ -51,13 +32,6 @@ const AboutMeAndSkill = styled.div`
   display: flex;
   text-align: left;
 `;
-const AboutResume = styled.div`
-  width: 100%;
-  height: 100%;
-  display: flex;
-  text-align: left;
-  flex-direction: column;
-`;
 
 const AboutMe = styled.div`
   width: 50%;
@@ -71,8 +45,7 @@ const AboutMe = styled.div`
 const Skill = styled.div`
   width: 50%;
   background-color: #fafafa;
-  height: 95%;
-  margin-top: 3%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -81,35 +54,30 @@ const Skill = styled.div`
 
 const MainSubSkillContainer = styled.div`
   width: 100%;
-  display: flex;
-  justify-content: center;
   position: relative;
-  height: 5%;
+  height: 10%;
 `;
 
 const MainSkill = styled.div`
   position: absolute;
-  top: 50%;
-  left: 65%;
-  justify-content: center;
-  display: flex;
-  font-size: 1.3vw;
-  color: #63656e;
-  z-index: 1;
+  transform: translate(-50%, -50%);
+  top: 60%;
+  left: 50%;
+  font-size: 3vw;
+  white-space: nowrap;
+  font-weight: 800;
+  color: #488cc4;
+  z-index: 20;
+  /* color: #63656e; */
   transition-duration: 1s;
-  @media screen and (max-width: 1200px) {
-    font-size: 20px;
+  :hover {
+    cursor: pointer;
   }
   ${({ skillName }) => {
-    return skillName === 'Main'
-      ? `top: -90%; left: 50%;  display:flex; justify-content: center; transform: scale(2) translate(-20%, 50%); font-weight: 800;color: #488cc4; 
-  z-index: 20;
-  @media screen and (max-width: 1200px) {
-    font-size: 20px;
-  }
-      :hover {
-    cursor: pointer; 
-  }`
+    return skillName !== 'Main'
+      ? `position: absolute; top: 50%; left: 50%;  transform: scale(0.5); color: #63656e; 
+  z-index: 1;
+`
       : null;
   }};
 
@@ -119,26 +87,33 @@ const MainSkill = styled.div`
           ${spin} 1s infinite
         `
       : ''};
+
+  @media screen and (max-width: 800px) {
+    font-size: 25px;
+  }
 `;
 
 const SubSkill = styled.div`
   position: absolute;
-  top: 50%;
-  left: 65%;
-  justify-content: center;
-  display: flex;
-  font-size: 1.3vw;
-  color: #63656e;
-  z-index: 1;
+  transform: translate(-50%, -50%);
+  top: 60%;
+  left: 50%;
+  font-size: 3vw;
+  white-space: nowrap;
+  font-weight: 800;
+  color: #488cc4;
+  z-index: 20;
+  /* color: #63656e; */
   transition-duration: 1s;
-  @media screen and (max-width: 1200px) {
-    font-size: 20px;
+  :hover {
+    cursor: pointer;
   }
+
   ${({ skillName }) => {
-    return skillName === 'Sub'
-      ? `top: -90%; left: 50%;  display:flex; justify-content: center; transform: scale(2) translate(-20%, 50%); font-weight: 800;color: #488cc4; z-index: 20;  :hover {
-    cursor: pointer; 
-  }`
+    return skillName !== 'Sub'
+      ? `position: absolute; top: 50%; left: 50%;  transform: scale(0.5); color: #63656e; 
+  z-index: 1;
+`
       : null;
   }};
   animation: ${(props) =>
@@ -147,6 +122,10 @@ const SubSkill = styled.div`
           ${spin} 1s infinite
         `
       : ''};
+
+  @media screen and (max-width: 800px) {
+    font-size: 25px;
+  }
 `;
 
 const SkillContainer = styled.div`
@@ -238,17 +217,6 @@ function Mypage() {
           </InfoContainer>
         </AboutMe>
         <Skill>
-          {/* {skillName === 'Main' ? (
-            <div className="mainSkill" onClick={() => handleSkillName('Sub')} skillName={skillName}>
-              MAIN SKILL
-              <div className="subSkill">SUB SKILL</div>
-            </div>
-          ) : (
-            <div className="mainSkill" onClick={() => handleSkillName('Main')}>
-              SUB SKILL
-              <div className="subSkill">MAIN SKILL</div>
-            </div>
-          )} */}
           <MainSubSkillContainer>
             <MainSkill
               className="mainSkill"
