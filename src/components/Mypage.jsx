@@ -214,6 +214,9 @@ function Mypage() {
             <div>
               ▶ 지속적인 학습을 통해 <span style={{ color: '#488cc4' }}>발전을 추구</span>합니다.
             </div>
+            <br />
+            <div>📲 Mobile: 010-7426-2619</div>
+            <div>📧 E-mail: byungminkim12@gmail.com</div>
           </InfoContainer>
         </AboutMe>
         <Skill>
