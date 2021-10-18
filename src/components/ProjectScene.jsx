@@ -30,16 +30,8 @@ const Project = styled.div`
 `;
 
 const Detail = styled.div`
-  position: absolute;
-  top: 70%;
-  left: 80%;
-  background-color: rgba(0, 0, 0, 0.3);
-  width: 20%;
-  padding: 10px;
-  border-radius: 10px;
   font-size: 2vw;
   font-weight: 500;
-  border: 2px solid white;
   color: white;
   :hover {
     cursor: pointer;
@@ -64,10 +56,6 @@ const DetailPage = styled.div`
   background-color: rgba(0, 0, 0, 0.7);
   left: 100%;
 
-  overflow-y: scroll;
-  ::-webkit-scrollbar {
-    display: none;
-  }
   transition-duration: 1s;
   ${({ on }) => {
     return on ? `left: 40%;` : `left: 100%;`;
@@ -81,11 +69,39 @@ const DetailPage = styled.div`
   }
 `;
 
+const CloseContainer = styled.div`
+  height: 50px;
+  background-color: rgba(0, 0, 0, 0.7);
+  width: 100px;
+  position: absolute;
+  top: 20px;
+  left: -100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px 0px 0px 10px;
+  /* ::after {
+    content: '';
+    position: absolute;
+    left: 100%;
+    top: -0%;
+    transform: translate(-100%, -100%);
+    width: 10px;
+    height: 10px;
+    border-width: 0px 0px 10px 0px;
+    border-radius: 100px 100px 0px 10px;
+    border-style: solid;
+    border-color: transparent transparent black transparent;
+    background-color: red;
+  } */
+`;
+
 const Close = styled.div`
   text-align: none;
   position: absolute;
-  left: 20px;
-  top: 20px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
   border-radius: 100%;
   border: 2px solid white;
   width: 40px;
@@ -109,9 +125,13 @@ const Arrow = styled(KeyboardArrowRightIcon)``;
 
 const Contents = styled.div`
   text-align: left;
-  height: 70%;
+  height: auto;
   width: 100%;
   padding: 5%;
+  overflow-y: scroll;
+  ::-webkit-scrollbar {
+    display: none;
+  }
   .title {
     text-align: center;
     color: #488cc4;
@@ -149,6 +169,9 @@ const Repository = styled.a`
   margin-left: 20%;
   text-decoration: none;
   color: white;
+  :hover {
+    color: #488cc4;
+  }
 `;
 
 function ProjectScene({ data }) {
@@ -160,23 +183,50 @@ function ProjectScene({ data }) {
 
   return (
     <Project data={data}>
-      <Detail
+      {/* <Detail
         onClick={(e) => {
           handleDeTailPage(e);
         }}
         on={isDetail}>
         Details
-      </Detail>
+      </Detail> */}
       <DetailPage on={isDetail}>
-        <Close
-          onClick={() => {
-            setIsDetail(false);
-          }}>
-          <Arrow className="ArrowSGV"></Arrow>
-        </Close>
+        <CloseContainer>
+          {isDetail ? (
+            <Close
+              onClick={() => {
+                setIsDetail(false);
+              }}>
+              <Arrow className="ArrowSGV"></Arrow>
+            </Close>
+          ) : (
+            <Detail
+              onClick={(e) => {
+                handleDeTailPage(e);
+              }}>
+              Details
+            </Detail>
+          )}
+        </CloseContainer>
         <Contents>
           <h1 className="title">{data.title}</h1>
           <div className="explain">{data.explain}</div>
+          <div>
+            #&nbsp;link&nbsp;&nbsp;&#123;
+            {/* <div>
+              <Repository href={el.url}>{el.where}</Repository>
+            </div>{' '} */}
+            <div>
+              {data.repository.map((el) => {
+                return (
+                  <Repository href={el.url} target="_blank">
+                    {el.where}
+                  </Repository>
+                );
+              })}
+            </div>
+            &#125;
+          </div>
           <div>
             #&nbsp;stack &nbsp;&nbsp;&#123;
             <div>
@@ -200,13 +250,6 @@ function ProjectScene({ data }) {
                 </div>
               );
             })}
-            &#125;
-          </div>
-          <div>
-            #&nbsp;link&nbsp;&nbsp;&#123;
-            <div>
-              <Repository href={data.repository}>1.&nbsp; GIthub</Repository>
-            </div>{' '}
             &#125;
           </div>
         </Contents>

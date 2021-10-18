@@ -22,7 +22,10 @@ function Projects() {
         'Projector 구현',
         '각종 Animation 지정',
       ],
-      repository: 'https://github.com/byungmin12/MyWeb',
+      repository: [
+        { where: '배포', url: 'byungmin.kim' },
+        { where: '깃헙', url: 'https://github.com/byungmin12/MyWeb' },
+      ],
     },
     {
       url: '../../isthisright.gif',
@@ -38,7 +41,11 @@ function Projects() {
         'Mypage 구현',
         'footer 구현',
       ],
-      repository: 'https://github.com/codestates/is-this-right',
+      repository: [
+        { where: '배포', url: 'isthisright.kr' },
+        { where: '깃헙', url: 'https://github.com/codestates/is-this-right' },
+        { where: '기획서', url: 'https://codestates.notion.site/1-S-M-S-31dbe334fe7544b79569c717c8c6bb16' },
+      ],
     },
     {
       url: '../../mysubway.gif',
@@ -53,7 +60,10 @@ function Projects() {
         'detail page 구현',
         'post card 구현',
       ],
-      repository: 'https://github.com/codestates/My-subway',
+      repository: [
+        { where: '깃헙', url: 'https://github.com/codestates/My-subway' },
+        { where: '기획서', url: 'https://github.com/codestates/My-subway/wiki' },
+      ],
     },
   ];
 
