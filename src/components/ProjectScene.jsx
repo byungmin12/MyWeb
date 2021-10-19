@@ -25,8 +25,6 @@ const Project = styled.div`
   ${({ data }) => {
     return data ? `background-image: url("${data.url}");` : null;
   }};
-  border-bottom: 10px solid blue;
-  border-top: 10px solid blue;
 `;
 
 const Detail = styled.div`
@@ -80,20 +78,9 @@ const CloseContainer = styled.div`
   justify-content: center;
   align-items: center;
   border-radius: 10px 0px 0px 10px;
-  /* ::after {
-    content: '';
-    position: absolute;
-    left: 100%;
-    top: -0%;
-    transform: translate(-100%, -100%);
-    width: 10px;
-    height: 10px;
-    border-width: 0px 0px 10px 0px;
-    border-radius: 100px 100px 0px 10px;
-    border-style: solid;
-    border-color: transparent transparent black transparent;
-    background-color: red;
-  } */
+  :hover {
+    cursor: pointer;
+  }
 `;
 
 const Close = styled.div`
@@ -183,15 +170,11 @@ function ProjectScene({ data }) {
 
   return (
     <Project data={data}>
-      {/* <Detail
-        onClick={(e) => {
-          handleDeTailPage(e);
-        }}
-        on={isDetail}>
-        Details
-      </Detail> */}
       <DetailPage on={isDetail}>
-        <CloseContainer>
+        <CloseContainer
+          onClick={(e) => {
+            handleDeTailPage(e);
+          }}>
           {isDetail ? (
             <Close
               onClick={() => {
@@ -200,12 +183,7 @@ function ProjectScene({ data }) {
               <Arrow className="ArrowSGV"></Arrow>
             </Close>
           ) : (
-            <Detail
-              onClick={(e) => {
-                handleDeTailPage(e);
-              }}>
-              Details
-            </Detail>
+            <Detail>Details</Detail>
           )}
         </CloseContainer>
         <Contents>
