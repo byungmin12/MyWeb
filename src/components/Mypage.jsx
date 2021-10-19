@@ -172,15 +172,15 @@ function Mypage() {
   const [skillName, setSkillName] = useState('Main');
 
   const skillData = [
-    { skill: 'HTML', proficiency: 70 },
+    { skill: 'HTML', proficiency: 75 },
     { skill: 'CSS', proficiency: 75 },
     { skill: 'JS', proficiency: 83 },
     { skill: 'REACT', proficiency: 87 },
     { skill: 'REDUX', proficiency: 60 },
-    { skill: `STYLED COMPONENTS`, proficiency: 60 },
+    { skill: `STYLED COMPONENTS`, proficiency: 75 },
   ];
   const subSkillData = [
-    { skill: 'Node.js', proficiency: 50 },
+    { skill: 'Node.js', proficiency: 55 },
     { skill: 'Express', proficiency: 50 },
     { skill: 'MySQL', proficiency: 50 },
     { skill: 'Sequelize', proficiency: 50 },
