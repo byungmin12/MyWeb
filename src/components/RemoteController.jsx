@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import styled, { keyframes } from 'styled-components';
+import styled from 'styled-components';
 import PowerSettingsNewIcon from '@mui/icons-material/PowerSettingsNew';
 
 const RemoteControl = styled.div`
@@ -27,7 +27,7 @@ const RemoteControl = styled.div`
   left: 10%;
   transition-duration: 1s;
   ${({ isOnOff }) => {
-    return isOnOff ? `top: 75%;` : `top: 200%;`;
+    return isOnOff === 'true' ? `top: 75%;` : `top: 200%;`;
   }};
 
   @media screen and (max-width: 400px) {
@@ -47,8 +47,8 @@ const RemoteLight = styled.div`
   display: inline-block;
   box-shadow: rgba(255, 0, 0, 0.95) 0px -30px 50px 8px;
   transition-duration: 0.5s;
-  ${({ onLight }) => {
-    return onLight ? `display: block;` : `display: none;`;
+  ${({ isLight }) => {
+    return isLight ? `display: block;` : `display: none;`;
   }};
 `;
 
@@ -195,7 +195,7 @@ const SnsButton = styled.div`
 `;
 
 function RemoteController({ handleRemotePage, setIsCheckPage, isCheckPage, isOnOff }) {
-  const [onLight, setOnLight] = useState(false);
+  const [isLight, setIsLight] = useState(false);
   const handleLeftPage = () => {
     const pageNum = isCheckPage - 1;
     if (isCheckPage === 0) {
@@ -223,9 +223,9 @@ function RemoteController({ handleRemotePage, setIsCheckPage, isCheckPage, isOnO
   };
 
   const handleLight = () => {
-    setOnLight(true);
+    setIsLight(true);
     setTimeout(() => {
-      setOnLight(false);
+      setIsLight(false);
     }, 300);
   };
 
@@ -238,7 +238,7 @@ function RemoteController({ handleRemotePage, setIsCheckPage, isCheckPage, isOnO
 
   return (
     <RemoteControl isOnOff={isOnOff}>
-      <RemoteLight onLight={onLight}></RemoteLight>
+      <RemoteLight isLight={isLight}></RemoteLight>
       <ArrowAndPowerSection>
         <LeftDirectionWrap onClick={handleLeftPage}>
           <LeftDirection></LeftDirection>
@@ -261,7 +261,7 @@ function RemoteController({ handleRemotePage, setIsCheckPage, isCheckPage, isOnO
       <RemoteControllerButton onClick={handleThreePage}>PROJECTS</RemoteControllerButton>
       <SnsSection>
         <SnsButton>
-          <a href="https://github.com/byungmin12" target="_blank">
+          <a href="https://github.com/byungmin12" target="_blank" rel="noreferrer">
             <svg height="100%" viewBox="0 0 16 16">
               <path
                 fill="white"
@@ -270,14 +270,14 @@ function RemoteController({ handleRemotePage, setIsCheckPage, isCheckPage, isOnO
           </a>
         </SnsButton>
         <SnsButton>
-          <a href="https://velog.io/@kbm940526" target="_blank">
+          <a href="https://velog.io/@kbm940526" target="_blank" rel="noreferrer">
             <svg height="100%" viewBox="0 0 16 16">
               <image href="../../vlog.ico" width="16" height="16"></image>
             </svg>
           </a>
         </SnsButton>
         <SnsButton>
-          <a href="https://www.notion.so/Resume-69f2c302a16e49f8a89935cf5c0a289c" target="_blank">
+          <a href="https://www.notion.so/Resume-69f2c302a16e49f8a89935cf5c0a289c" target="_blank" rel="noreferrer">
             <svg height="100%" viewBox="0 0 115 126" style={{}}>
               <path
                 fill="white"

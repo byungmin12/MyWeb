@@ -1,5 +1,5 @@
 import React from 'react';
-import styled, { keyframes } from 'styled-components';
+import styled from 'styled-components';
 import ProjectScene from './ProjectScene';
 
 const Screen = styled.div`
@@ -69,11 +69,8 @@ function Projects() {
 
   return (
     <Screen>
-      {/* <FirstProject></FirstProject>
-      <FinalProject></FinalProject>
-      <PortFolioProject></PortFolioProject> */}
-      {ProjectsData.map((el) => {
-        return <ProjectScene data={el} />;
+      {ProjectsData.map((el, idx) => {
+        return <ProjectScene data={el} key={idx} />;
       })}
     </Screen>
   );

@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useCallback } from 'react';
 
 import styled from 'styled-components';
 
@@ -15,10 +15,7 @@ import Projector from './components/Projector';
 const AppBody = styled.div`
   width: 100vw;
   height: 100vh;
-  /* display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center; */
+
   perspective: 500px;
   text-align: center;
   position: relative;
@@ -28,14 +25,10 @@ const AppBody = styled.div`
 const Perspective = styled.div`
   width: 100vw;
   height: 100vh;
-  /* display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center; */
-  /* transform-style: preserve-3d; */
+
   transform: translateZ(-50px);
   position: absolute;
-  perspective: 500px; 
+  perspective: 500px;
 `;
 
 //app
@@ -47,14 +40,21 @@ const Perspective = styled.div`
 //app
 
 function App() {
-  const [isOnOff, setIsOnOff] = useState(false);
+  const [isOnOff, setIsOnOff] = useState('false');
   const [isCheckPage, setIsCheckPage] = useState(0);
   const refCheckbox = useRef();
 
-  const handleOnOff = () => {
-    setIsOnOff(!isOnOff);
-    setIsCheckPage(0);
-  };
+  const useCallbackFunc = useCallback(() => {
+    const handleOnOff = () => {
+      if (isOnOff === 'false') {
+        setIsOnOff('true');
+      } else {
+        setIsOnOff('false');
+      }
+      setIsCheckPage(0);
+    };
+    handleOnOff();
+  }, [isOnOff, setIsCheckPage, setIsOnOff]);
 
   const handleRemotePage = (num) => {
     setIsCheckPage(num);
@@ -63,9 +63,14 @@ function App() {
   return (
     <AppBody>
       <Perspective>
-        <Screen isOnOff={isOnOff} isCheckPage={isCheckPage} setIsCheckPage={setIsCheckPage} />
+        <Screen isOnOff={isOnOff} isCheckPage={isCheckPage} />
 
-        <Projector isOnOff={isOnOff} handleOnOff={handleOnOff} />
+        <Projector
+          isOnOff={isOnOff}
+          handleOnOff={useCallbackFunc}
+          setIsCheckPage={setIsCheckPage}
+          setIsOnOff={setIsOnOff}
+        />
         <RemoteController
           handleRemotePage={handleRemotePage}
           setIsCheckPage={setIsCheckPage}

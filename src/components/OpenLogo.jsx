@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled, { keyframes } from 'styled-components';
-import useInterval from 'use-interval';
 import Logo from './Logo.jsx';
 import NameSVG from './NameSVG.jsx';
 
@@ -15,31 +14,6 @@ const PressButtonMassage = keyframes`
   100% {
     opacity: 1;
   }
-`;
-
-const showTextKeyframes = keyframes`
-  to{
-    fill: #000000;
-    stroke-dashoffset: 0;
-  }
-`;
-
-const Text = styled.text`
-  text-align: center;
-  /* font-family: 'Montserrat', cursive; */
-  font-size: 3em;
-  font-weight: 1000;
-  stroke: black;
-`;
-
-const PressAnimation = styled.textPath`
-  font-size: 20px;
-  font-weight: normal;
-  fill: red;
-  animation: ${PressButtonMassage} 1s infinite;
-  animation-delay: 5.6s;
-  opacity: 0;
-  stroke: red;
 `;
 
 const SVG = styled.svg`

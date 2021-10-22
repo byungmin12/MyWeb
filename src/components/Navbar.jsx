@@ -1,15 +1,11 @@
 import React from 'react';
-import styled, { keyframes } from 'styled-components';
+import styled from 'styled-components';
 
 const Title = styled.div`
   width: 100%;
   background-color: #fafafa;
   display: flex;
   margin-bottom: 10px;
-
-  /* ${({ num }) => {
-    return num === 2 ? `scroll-snap-align: center;` : null;
-  }}; */
 `;
 
 const Shadow = styled.div`
@@ -33,20 +29,6 @@ const TitleMypage = styled.span`
   :hover {
     cursor: pointer;
   }
-  /* ${({ num }) => {
-    return num === 2 ? `color: #8C5C03;` : null;
-  }};
-  ::after {
-    content: '';
-    display: block;
-    border-bottom: 4px solid #8c5c03;
-    transition-duration: 0.2s;
-
-    width: 0px;
-    ${({ num }) => {
-    return num === 2 ? `width: 100%;` : null;
-  }};
-  } */
 `;
 
 const TitleProject = styled.span`
@@ -58,24 +40,10 @@ const TitleProject = styled.span`
   -webkit-text-stroke-color: black;
   -webkit-background-clip: text;
   background-image: linear-gradient(135deg, #0a3e92, #007ebe);
-  /* size it at 3.75vw  */
-  /* (5 * 1.5 [i.e. 150%]) * .5 [i.e. 50%] */
+
   :hover {
     cursor: pointer;
   }
-  /* ${({ num }) => {
-    return num === 3 ? `color: #8C5C03;` : null;
-  }};
-  ::after {
-    content: '';
-    display: block;
-    border-bottom: 4px solid #8c5c03;
-    transition-duration: 0.2s;
-    width: 0px;
-    ${({ num }) => {
-    return num === 3 ? `width: 100%;` : null;
-  }};
-  } */
 `;
 
 function Navbar({ page, setIsCheckPage }) {

@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState } from 'react';
+import React, { useRef } from 'react';
 import styled, { keyframes } from 'styled-components';
 
 const OpacityAnimation = keyframes`
@@ -54,13 +54,6 @@ const GTag = styled.g`
 function Logo() {
   const jewRef = useRef();
   const webRef = useRef();
-
-  const [jewelry, setJewelry] = useState();
-
-  useEffect(() => {
-    const pathRefOne = webRef.current.getTotalLength();
-    setJewelry(pathRefOne);
-  }, []);
 
   return (
     <svg width="100%" height="100%" viewBox="-80 -210 230.000000 210.000000" preserveAspectRatio="xMidYMid meet">

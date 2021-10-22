@@ -68,7 +68,6 @@ const MainSkill = styled.div`
   font-weight: 800;
   color: #488cc4;
   z-index: 20;
-  /* color: #63656e; */
   transition-duration: 1s;
   :hover {
     cursor: pointer;
@@ -185,7 +184,6 @@ function Mypage() {
     { skill: 'MySQL', proficiency: 50 },
     { skill: 'Sequelize', proficiency: 50 },
   ];
-  const [skillInfo, setSkillInfo] = useState(skillData);
 
   const handleSkillName = (name) => {
     setSkillName(name);
@@ -201,7 +199,7 @@ function Mypage() {
             <div className="name">BYUNGMIN, KIM</div>
           </InfoText>
           <MyImgContainer>
-            <img src="../../증명사진.jpg" />
+            <img src="../../증명사진.jpg" alt="mypic" />
           </MyImgContainer>
           <InfoContainer>
             <div>
@@ -244,16 +242,16 @@ function Mypage() {
           </MainSubSkillContainer>
           <SkillContainer>
             {skillName === 'Main'
-              ? skillData.map((el) => {
+              ? skillData.map((el, idx) => {
                   return (
-                    <div style={{ width: '50%', height: '30%' }}>
+                    <div style={{ width: '50%', height: '30%' }} key={idx}>
                       <Circle percent={el.proficiency} skill={el.skill} />
                     </div>
                   );
                 })
-              : subSkillData.map((el) => {
+              : subSkillData.map((el, idx) => {
                   return (
-                    <div style={{ width: '50%', height: '50%' }}>
+                    <div style={{ width: '50%', height: '50%' }} key={idx}>
                       <Circle percent={el.proficiency} skill={el.skill} />
                     </div>
                   );

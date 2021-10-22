@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useCallback } from 'react';
 import styled, { keyframes } from 'styled-components';
 import ToggleButton from './ToggleButton';
 
@@ -80,7 +80,6 @@ const Trapezoid = styled.div`
     rgba(255, 255, 255, 1) 0%,
     rgba(255, 255, 255, 0) 67%
   );
-  /* background-image: -moz-radial-gradient(50% 100%, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 47%); */
 
   position: absolute;
   top: -50%;
@@ -91,7 +90,7 @@ const Trapezoid = styled.div`
   transform: translate(-50%, 0%);
   transition-duration: 0.2s;
   ${({ on }) => {
-    return on ? `opacity: 0.5;` : `opacity: 0;`;
+    return on === 'true' ? `opacity: 0.5;` : `opacity: 0;`;
   }};
 `;
 
@@ -101,20 +100,30 @@ const XRotateText = styled.div`
   height: 50px;
 `;
 
-function Projector({ isOnOff, handleOnOff }) {
+function Projector({ isOnOff, handleOnOff, setIsCheckPage, setIsOnOff }) {
   const refCheckbox = useRef();
+  const projectorFunc = () => {
+    const timeout = () => {
+      setTimeout(() => {
+        if (isOnOff === 'false') {
+          setIsOnOff('true');
+        }
+        setIsCheckPage(0);
+      }, 3000);
+    };
+    timeout();
+  };
+
+  const handleOnOffCallback = useCallback(projectorFunc, [isOnOff, setIsCheckPage, setIsOnOff]);
 
   useEffect(() => {
-    console.log(refCheckbox);
-    setTimeout(() => {
-      handleOnOff();
-      return (refCheckbox.current.checked = true);
-    }, 3000);
-  }, [refCheckbox]);
+    refCheckbox.current.checked = true;
+    handleOnOffCallback();
+  }, [handleOnOffCallback]);
 
   return (
     <ProjectSection>
-      <Trapezoid on={isOnOff}></Trapezoid>
+      <Trapezoid></Trapezoid>
       <ProjectTopWrap>
         <TopOfProjector>
           <XRotateText></XRotateText>

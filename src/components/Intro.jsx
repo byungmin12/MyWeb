@@ -468,19 +468,6 @@ const CenterText = styled.span`
   animation-fill-mode: forwards;
 `;
 
-const CenterTextSecond = styled(CenterText)`
-  animation-delay: 9s, 11.4s;
-`;
-const CenterTextThird = styled(CenterText)`
-  animation-delay: 9.2s, 11.6s;
-`;
-const CenterTextFourth = styled(CenterText)`
-  animation-delay: 9.4s, 11.8s;
-`;
-const CenterTextFifth = styled(CenterText)`
-  animation-delay: 9.6s, 12s;
-`;
-
 const ProjectFirst = styled(CenterText)`
   animation-delay: 8.8s, 10.4s;
 `;
@@ -575,20 +562,6 @@ function Intro({ setIsCheckPage }) {
         COMPONENTS
       </RightTextThird>
       <RightTextFourth>REDUX</RightTextFourth>
-      {/* <WideScreen
-        style={{
-          justifyContent: 'space-evenly',
-          flexDirection: 'column',
-          alignItems: 'center',
-          fontSize: '4vw',
-          fontWeight: '1000',
-        }}>
-        <CenterText>NODE.JS</CenterText>
-        <CenterTextSecond>EXPRESS</CenterTextSecond>
-        <CenterTextThird>SEQUELIZE</CenterTextThird>
-        <CenterTextFourth>GITHUB</CenterTextFourth>
-        <CenterTextFifth>POSTMAN</CenterTextFifth>
-      </WideScreen> */}
       <WideScreen
         style={{
           fontSize: '10vw',

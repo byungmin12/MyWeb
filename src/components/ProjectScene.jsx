@@ -36,8 +36,8 @@ const Detail = styled.div`
   }
   transition-duration: 2s;
 
-  ${({ on }) => {
-    return !on ? `display: block` : `display:none`;
+  ${({ isPage }) => {
+    return !isPage ? `display: block` : `display:none`;
   }};
   @media screen and (min-width: 1200px) {
     font-size: 24px;
@@ -55,8 +55,8 @@ const DetailPage = styled.div`
   left: 100%;
 
   transition-duration: 1s;
-  ${({ on }) => {
-    return on ? `left: 40%;` : `left: 100%;`;
+  ${({ isPage }) => {
+    return isPage ? `left: 40%;` : `left: 100%;`;
   }};
 
   display: flex;
@@ -170,7 +170,7 @@ function ProjectScene({ data }) {
 
   return (
     <Project data={data}>
-      <DetailPage on={isDetail}>
+      <DetailPage isPage={isDetail}>
         <CloseContainer
           onClick={(e) => {
             handleDeTailPage(e);
@@ -191,13 +191,10 @@ function ProjectScene({ data }) {
           <div className="explain">{data.explain}</div>
           <div>
             #&nbsp;link&nbsp;&nbsp;&#123;
-            {/* <div>
-              <Repository href={el.url}>{el.where}</Repository>
-            </div>{' '} */}
             <div>
-              {data.repository.map((el) => {
+              {data.repository.map((el, idx) => {
                 return (
-                  <Repository href={el.url} target="_blank">
+                  <Repository href={el.url} target="_blank" key={idx}>
                     {el.where}
                   </Repository>
                 );
@@ -208,12 +205,12 @@ function ProjectScene({ data }) {
           <div>
             #&nbsp;stack &nbsp;&nbsp;&#123;
             <div>
-              {data.stack.map((el) => {
+              {data.stack.map((el, idx) => {
                 return (
-                  <>
+                  <div key={idx}>
                     <div className="stack">{el}</div>
                     <br />
-                  </>
+                  </div>
                 );
               })}
             </div>
@@ -223,7 +220,7 @@ function ProjectScene({ data }) {
             #&nbsp;contribution &nbsp;&nbsp;&#123;
             {data.contribution.map((el, idx) => {
               return (
-                <div style={{ marginLeft: '20%' }}>
+                <div style={{ marginLeft: '20%' }} key={idx}>
                   {idx + 1}. &nbsp; {el} ;
                 </div>
               );

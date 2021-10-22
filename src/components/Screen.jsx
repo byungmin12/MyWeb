@@ -5,7 +5,6 @@ import OpenLogo from './OpenLogo';
 import Intro from './Intro';
 import Mypage from './Mypage';
 import Projects from './Projects';
-import Navbar from './Navbar';
 import Question from './Question';
 
 const grain = keyframes`
@@ -163,7 +162,9 @@ const MainScreen = styled.div`
     height: 97%;
 
     ${({ on }) => {
-      return on ? `box-shadow: rgba(255, 255, 255, 0.19) 0px 0px 40px 14px;transition-duration: 0.2s;` : null;
+      return on === 'true'
+        ? `box-shadow: rgba(255, 255, 255, 0.19) 0px 0px 40px 14px;transition-duration: 0.2s;`
+        : null;
     }};
 
     .background {
@@ -187,7 +188,6 @@ const OuterScratch = styled.div`
     position: absolute;
     top: 0;
     left: 0;
-    /* padding-left: 100px; */
     opacity: 0.08;
   }
 `;
@@ -196,7 +196,6 @@ const InnerScratch = styled.div`
   width: 97%;
   height: 97%;
   overflow-x: hidden;
-  /* scroll-snap-type: y mandatory; */
   scroll-padding: 100px;
   ::-webkit-scrollbar {
     display: none;
@@ -207,7 +206,6 @@ const InnerScratch = styled.div`
     position: absolute;
     top: 0;
     left: 0;
-    /* padding-left: 100px; */
     opacity: 0.08;
     left: 30%;
     -webkit-animation: ${innerScrat} 2s infinite;
@@ -228,7 +226,7 @@ const BackgroundGrain = styled.div`
     animation: ${grain} 0.5s steps(1) infinite;
 
     ${({ isOnOff }) => {
-      return isOnOff ? `content: '';` : null;
+      return isOnOff === 'true' ? `content: '';` : null;
     }};
   }
 `;
@@ -268,28 +266,26 @@ function Screen({ isOnOff, isCheckPage, setIsCheckPage }) {
           <div></div>
         </TopStick>
         <MainScreen on={isOnOff}>
-          {isOnOff === true && isCheckPage === 1 ? (
+          {isOnOff === 'true' && isCheckPage === 1 ? (
             <OuterScratch className="outer-scratch">
               <InnerScratch className="inner-scratch" style={{ backgroundColor: 'white' }}>
                 <Intro setIsCheckPage={setIsCheckPage} />
               </InnerScratch>
             </OuterScratch>
-          ) : isOnOff === true && isCheckPage === 2 ? (
+          ) : isOnOff === 'true' && isCheckPage === 2 ? (
             <OuterScratch className="outer-scratch">
               <InnerScratch className="inner-scratch" style={{ backgroundColor: 'white', overflowY: 'scroll' }}>
-                {/* <Navbar page={2} setIsCheckPage={setIsCheckPage} /> */}
                 <Mypage />
                 <div style={{ marginBottom: '100px' }}>
                   {resume.map((el, idx) => {
-                    return <Question index={idx} title={el.title} content={el.content} />;
+                    return <Question index={idx} key={idx} title={el.title} content={el.content} />;
                   })}
                 </div>
               </InnerScratch>
             </OuterScratch>
-          ) : isOnOff === true && isCheckPage === 3 ? (
+          ) : isOnOff === 'true' && isCheckPage === 3 ? (
             <OuterScratch className="outer-scratch">
               <InnerScratch className="inner-scratch" style={{ backgroundColor: 'white' }}>
-                {/* <Navbar page={3} setIsCheckPage={setIsCheckPage} /> */}
                 <Projects />
               </InnerScratch>
             </OuterScratch>
@@ -297,7 +293,7 @@ function Screen({ isOnOff, isCheckPage, setIsCheckPage }) {
             <OuterScratch className="outer-scratch">
               <InnerScratch className="inner-scratch">
                 <BackgroundGrain className="background grain" isOnOff={isOnOff}>
-                  {isOnOff ? <OpenLogo /> : null}
+                  {isOnOff === 'true' ? <OpenLogo /> : null}
                 </BackgroundGrain>
               </InnerScratch>
             </OuterScratch>
