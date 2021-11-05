@@ -111,7 +111,7 @@ function OpenLogo() {
       <NameSVG />
       <Logo />
       <text x="130" y="300" className="text">
-        please press the button
+        please press the power button
       </text>
       <text x="131" y="320" className="text">
         in remoteController
