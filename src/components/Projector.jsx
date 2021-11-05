@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useCallback } from 'react';
+import React, { useRef, useEffect } from 'react';
 import styled, { keyframes } from 'styled-components';
 import ToggleButton from './ToggleButton';
 
@@ -100,30 +100,16 @@ const XRotateText = styled.div`
   height: 50px;
 `;
 
-function Projector({ isOnOff, handleOnOff, setIsCheckPage, setIsOnOff }) {
+function Projector({ isOnOff, handleOnOff, projectorFunc }) {
   const refCheckbox = useRef();
-  const projectorFunc = () => {
-    const timeout = () => {
-      setTimeout(() => {
-        if (isOnOff === 'false') {
-          setIsOnOff('true');
-        }
-        setIsCheckPage(0);
-      }, 3000);
-    };
-    timeout();
-  };
-
-  const handleOnOffCallback = useCallback(projectorFunc, [isOnOff, setIsCheckPage, setIsOnOff]);
 
   useEffect(() => {
-    refCheckbox.current.checked = true;
-    handleOnOffCallback();
-  }, [handleOnOffCallback]);
+    projectorFunc(refCheckbox.current);
+  }, []);
 
   return (
     <ProjectSection>
-      <Trapezoid></Trapezoid>
+      <Trapezoid on={isOnOff}></Trapezoid>
       <ProjectTopWrap>
         <TopOfProjector>
           <XRotateText></XRotateText>
