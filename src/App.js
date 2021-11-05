@@ -54,23 +54,31 @@ function App() {
       setIsCheckPage(0);
     };
     handleOnOff();
-  }, [isOnOff, setIsCheckPage, setIsOnOff]);
+  }, [isOnOff]);
 
   const handleRemotePage = (num) => {
     setIsCheckPage(num);
   };
 
+  const projectorFunc = (checked) => {
+    const timeout = (checked) => {
+      setTimeout(() => {
+        if (isOnOff === 'false') {
+          setIsOnOff('true');
+        }
+        setIsCheckPage(0);
+        checked.checked = true;
+      }, 3000);
+    };
+    timeout(checked);
+  };
+
   return (
     <AppBody>
       <Perspective>
-        <Screen isOnOff={isOnOff} isCheckPage={isCheckPage} />
+        <Screen isOnOff={isOnOff} isCheckPage={isCheckPage} setIsCheckPage={setIsCheckPage} />
 
-        <Projector
-          isOnOff={isOnOff}
-          handleOnOff={useCallbackFunc}
-          setIsCheckPage={setIsCheckPage}
-          setIsOnOff={setIsOnOff}
-        />
+        <Projector isOnOff={isOnOff} handleOnOff={useCallbackFunc} projectorFunc={projectorFunc} />
         <RemoteController
           handleRemotePage={handleRemotePage}
           setIsCheckPage={setIsCheckPage}
