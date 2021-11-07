@@ -8,8 +8,8 @@ import Background from './components/Background';
 ReactDOM.render(
   <React.StrictMode style={{ position: 'relative' }}>
     <App />
-    <Background />
-    <GlobalStyle />
+    {/* <Background />
+    <GlobalStyle /> */}
   </React.StrictMode>,
   document.getElementById('root'),
 );
