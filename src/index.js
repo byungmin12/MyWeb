@@ -6,10 +6,9 @@ import GlobalStyle from './global';
 import Background from './components/Background';
 
 ReactDOM.render(
-  <React.StrictMode style={{ position: 'relative' }}>
+  <>
     <App />
-    {/* <Background />
-    <GlobalStyle /> */}
-  </React.StrictMode>,
+    <GlobalStyle />
+  </>,
   document.getElementById('root'),
 );

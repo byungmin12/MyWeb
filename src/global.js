@@ -8,8 +8,10 @@ const GlobalStyle = createGlobalStyle`
 
   body {
     box-sizing: border-box;
-    background-color:   #322c3a;
+    background: radial-gradient(#1d0f3e 30%, #010315);
     overflow: hidden;
+    width: 100vw;
+    height: 100vh ;
   }
 
 
