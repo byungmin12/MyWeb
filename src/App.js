@@ -1,7 +1,11 @@
 import React, { useState, useRef, useCallback, useEffect } from 'react';
-import { Canvas, useFrame } from '@react-three/fiber';
+import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import { OrbitControls, Stars } from '@react-three/drei';
 import styled from 'styled-components';
+import Planet from './components/Planet';
+import Controls from './components/Controls';
+import * as THREE from 'three';
+
 // import LeftFoot from './components/LeftFoot';
 // import RightFoot from './components/RightFoot';
 // import DogBody from './components/DogBody';
@@ -53,67 +57,32 @@ const CanvasCss = styled(Canvas)`
 //app
 
 function App() {
-  // const [isOnOff, setIsOnOff] = useState('false');
-  // const [isCheckPage, setIsCheckPage] = useState(0);
-  // const refCheckbox = useRef();
-  // const [xPoint, setXPoint] = useState(null);
-  // const [yPoint, setYPoint] = useState(null);
-  // const [pageWidth, setPageWidth] = useState(null);
-  const cameraTestRef = useRef();
+  const [zoom, setZoom] = useState(false);
+  const [focus, setFocus] = useState({});
+  const [state, setState] = useState(null);
 
-  const [xPoint, setXPoint] = useState(0);
-  const [yPoint, setYPoint] = useState(50);
-  const [zPoint, setZPoint] = useState(500);
+  useEffect(() => {
+    const vec = new THREE.Vector3();
 
-  const testRef = useRef();
-  console.log(testRef.current);
-
-  const handleCameraCenter = (e) => {
-    console.log(e);
-    setXPoint(e.position.x);
-    setYPoint(e.position.y);
-    setZPoint(e.position.z);
-  };
-
-  useEffect(() => {}, [xPoint]);
-
-  // const useCallbackFunc = useCallback(() => {
-  //   const handleOnOff = () => {
-  //     if (isOnOff === 'false') {
-  //       setIsOnOff('true');
-  //     } else {
-  //       setIsOnOff('false');
-  //     }
-  //     setIsCheckPage(0);
-  //   };
-  //   handleOnOff();
-  // }, [isOnOff]);
-
-  // const handleRemotePage = (num) => {
-  //   setIsCheckPage(num);
-  // };
-
-  // const projectorFunc = (checked) => {
-  //   const timeout = (checked) => {
-  //     setTimeout(() => {
-  //       if (isOnOff === 'false') {
-  //         setIsOnOff('true');
-  //       }
-  //       setIsCheckPage(0);
-  //       checked.checked = true;
-  //     }, 3000);
-  //   };
-  //   timeout(checked);
-  // };
+    if (!zoom && state) {
+      console.log(state);
+      vec.set(0, 500, 2000);
+      //
+      state.camera.position.lerp(vec, 0.3, 0.3);
+      state.camera.lookAt(0, 0, 0);
+      // Update to new position/lookAt
+      state.camera.updateProjectionMatrix();
+    }
+  }, [zoom]);
 
   return (
     <AppBody>
-      <Canvas ref={cameraTestRef} camera={{ position: [xPoint, yPoint, zPoint] }}>
+      <Canvas camera={{ position: [0, 50, 500] }}>
         <ambientLight intensity={0.3} />
         <OrbitControls autoRotate={true} autoRotateSpeed={1} />
         <Stars radius={100} depth={50} count={5000} factor={4} saturation={0} fade />
 
-        <mesh
+        {/* <mesh
           ref={testRef}
           position={[0, 0, -150]}
           onClick={() => {
@@ -121,7 +90,9 @@ function App() {
           }}>
           <sphereGeometry args={[30, 60, 30]} />
           <meshPhongMaterial attach="material" color="red" />
-        </mesh>
+        </mesh> */}
+
+        <Planet zoomToView={(focusRef) => (setZoom(!zoom), setFocus(focusRef))} />
         <mesh position={[150, 0, 150]}>
           <sphereGeometry args={[30, 60, 30]} />
           <meshPhongMaterial attach="material" color="white" />
@@ -130,6 +101,7 @@ function App() {
           <sphereGeometry args={[30, 60, 30]} />
           <meshPhongMaterial attach="material" color="black" />
         </mesh>
+        <Controls zoom={zoom} focus={focus} setState={setState} />
       </Canvas>
     </AppBody>
   );
