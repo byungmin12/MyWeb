@@ -3517,6 +3517,11 @@
   "resolved" "https://registry.npmjs.org/camelize/-/camelize-1.0.0.tgz"
   "version" "1.0.0"
 
+"camera-controls@^1.33.1":
+  "integrity" "sha512-+l0LgV+w0G4GAtwiSahHLj7rCqzVMSa+/BHE3+aE7vdku2B9QF8CXgDSlCH9cBt2TZeg+WQSkRPeIYwjvtjdPw=="
+  "resolved" "https://registry.npmjs.org/camera-controls/-/camera-controls-1.33.1.tgz"
+  "version" "1.33.1"
+
 "caniuse-api@^3.0.0":
   "integrity" "sha512-bsTwuIg/BZZK/vreVTYYbSWoe2F+71P7K5QGEX+pT250DZbfU1MQ5prOKpPR+LL6uWKK3KMwMCAS74QB3Um1uw=="
   "resolved" "https://registry.npmjs.org/caniuse-api/-/caniuse-api-3.0.0.tgz"
@@ -11391,7 +11396,7 @@
     "potpack" "^1.0.1"
     "zstddec" "^0.0.2"
 
-"three@^0.134.0", "three@>= 0.123.0", "three@>=0.103.0", "three@>=0.126", "three@>=0.128.0":
+"three@^0.134.0", "three@>= 0.123.0", "three@>=0.103.0", "three@>=0.126", "three@>=0.126.1", "three@>=0.128.0":
   "integrity" "sha512-LbBerg7GaSPjYtTOnu41AMp7tV6efUNR3p4Wk5NzkSsNTBuA5mDGOfwwZL1jhhVMLx9V20HolIUo0+U3AXehbg=="
   "resolved" "https://registry.npmjs.org/three/-/three-0.134.0.tgz"
   "version" "0.134.0"
