@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import Planet from './components/Planet';
 import Controls from './components/Controls';
 import * as THREE from 'three';
-
+import Ecliptic from './components/Ecliptic';
 // import LeftFoot from './components/LeftFoot';
 // import RightFoot from './components/RightFoot';
 // import DogBody from './components/DogBody';
@@ -66,7 +66,7 @@ function App() {
 
     if (!zoom && state) {
       console.log(state);
-      vec.set(0, 500, 2000);
+      vec.set(0, 500, 1500);
       //
       state.camera.position.lerp(vec, 0.3, 0.3);
       state.camera.lookAt(0, 0, 0);
@@ -80,27 +80,16 @@ function App() {
       <Canvas camera={{ position: [0, 50, 500] }}>
         <ambientLight intensity={0.3} />
         <OrbitControls autoRotate={true} autoRotateSpeed={1} />
+        <spotLight position={[150, 151, 1]} intensity={0.2} />
         <Stars radius={100} depth={50} count={5000} factor={4} saturation={0} fade />
-
-        {/* <mesh
-          ref={testRef}
-          position={[0, 0, -150]}
-          onClick={() => {
-            handleCameraCenter(testRef.current);
-          }}>
-          <sphereGeometry args={[30, 60, 30]} />
-          <meshPhongMaterial attach="material" color="red" />
-        </mesh> */}
-
-        <Planet zoomToView={(focusRef) => (setZoom(!zoom), setFocus(focusRef))} />
-        <mesh position={[150, 0, 150]}>
-          <sphereGeometry args={[30, 60, 30]} />
-          <meshPhongMaterial attach="material" color="white" />
-        </mesh>
-        <mesh position={[-150, 0, 150]}>
-          <sphereGeometry args={[30, 60, 30]} />
-          <meshPhongMaterial attach="material" color="black" />
-        </mesh>
+        {/* <Planet zoomToView={(focusRef) => (setZoom(!zoom), setFocus(focusRef))} position={[0, 0, 0]} /> */}
+        <Planet zoomToView={(focusRef) => (setZoom(!zoom), setFocus(focusRef))} position={[0, 0, -150]} color="red" />
+        <Planet zoomToView={(focusRef) => (setZoom(!zoom), setFocus(focusRef))} position={[150, 0, 150]} color="blue" />
+        <Planet
+          zoomToView={(focusRef) => (setZoom(!zoom), setFocus(focusRef))}
+          position={[-150, 0, 150]}
+          color="orange"
+        />
         <Controls zoom={zoom} focus={focus} setState={setState} />
       </Canvas>
     </AppBody>
