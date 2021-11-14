@@ -79,16 +79,27 @@ function App() {
     <AppBody>
       <Canvas camera={{ position: [0, 50, 500] }}>
         <ambientLight intensity={0.3} />
-        <OrbitControls autoRotate={true} autoRotateSpeed={1} />
+        <OrbitControls autoRotateSpeed={1} />
         <spotLight position={[150, 151, 1]} intensity={0.2} />
-        <Stars radius={100} depth={50} count={5000} factor={4} saturation={0} fade />
+        <Stars radius={200} depth={50} count={5000} factor={4} saturation={0} fade />
         {/* <Planet zoomToView={(focusRef) => (setZoom(!zoom), setFocus(focusRef))} position={[0, 0, 0]} /> */}
-        <Planet zoomToView={(focusRef) => (setZoom(!zoom), setFocus(focusRef))} position={[0, 0, -150]} color="red" />
-        <Planet zoomToView={(focusRef) => (setZoom(!zoom), setFocus(focusRef))} position={[150, 0, 150]} color="blue" />
         <Planet
           zoomToView={(focusRef) => (setZoom(!zoom), setFocus(focusRef))}
-          position={[-150, 0, 150]}
+          position={[300, 0, 0]}
+          color="red"
+          speed={0.2}
+        />
+        <Planet
+          zoomToView={(focusRef) => (setZoom(!zoom), setFocus(focusRef))}
+          position={[150, 0, 0]}
+          color="blue"
+          speed={0.3}
+        />
+        <Planet
+          zoomToView={(focusRef) => (setZoom(!zoom), setFocus(focusRef))}
+          position={[250, 0, 0]}
           color="orange"
+          speed={0.4}
         />
         <Controls zoom={zoom} focus={focus} setState={setState} />
       </Canvas>
