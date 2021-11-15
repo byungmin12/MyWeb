@@ -10,13 +10,12 @@ function Planet({ zoomToView, position, color, speed }) {
   useFrame(({ clock }) => {
     const a = clock.getElapsedTime() * speed + offset;
     console.log(a);
-    const x = position[0] * Math.sin(a);
-    const z = (position[0] / 2) * Math.cos(a);
+    const x = position[0] * Math.sin(a / 5);
+    const z = (position[0] / 2) * Math.cos(a / 5);
 
-    // myMesh.current.rotation.y = a;
+    myMesh.current.rotation.y = a;
     myMesh.current.position.x = x;
     myMesh.current.position.z = z;
-    // console.log(x,z)
   });
   return (
     <>
