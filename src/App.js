@@ -1,7 +1,6 @@
 import React, { useState, useRef, useCallback, useEffect, Suspense } from 'react';
 import styled, { keyframes, css } from 'styled-components';
 import CanvasPage from './page/CanvasPage';
-import Fade from 'react-reveal/Fade';
 import GradientPage from './page/GradientPage';
 import MyInfoPage from './page/MyInfoPage';
 import SkillPage from './page/SkillPage';
@@ -32,12 +31,11 @@ function App() {
 
   return (
     <AppCss ref={scrollArea} onScroll={onScroll}>
-      {/* <CanvasPage />
+      <CanvasPage />
       <GradientPage position={position} />
       <MyInfoPage />
       <SkillPage />
-      <Projects /> */}
-      asdasd
+      <Projects />
     </AppCss>
   );
 }

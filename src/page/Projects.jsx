@@ -2,8 +2,6 @@ import React, { Suspense } from 'react';
 import styled, { keyframes, css } from 'styled-components';
 import Plane from '../components/Object/Plane';
 import Scene from '../components/Scene/Scene';
-import { Canvas, useFrame, useThree } from '@react-three/fiber';
-import { OrbitControls, Text } from '@react-three/drei';
 import Card from '../components/Card';
 
 const SkillPageS = styled.div`
@@ -128,7 +126,7 @@ function Projects() {
           })}
         </div>
       </ProjectsContainer>
-      <ProjectBackground>
+      {/* <ProjectBackground>
         <Canvas camera={{ position: [0, 10, 100] }} shadowMap>
           <Scene>
             <ambientLight intensity={0.3} />
@@ -139,7 +137,7 @@ function Projects() {
             </Suspense>
           </Scene>
         </Canvas>
-      </ProjectBackground>
+      </ProjectBackground> */}
     </SkillPageS>
   );
 }
