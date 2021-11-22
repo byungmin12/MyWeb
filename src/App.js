@@ -32,17 +32,12 @@ function App() {
 
   return (
     <AppCss ref={scrollArea} onScroll={onScroll}>
-      <CanvasPage />
+      {/* <CanvasPage />
       <GradientPage position={position} />
       <MyInfoPage />
       <SkillPage />
-      <Projects />
-      {/* <SkillPageS>
-        <div>
-          <div>이런 회사를 찾습니다.</div>
-          <div>asd</div>
-        </div>
-      </SkillPageS> */}
+      <Projects /> */}
+      asdasd
     </AppCss>
   );
 }
