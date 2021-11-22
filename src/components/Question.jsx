@@ -2,24 +2,21 @@ import React, { useState, useRef, useCallback } from 'react';
 import styled from 'styled-components';
 
 const QuestionContainer = styled.div`
-  width: 85%;
-
+  width: 90%;
+  margin-top: 30px;
   position: relative;
-  padding-left: 5%;
-  padding-right: 5%;
-  margin: 10px 2.5% 10px 2.5%;
   :hover {
     border: 2px solid #488cc4;
   }
-
   ${({ isOpen }) => {
     return isOpen === true ? `border: 2px solid #488cc4;` : `border: 0px solid #488cc4;`;
   }};
+  border-radius: 15px;
 `;
 
 const QuestionTitle = styled.div`
   width: 100%;
-  font-size: 1.5em;
+  font-size: 1.2em;
   font-weight: 800;
   margin-bottom: 10px;
   text-align: left;
@@ -28,11 +25,17 @@ const QuestionTitle = styled.div`
   :hover {
     cursor: pointer;
   }
+  @media screen and (max-width: 600px) {
+    font-size: 0.5em;
+  }
 `;
 
 const QuestionColor = styled.span`
   color: #488cc4;
   font-size: 2rem;
+  @media screen and (max-width: 600px) {
+    font-size: 1em;
+  }
 `;
 
 const QuestionWrap = styled.div`
@@ -44,8 +47,11 @@ const QuestionWrap = styled.div`
 
 const QuestionContent = styled.div`
   width: 100%;
-  background-color: white;
+  background-color: transparent;
   text-align: left;
+  @media screen and (max-width: 600px) {
+    font-size: 0.5em;
+  }
 `;
 
 function Question({ index, title, content }) {
@@ -61,10 +67,10 @@ function Question({ index, title, content }) {
       }
       if (parentRef.current.clientHeight > 0) {
         parentRef.current.style.height = '0';
-        parentRef.current.style.background = 'white';
+        parentRef.current.style.background = 'transparent';
       } else {
         parentRef.current.style.height = `${childRef.current.clientHeight}px`;
-        parentRef.current.style.background = 'white';
+        parentRef.current.style.background = 'transparent';
       }
       setIsOpen(!isOpen);
     },
@@ -72,14 +78,16 @@ function Question({ index, title, content }) {
   );
 
   return (
-    <QuestionContainer isOpen={isOpen}>
-      <QuestionTitle onClick={handleAccordion}>
-        <QuestionColor>Q.{index + 1}</QuestionColor> {title}
-      </QuestionTitle>
-      <QuestionWrap ref={parentRef}>
-        <QuestionContent ref={childRef}>{content}</QuestionContent>
-      </QuestionWrap>
-    </QuestionContainer>
+    <div>
+      <QuestionContainer isOpen={isOpen}>
+        <QuestionTitle onClick={handleAccordion}>
+          <QuestionColor>Q.{index + 1}</QuestionColor> {title}
+        </QuestionTitle>
+        <QuestionWrap ref={parentRef}>
+          <QuestionContent ref={childRef}>{content}</QuestionContent>
+        </QuestionWrap>
+      </QuestionContainer>
+    </div>
   );
 }
 
