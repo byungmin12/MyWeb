@@ -38,7 +38,7 @@ const TextColor = styled.text`
 `;
 
 const TextColorLengthUp = styled.text`
-  fill: #488cc4;
+  fill: #87ceeb;
   font-size: 1.5rem;
   font-weight: bold;
   white-space: pre-line;
