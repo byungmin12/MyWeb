@@ -11,16 +11,29 @@ function normalize(v, vmin, vmax, tmin, tmax) {
   return tv;
 }
 
-function Plane({ position, scale }) {
+function Plane({ position, scale, where, scroll }) {
   let plane = useRef();
   let { x, z } = position;
   const [y, setY] = useState(0);
 
   useFrame(({ mouse }) => {
-    const targetY = normalize(mouse.y, -0.75, 1.75, -50, 105);
-    const newY = y + (targetY - y) * 0.1;
-    setY(newY);
-    plane.current.rotation.set((y - targetY) * 0.0064, 0, (targetY - y) * 0.0064);
+    if (where === 'top') {
+      const targetY = normalize(mouse.y, -0.75, 1.75, -50, 105);
+      const newY = y + (targetY - y) * 0.1;
+      setY(newY);
+      plane.current.rotation.set((y - targetY) * 0.0064, 0, (targetY - y) * 0.0064);
+    } else if (where === 'side') {
+      if (plane.current.position.x >= 450) {
+        plane.current.position.x = -350;
+      } else {
+        const targetY = normalize(mouse.y, -0.75, 1.75, -50, 105);
+        const newY = y + (targetY - y) * 0.1;
+        plane.current.position.x = plane.current.position.x + 1;
+        plane.current.rotation.set((y - targetY) * 0.0064, 0, (targetY - y) * 0.0064);
+      }
+    } else {
+      plane.current.position.x = scroll / 5 - 300;
+    }
   });
   return (
     <group ref={plane} position={[x, y, z]} scale={scale}>
