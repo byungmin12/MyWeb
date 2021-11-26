@@ -1,4 +1,4 @@
-import React, { Suspense } from 'react';
+import React, { Suspense, useRef, useEffect } from 'react';
 import styled, { keyframes, css } from 'styled-components';
 import Plane from '../components/Object/Plane';
 import Scene from '../components/Scene/Scene';
@@ -63,7 +63,14 @@ const ProjectsContainer = styled.div`
   }
 `;
 
-function Projects() {
+function Projects({ setChangePosition }) {
+  const ref = useRef();
+
+  useEffect(() => {
+    if (ref) {
+      setChangePosition(ref.current.getBoundingClientRect().top);
+    }
+  }, [ref]);
   const ProjectsData = [
     {
       url: '../../mywebsize.gif',
@@ -117,27 +124,15 @@ function Projects() {
   ];
 
   return (
-    <SkillPageS>
-      <ProjectsContainer>
+    <SkillPageS ref={ref}>
+      {/* <ProjectsContainer>
         <div className="projects">MY PROJECTS</div>
         <div className="inner">
           {ProjectsData.map((el, key) => {
             return <Card data={el} key={key} />;
           })}
         </div>
-      </ProjectsContainer>
-      {/* <ProjectBackground>
-        <Canvas camera={{ position: [0, 10, 100] }} shadowMap>
-          <Scene>
-            <ambientLight intensity={0.3} />
-            <spotLight position={[150, 151, 1]} intensity={0.2} />
-            <pointLight intensity={0.3} position={[140, -25, 0]} />
-            <Suspense fallback={null}>
-              <Plane scale={[0.2, 0.2, 0.2]} position={{ x: 0, y: 0, z: 0 }} where="side" />
-            </Suspense>
-          </Scene>
-        </Canvas>
-      </ProjectBackground> */}
+      </ProjectsContainer> */}
     </SkillPageS>
   );
 }

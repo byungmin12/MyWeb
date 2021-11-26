@@ -11,12 +11,13 @@ function normalize(v, vmin, vmax, tmin, tmax) {
   return tv;
 }
 
-function Plane({ position, scale, where, scroll }) {
+function Plane({ position, scale, where, scroll, camera }) {
   let plane = useRef();
   let { x, z } = position;
+  const change = camera;
   const [y, setY] = useState(0);
 
-  useFrame(({ mouse }) => {
+  useFrame(({ mouse, camera }) => {
     if (where === 'top') {
       const targetY = normalize(mouse.y, -0.75, 1.75, -50, 105);
       const newY = y + (targetY - y) * 0.1;
@@ -32,9 +33,20 @@ function Plane({ position, scale, where, scroll }) {
         plane.current.rotation.set((y - targetY) * 0.0064, 0, (targetY - y) * 0.0064);
       }
     } else {
-      plane.current.position.x = scroll / 5 - 300;
+      // if (scroll >= change) {
+      //   camera.position.y = 0;
+      //   plane.current.position.x = scroll / 5 - 800;
+      //   console.log(plane.current.position.x);
+      // } else {
+      //   console.log('??????????????');
+      //   camera.position.y = 200;
+      //   // plane.current.position.x = scroll / 10 - 350;
+      //   plane.current.position.copy(camera.position);
+      // }
+      plane.current.rotation.set(0, 0, 89.5);
     }
   });
+
   return (
     <group ref={plane} position={[x, y, z]} scale={scale}>
       <CockPit />
