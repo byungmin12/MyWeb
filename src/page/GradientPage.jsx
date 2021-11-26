@@ -7,22 +7,25 @@ import styled from 'styled-components';
 
 const GradientContainer = styled.div`
   width: 100vw;
-  height: 100vh;
-  background: rgb(255, 255, 255);
-  background: linear-gradient(0deg, rgba(255, 255, 255, 1) 20%, rgba(0, 0, 0, 1) 74%);
+  height: 500vh;
+  position: absolute;
+  top: 100vh;
+  left: 0;
 `;
 
-function GradientPage({ position }) {
+function GradientPage({ position, changePosition }) {
+  const camera = changePosition;
+
   return (
     <GradientContainer>
-      <Canvas camera={{ position: [100, 200, 0] }} shadowMap>
+      <Canvas camera={{ position: [200, 600, 0] }} shadowMap>
         <Scene>
           <ambientLight intensity={0.3} />
           <OrbitControls enableZoom={false} />
           <spotLight position={[150, 151, 1]} intensity={0.2} />
           <pointLight intensity={0.3} position={[140, -25, 0]} />
           <Suspense fallback={null}>
-            <Plane scale={[0.5, 0.5, 0.5]} position={{ x: -300, y: 0, z: 0 }} scroll={position} />
+            <Plane scale={[0.2, 0.2, 0.2]} position={{ x: 350, y: 0, z: 0 }} scroll={position} camera={camera} />
           </Suspense>
         </Scene>
       </Canvas>
