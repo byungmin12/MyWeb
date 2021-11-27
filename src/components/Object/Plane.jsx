@@ -11,10 +11,11 @@ function normalize(v, vmin, vmax, tmin, tmax) {
   return tv;
 }
 
-function Plane({ position, scale, where, scroll, camera }) {
+function Plane({ position, scale, where, scroll, camera, heightRef }) {
   let plane = useRef();
   let { x, z } = position;
   const change = camera;
+  const a = heightRef;
   const [y, setY] = useState(0);
 
   useFrame(({ mouse, camera }) => {
@@ -43,7 +44,18 @@ function Plane({ position, scale, where, scroll, camera }) {
       //   // plane.current.position.x = scroll / 10 - 350;
       //   plane.current.position.copy(camera.position);
       // }
-      plane.current.rotation.set(0, 0, 89.5);
+      // plane.current.rotation.set(0, 0, 89.5);
+      // console.log(height);
+      let planePosition = scroll / (a.current.clientHeight / 1050) - 700;
+      plane.current.position.x = planePosition;
+      if (scroll >= change) {
+        console.log(plane.current.rotation.z <= 89.5);
+        if (plane.current.rotation.z <= 89.5) {
+          plane.current.rotation.set(0, 0, plane.current.rotation.z + 0.01);
+        }
+      }
+      // console.log(change);
+      // console.log(scroll);
     }
   });
 
