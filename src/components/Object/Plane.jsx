@@ -46,14 +46,31 @@ function Plane({ position, scale, where, scroll, camera, heightRef }) {
       // }
       // plane.current.rotation.set(0, 0, 89.5);
       // console.log(height);
-      let planePosition = scroll / (a.current.clientHeight / 1050) - 700;
+      let planePosition = scroll / (a.current.clientHeight / 1050) - 700 + 40;
+      let planeRotation = scroll / (a.current.clientHeight / (180 / 100));
       plane.current.position.x = planePosition;
-      if (scroll >= change) {
-        console.log(plane.current.rotation.z <= 89.5);
-        if (plane.current.rotation.z <= 89.5) {
-          plane.current.rotation.set(0, 0, plane.current.rotation.z + 0.01);
-        }
-      }
+      plane.current.rotation.z = planeRotation;
+      // plane.current.rotation.set(0, 0, planeRotation);
+
+      // if (scroll >= change) {
+      //   console.log(plane.current.rotation.y);
+      //   let check = true;
+      //   if (plane.current.rotation.y >= -0.3) {
+      //     if (check) {
+      //       plane.current.rotation.y = plane.current.rotation.y - 0.01;
+      //     }
+      //     if (plane.current.rotation.y === -0.3) {
+      //       check = false;
+      //     }
+      //   } else {
+      //     if (!check) {
+      //       plane.current.rotation.y = plane.current.rotation.y + 0.01;
+      //     }
+      //     if (plane.current.rotation.y === 0.3) {
+      //       check = true;
+      //     }
+      //   }
+      // }
       // console.log(change);
       // console.log(scroll);
     }
