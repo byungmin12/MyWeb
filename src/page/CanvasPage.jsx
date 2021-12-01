@@ -1,4 +1,4 @@
-import React, { useState, useRef, useCallback, useEffect, Suspense } from 'react';
+import React, { Suspense } from 'react';
 import styled from 'styled-components';
 import Sea from '../components/Object/Sea';
 import Sky from '../components/Object/Sky';
@@ -7,7 +7,7 @@ import Scene from '../components/Scene/Scene';
 import SparksScene from '../components/Stars/SparksScene';
 import Sparks from '../components/Stars/Sparks';
 import { OrbitControls, Text } from '@react-three/drei';
-import { Canvas, useFrame, useThree } from '@react-three/fiber';
+import { Canvas } from '@react-three/fiber';
 
 const CanvasPageCss = styled.div`
   width: 100vw;

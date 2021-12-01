@@ -1,5 +1,5 @@
-import React, { useState, useRef, useCallback, useEffect, Suspense } from 'react';
-import styled, { keyframes, css } from 'styled-components';
+import React, { useState, useRef } from 'react';
+import styled from 'styled-components';
 import CanvasPage from './page/CanvasPage';
 import GradientPage from './page/GradientPage';
 import MyInfoPage from './page/MyInfoPage';
@@ -11,18 +11,6 @@ const AppCss = styled.div`
   overflow-x: hidden;
   overflow-y: scroll;
   position: relative;
-`;
-
-const SkillPageS = styled.div`
-  width: 100vw;
-  height: 100vh;
-  scroll-snap-align: center;
-  font-size: 24px;
-  position: relative;
-  .bold {
-    font-weight: 800;
-    color: rgb(104, 82, 242);
-  }
 `;
 
 const GradientContainer = styled.div`

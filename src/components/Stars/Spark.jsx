@@ -1,5 +1,4 @@
-import React, { useState, useEffect, useRef, useLayoutEffect } from 'react';
-import { Canvas, useFrame } from '@react-three/fiber';
+import React, { useRef, useLayoutEffect } from 'react';
 
 function Spark({ data }) {
   const meshRef = useRef();

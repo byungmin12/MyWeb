@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import { Canvas, extend, useThree, useFrame } from '@react-three/fiber';
+import { useThree, useFrame } from '@react-three/fiber';
 
 function Scene({ children }) {
   const scene = useRef();

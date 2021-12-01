@@ -1,5 +1,5 @@
 import React from 'react';
-import styled, { keyframes, css } from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import Flip from 'react-reveal/Fade';
 
 const SkillPageContainer = styled.div`

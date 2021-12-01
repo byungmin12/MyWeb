@@ -1,8 +1,8 @@
 import React, { Suspense, useRef, useEffect, useState } from 'react';
 import Plane from '../components/Object/Plane';
 import Scene from '../components/Scene/Scene';
-import { Canvas, useFrame, useThree } from '@react-three/fiber';
-import { OrbitControls, Text } from '@react-three/drei';
+import { Canvas } from '@react-three/fiber';
+import { OrbitControls } from '@react-three/drei';
 import styled from 'styled-components';
 
 const GradientContainer = styled.div`
@@ -20,7 +20,6 @@ function GradientPage({ position, changePosition }) {
 
   useEffect(() => {
     if (ref) {
-      console.log(ref);
       setHeight(ref);
     }
   }, [ref]);

@@ -1,7 +1,5 @@
-import React, { Suspense, useRef, useEffect } from 'react';
-import styled, { keyframes, css } from 'styled-components';
-import Plane from '../components/Object/Plane';
-import Scene from '../components/Scene/Scene';
+import React, { useRef, useEffect } from 'react';
+import styled from 'styled-components';
 import Card from '../components/Card';
 
 const SkillPageS = styled.div`

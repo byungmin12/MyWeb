@@ -1,7 +1,6 @@
 import React, { useRef } from 'react';
-import { useFrame } from 'react-three-fiber';
 import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader';
-import { useLoader } from '@react-three/fiber';
+import { useLoader, useFrame } from '@react-three/fiber';
 const n = 20;
 var stepAngle = (Math.PI * 2) / n;
 
@@ -29,7 +28,7 @@ function Cloud({ position, rotationZ }) {
   const obj = useLoader(OBJLoader, '../../cloud.obj');
 
   return (
-    <group position={position} rotation-z={rotationZ}>
+    <group position={position} rotation-z={rotationZ} dispose={null}>
       {new Array(1).fill(0).map((_, i) => {
         let pos = [i * 15, Math.random() * 20, Math.random() * 20];
         let rotationX = Math.random() * Math.PI * 2;

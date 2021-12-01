@@ -9,8 +9,6 @@ const GlobalStyle = createGlobalStyle`
 
   body {
     box-sizing: border-box;
-    /* background: radial-gradient(#1d0f3e 30%, #010315); */
-    /* background-color: white ; */
     overflow: hidden;
   }
 
