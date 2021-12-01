@@ -9,6 +9,7 @@ const SkillPageContainer = styled.div`
   font-size: 24px;
   position: relative;
   padding: 200px 0px 200px 0px;
+
   .bold {
     font-weight: 800;
     color: rgb(104, 82, 242);
@@ -108,6 +109,7 @@ const GraphFront = styled.span`
   text-align: right;
   background-color: #87ceeb;
   border-radius: 0px 40px 40px 0px;
+  z-index: 999;
 
   ${({ percent }) => {
     return `width: ${percent}%;`;
