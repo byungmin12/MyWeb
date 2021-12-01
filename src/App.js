@@ -22,7 +22,6 @@ const GradientContainer = styled.div`
 
 function App() {
   const [position, setPosition] = useState();
-  const [changePosition, setChangePosition] = useState();
   const scrollArea = useRef();
   const onScroll = (e) => setPosition(e.target.scrollTop);
 
@@ -30,10 +29,10 @@ function App() {
     <AppCss ref={scrollArea} onScroll={onScroll}>
       <CanvasPage />
       <GradientContainer></GradientContainer>
-      <GradientPage position={position} changePosition={changePosition} />
+      <GradientPage position={position} />
       <MyInfoPage />
       <SkillPage />
-      <Projects setChangePosition={setChangePosition} />
+      <Projects />
     </AppCss>
   );
 }

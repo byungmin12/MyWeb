@@ -26,7 +26,6 @@ function CanvasPage() {
           <OrbitControls enableZoom={false} />
           <spotLight position={[150, 151, 1]} intensity={0.2} />
           <Text
-            // ref={ref}
             color={'white'}
             position={[0, -2.5, -150]}
             fontSize={30}

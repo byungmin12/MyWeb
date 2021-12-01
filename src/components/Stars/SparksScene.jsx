@@ -15,8 +15,6 @@ function SparksScene({ children }) {
   useFrame(() => composer.current.renderer.setClearAlpha(1), 1);
   useFrame(() => composer.current.renderer.setClearColor('black'), 1);
 
-  // renderer = new THREE.CanvasRenderer({ alpha: true });
-
   return (
     <>
       <scene ref={setScene}>{children}</scene>
