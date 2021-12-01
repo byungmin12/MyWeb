@@ -25,7 +25,6 @@ export default function Sky({ position, 'rotation-speed': rotationSpeed }) {
 
 function Cloud({ position, rotationZ }) {
   let nBlocs = 2 + Math.floor(Math.random() * 3);
-  const obj = useLoader(OBJLoader, '../../cloud.obj');
 
   return (
     <group position={position} rotation-z={rotationZ} dispose={null}>
@@ -34,7 +33,6 @@ function Cloud({ position, rotationZ }) {
         let rotationX = Math.random() * Math.PI * 2;
         let rotationY = Math.random() * Math.PI * 2;
         let s = 0.4 + Math.random() * 0.9;
-        const cloneObj = obj.clone();
 
         return (
           <mesh receiveShadow position={pos} rotation-x={rotationX} rotation-y={rotationY} key={i}>
