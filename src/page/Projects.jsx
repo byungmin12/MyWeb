@@ -1,40 +1,32 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import Card from '../components/Card';
 
 const SkillPageS = styled.div`
   width: 100vw;
-  min-height: 100vh;
-  height: auto;
-  scroll-snap-align: center;
+  min-height: 65vh;
+  height: 65vh;
   font-size: 24px;
-  position: relative;
-
+  display: flex;
+  justify-content: center;
+  align-items: center;
   .bold {
     font-weight: 800;
     color: rgb(104, 82, 242);
   }
 `;
 
-const ProjectBackground = styled.div`
-  width: 100%;
-  height: 250px;
-  position: absolute;
-  top: 70%;
-  z-index: -1;
-`;
 const ProjectsContainer = styled.div`
   width: 80%;
   height: 60%;
   padding: 60px;
-  display: flex;
-  justify-content: center;
   border: 3px dashed rgb(104, 82, 242);
   position: relative;
-  transform: translate(-50%, 0%);
-  top: 50%;
-  left: 50%;
-
+  perspective: 1000px;
+  z-index: 900;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   .projects {
     position: absolute;
     transform: translate(-50%, -50%);
@@ -50,25 +42,42 @@ const ProjectsContainer = styled.div`
       font-size: 20px;
     }
   }
-
-  .inner {
-    width: 100%;
-    min-height: 80%;
-    height: auto;
-    display: flex;
-    justify-content: space-evenly;
-    flex-wrap: wrap;
-  }
 `;
 
-function Projects({ setChangePosition }) {
-  const ref = useRef();
+const InnerContainer = styled.div`
+  width: 100%;
+  min-height: 80%;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  transform-style: preserve-3d;
+  transform: ${(props) => `rotateX(${props.angle}deg) translateZ(-${props.transZ - 100}px)`};
+  transition: transform 1s;
+`;
 
-  useEffect(() => {
-    if (ref) {
-      setChangePosition(ref.current.getBoundingClientRect().top);
-    }
-  }, [ref]);
+const ArrowLeft = styled.div`
+  position: absolute;
+  left: -2%;
+  top: 50%;
+  z-index: 999;
+`;
+
+const ArrowRight = styled(ArrowLeft)`
+  right: -2%;
+  left: 101%;
+`;
+
+const Card3D = styled.div`
+  position: absolute;
+  width: 80%;
+  height: 80%;
+  background-color: blue;
+  transform: ${(props) => `rotateX(${props.angle}deg) translateZ(${props.transZ + 25}px)`};
+`;
+
+function Projects({}) {
   const ProjectsData = [
     {
       url: '../../mywebsize.gif',
@@ -120,17 +129,51 @@ function Projects({ setChangePosition }) {
       ],
     },
   ];
+  const ref = useRef();
+  const [tz, setTz] = useState(0);
+  const [rotateY, setRotateY] = useState(0);
+  const [idx, setIdx] = useState(0);
+  const [angle, setAngle] = useState(0);
+
+  useEffect(() => {
+    if (ref) {
+      const value = Math.round(ref.current.offsetHeight / 2 / Math.tan(Math.PI / ProjectsData.length));
+      setTz(value);
+      setRotateY(360 / ProjectsData.length);
+    }
+  }, []);
+
+  useEffect(() => {
+    let angleValue = (idx / ProjectsData.length) * -360;
+    setAngle(angleValue);
+  }, [idx]);
 
   return (
-    <SkillPageS ref={ref}>
-      {/* <ProjectsContainer>
+    <SkillPageS>
+      <ProjectsContainer>
         <div className="projects">MY PROJECTS</div>
-        <div className="inner">
+        <InnerContainer angle={angle} transZ={tz}>
           {ProjectsData.map((el, key) => {
-            return <Card data={el} key={key} />;
+            return (
+              <Card3D ref={ref} key={key} angle={`${rotateY}` * key} transZ={tz}>
+                {key}
+              </Card3D>
+            );
           })}
-        </div>
-      </ProjectsContainer> */}
+        </InnerContainer>
+        <ArrowLeft
+          onClick={() => {
+            setIdx((prev) => prev - 1);
+          }}>
+          ㅇ
+        </ArrowLeft>
+        <ArrowRight
+          onClick={() => {
+            setIdx((prev) => prev + 1);
+          }}>
+          ㅇ
+        </ArrowRight>
+      </ProjectsContainer>
     </SkillPageS>
   );
 }

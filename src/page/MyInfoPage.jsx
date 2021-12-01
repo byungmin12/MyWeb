@@ -48,7 +48,8 @@ const Title = styled.div`
   font-size: 48px;
   font-weight: 1000;
   white-space: nowrap;
-
+  position: relative;
+  z-index: 999;
   .color {
     color: rgb(104, 82, 242);
   }
@@ -62,7 +63,8 @@ const Title = styled.div`
 const MyInfoContainer = styled.div`
   width: auto;
   height: auto;
-
+  position: relative;
+  z-index: 999;
   .inner {
     div {
       margin-bottom: 20px;
@@ -83,26 +85,9 @@ const MyInfoContainer = styled.div`
   }
 `;
 
-const HoverModal = styled.span`
-  position: absolute;
-  top: 50%;
-  left: -50%;
-  color: black;
-  animation: ${textKeyframes} 2s infinite;
-  display: none;
-  border: 1px solid rgb(104, 82, 242);
-  border-radius: 3px;
-`;
-
 const HoverText = styled.span`
-  cursor: pointer;
   position: relative;
   color: rgb(104, 82, 242);
-  :hover {
-    ${HoverModal} {
-      display: block;
-    }
-  }
 `;
 
 const ConContainer = styled.div`
@@ -111,11 +96,19 @@ const ConContainer = styled.div`
   flex-wrap: wrap;
 `;
 
-const QuestionContainer = styled.div``;
+const QuestionContainer = styled.div`
+  position: relative;
+  z-index: 999;
+`;
 
 const ContactContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
+  a {
+    text-decoration: none;
+    color: rgb(104, 82, 242);
+    font-weight: 800;
+  }
   @media screen and (max-width: 600px) {
     font-size: 14px;
   }
@@ -168,21 +161,14 @@ function MyInfoPage() {
               <Fade left>
                 <ul>
                   <li>
-                    책임감이 강하며 문제를 파악하고 해결하기 위해{' '}
-                    <HoverText>
-                      노력<HoverModal>깃헙에서확인하기</HoverModal>
-                    </HoverText>
+                    책임감이 강하며 문제를 파악하고 해결하기 위해 <HoverText>노력</HoverText>
                     합니다.
                   </li>
                   <li>
                     구성원들과 <HoverText>소통</HoverText>하고 팀의 분위기를 이끄는 것이 뛰어납니다.
                   </li>
                   <li>
-                    지속적인{' '}
-                    <HoverText>
-                      학습과 발전<HoverModal>깃헙에서확인하기</HoverModal>
-                    </HoverText>
-                    을 추구합니다.
+                    지속적인 <HoverText>학습과 발전</HoverText>을 추구합니다.
                   </li>
                 </ul>
               </Fade>
@@ -193,8 +179,18 @@ function MyInfoPage() {
                     <div>📧 E-mail: byungminkim12@gmail.com</div>
                   </div>
                   <div>
-                    <div>😍 Github: Kim's Github </div>
-                    <div>🏠 Blog: Kim's Blog </div>
+                    <div>
+                      😍 Github:{' '}
+                      <a href="https://github.com/byungmin12" target="_blank">
+                        Kim's Github
+                      </a>
+                    </div>
+                    <div>
+                      🏠 Blog:{' '}
+                      <a href="https://velog.io/@kbm940526" target="_blank">
+                        Kim's Blog
+                      </a>{' '}
+                    </div>
                   </div>
                 </Fade>
               </ContactContainer>
