@@ -7,15 +7,15 @@ import styled from 'styled-components';
 
 const GradientContainer = styled.div`
   width: 100vw;
-  height: 500vh;
+  height: 465vh;
   position: absolute;
   top: 100vh;
   left: 0;
+  z-index: 1;
 `;
 
-function GradientPage({ position, changePosition }) {
+function GradientPage({ position }) {
   const [height, setHeight] = useState(0);
-  const camera = changePosition;
   const ref = useRef();
 
   useEffect(() => {
@@ -33,13 +33,7 @@ function GradientPage({ position, changePosition }) {
           <spotLight position={[150, 151, 1]} intensity={0.2} />
           <pointLight intensity={0.3} position={[140, -25, 0]} />
           <Suspense fallback={null}>
-            <Plane
-              scale={[0.2, 0.2, 0.2]}
-              position={{ x: -700, y: 0, z: 0 }}
-              scroll={position}
-              camera={camera}
-              heightRef={height}
-            />
+            <Plane scale={[0.2, 0.2, 0.2]} position={{ x: -700, y: 0, z: 0 }} scroll={position} heightRef={height} />
           </Suspense>
         </Scene>
       </Canvas>
