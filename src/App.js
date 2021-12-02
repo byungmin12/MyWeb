@@ -29,7 +29,7 @@ function App() {
     <AppCss ref={scrollArea} onScroll={onScroll}>
       <CanvasPage />
       <GradientContainer></GradientContainer>
-      {/* <GradientPage position={position} /> */}
+      <GradientPage position={position} />
       <MyInfoPage />
       <SkillPage />
       <Projects />
