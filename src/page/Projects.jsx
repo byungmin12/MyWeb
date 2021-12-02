@@ -55,6 +55,7 @@ const InnerContainer = styled.div`
   transform-style: preserve-3d;
   transform: ${(props) => `rotateX(${props.angle}deg) translateZ(-${props.transZ - 100}px)`};
   transition: transform 1s;
+  ${(props) => console.log(props)}
 `;
 
 const ArrowLeft = styled.div`
@@ -62,6 +63,7 @@ const ArrowLeft = styled.div`
   left: -2%;
   top: 50%;
   z-index: 999;
+  cursor: pointer;
 `;
 
 const ArrowRight = styled(ArrowLeft)`
