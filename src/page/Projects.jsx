@@ -53,9 +53,9 @@ const InnerContainer = styled.div`
   align-items: center;
   position: absolute;
   transform-style: preserve-3d;
-  transform: ${(props) => `rotateX(${props.angle}deg) translateZ(-${props.transZ - 100}px)`};
+  /* transform: ${(props) => `rotateX(${props.angle}deg) translateZ(-${props.transZ - 100}px)`}; */
   transition: transform 1s;
-  ${(props) => console.log(props)}
+  ${(props) => `transform : rotateX(${props.angle}deg);`}
 `;
 
 const ArrowLeft = styled.div`
