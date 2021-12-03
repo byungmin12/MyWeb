@@ -1,5 +1,16 @@
 import React, { useState, useEffect, useRef } from 'react';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
+
+const dash = keyframes`
+      from {
+    stroke-dashoffset: 60;
+  }
+  to {
+    stroke-dashoffset: 0;
+    stroke:rgb(104, 82, 242);
+
+  }
+`;
 
 const InnerContainer = styled.div`
   width: 100%;
@@ -45,7 +56,7 @@ const GifTextContainer = styled.div`
   position: absolute;
   top: 0;
   left: 0;
-  transform: rotateY(-180deg);
+  /* transform: rotateY(-180deg); */
   backface-visibility: hidden;
   transition: 1s;
   border: 3px solid black;
@@ -61,14 +72,25 @@ const GifTextContainer = styled.div`
     font-size: 16px;
     margin-top: 12px;
   }
+  //font-weight
+`;
+
+const ContributeAndStack = styled.div`
+  display: flex;
+  height: auto;
+  margin-top: 20px;
+
   .stackContainer {
-    width: 100%;
-    height: auto;
-    margin-top: 12px;
+    width: 50%;
+    height: 100%;
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-left: 3px dashed black;
     .stack {
-      width: auto;
+      text-align: center;
+      width: 200px;
       height: auto;
       font-size: 16px;
       font-weight: 800;
@@ -77,7 +99,24 @@ const GifTextContainer = styled.div`
       color: white;
       padding: 5px;
       white-space: nowrap;
-      margin-right: 5px;
+      margin-top: 5px;
+    }
+  }
+
+  .contributeContainer {
+    width: 50%;
+    .contribute {
+      font-size: 20px;
+      margin-top: 5px;
+    }
+    polyline {
+      fill: none;
+      stroke: #ffffff;
+      stroke-width: 8px;
+      stroke-miterlimit: 10;
+      stroke-dashoffset: 0;
+      stroke-dasharray: 60;
+      animation: ${dash} 1s infinite;
     }
   }
 `;
@@ -185,11 +224,29 @@ function Card3DComponent({ idx }) {
                   '나만의 서브웨이 메뉴를 만들어 저장하고 사람들과 공유합니다. 메뉴 추천을 통해 서브웨이 메뉴 고민을
                   줄여주는 웹페이지'
                 </div>
-                <div className="stackContainer">
-                  {ProjectsData[0].stack.map((el) => {
-                    return <span className="stack">{el}</span>;
-                  })}
-                </div>
+
+                <ContributeAndStack>
+                  <div className="contributeContainer">
+                    {/* <svg width="30" height="15" viewBox="0 0 80 40">
+                      <polyline className="polyline" points="9.06 20.89 25.85 35.74 50.46 9.35" />
+                    </svg> */}
+                    {ProjectsData[0].contribution.map((el) => {
+                      return (
+                        <div className="contribute">
+                          <svg width="30" height="20" viewBox="-15 0 80 40">
+                            <polyline className="polyline" points="9.06 20.89 25.85 35.74 50.46 9.35" />
+                          </svg>
+                          <span>{el}</span>
+                        </div>
+                      );
+                    })}
+                  </div>
+                  <div className="stackContainer">
+                    {ProjectsData[0].stack.map((el) => {
+                      return <span className="stack">{el}</span>;
+                    })}
+                  </div>
+                </ContributeAndStack>
               </GifTextContainer>
             </Card3DContainer>
           </Card3D>
