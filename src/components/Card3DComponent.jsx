@@ -56,7 +56,7 @@ const GifTextContainer = styled.div`
   position: absolute;
   top: 0;
   left: 0;
-  /* transform: rotateY(-180deg); */
+  transform: rotateY(-180deg);
   backface-visibility: hidden;
   transition: 1s;
   border: 3px solid black;
@@ -72,7 +72,6 @@ const GifTextContainer = styled.div`
     font-size: 16px;
     margin-top: 12px;
   }
-  //font-weight
 `;
 
 const ContributeAndStack = styled.div`
@@ -82,12 +81,11 @@ const ContributeAndStack = styled.div`
 
   .stackContainer {
     width: 50%;
-    height: 100%;
+    height: inherit;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
-    border-left: 3px dashed black;
+    border-left: 3px dashed rgb(104, 82, 242);
     .stack {
       text-align: center;
       width: 200px;
@@ -135,6 +133,38 @@ const Card3DContainer = styled.div`
     }
     ${GifTextContainer} {
       transform: rotateY(0deg);
+    }
+  }
+`;
+
+const Repository = styled.div`
+  width: calc(100% - (20px));
+  padding: 20px;
+  height: auto;
+  position: absolute;
+  transform: translate(-50%, 0%);
+  left: 50%;
+  bottom: 30px;
+  display: flex;
+  justify-content: space-between;
+  backface-visibility: hidden;
+
+  .button {
+    height: 50px;
+    border: 1px solid rgb(104, 82, 242);
+    color: rgb(104, 82, 242);
+    font-size: 24px;
+    font-weight: 800;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    ${(props) => `width: calc((100% / (${props.children.length})) - 30px);`}
+    transition-duration: 0.5s;
+    text-decoration-line: none;
+    :hover {
+      background-color: rgb(104, 82, 242);
+      color: white;
+      cursor: pointer;
     }
   }
 `;
@@ -216,37 +246,39 @@ function Card3DComponent({ idx }) {
           <Card3D ref={ref} key={key} angle={`${rotateY}` * key} transZ={tz}>
             <Card3DContainer>
               <GifContainer>
-                <img src="../../mysubway.gif" />
+                <img src={el.url} />
               </GifContainer>
               <GifTextContainer>
-                <div className="title">My Subway</div>
-                <div className="explain">
-                  '나만의 서브웨이 메뉴를 만들어 저장하고 사람들과 공유합니다. 메뉴 추천을 통해 서브웨이 메뉴 고민을
-                  줄여주는 웹페이지'
-                </div>
-
+                <div className="title">{el.title}</div>
+                <div className="explain">{el.explain}</div>
                 <ContributeAndStack>
                   <div className="contributeContainer">
-                    {/* <svg width="30" height="15" viewBox="0 0 80 40">
-                      <polyline className="polyline" points="9.06 20.89 25.85 35.74 50.46 9.35" />
-                    </svg> */}
-                    {ProjectsData[0].contribution.map((el) => {
+                    {el.contribution.map((ct) => {
                       return (
                         <div className="contribute">
                           <svg width="30" height="20" viewBox="-15 0 80 40">
                             <polyline className="polyline" points="9.06 20.89 25.85 35.74 50.46 9.35" />
                           </svg>
-                          <span>{el}</span>
+                          <span>{ct}</span>
                         </div>
                       );
                     })}
                   </div>
                   <div className="stackContainer">
-                    {ProjectsData[0].stack.map((el) => {
-                      return <span className="stack">{el}</span>;
+                    {el.stack.map((st) => {
+                      return <span className="stack">{st}</span>;
                     })}
                   </div>
                 </ContributeAndStack>
+                <Repository>
+                  {el.repository.map((rep) => {
+                    return (
+                      <a href={rep.url} target="_blank" className="button" width={el.length}>
+                        {rep.where}
+                      </a>
+                    );
+                  })}
+                </Repository>
               </GifTextContainer>
             </Card3DContainer>
           </Card3D>
