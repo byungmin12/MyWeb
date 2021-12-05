@@ -2,23 +2,21 @@ import React, { useState, useEffect, useRef } from 'react';
 import styled, { keyframes } from 'styled-components';
 
 const dash = keyframes`
-      from {
+  from {
     stroke-dashoffset: 60;
   }
   to {
     stroke-dashoffset: 0;
     stroke:rgb(104, 82, 242);
-
   }
 `;
 
 const InnerContainer = styled.div`
-  width: 100%;
-  min-height: 80%;
+  width: 80%;
+  height: 80%;
   display: flex;
   justify-content: center;
   align-items: center;
-  position: absolute;
   transform-style: preserve-3d;
   transition: transform 1s;
   ${(props) => `transform : rotateX(${props.angle}deg);`}
@@ -26,10 +24,14 @@ const InnerContainer = styled.div`
 
 const Card3D = styled.div`
   position: absolute;
-  width: 700px;
+  width: 80%;
   height: 80%;
-  min-height: 500px;
-  transform: ${(props) => `rotateX(${props.angle}deg) translateZ(${props.transZ + 25}px)`};
+  min-height: auto;
+  transform: ${(props) => `rotateX(${props.angle}deg) translateZ(${props.transZ}px)`};
+
+  /* @media screen and (max-width: 600px) {
+    transform: ${(props) => `rotateX(${props.angle}deg) translateZ(${props.transZ}px)`};
+  } */
 `;
 
 const GifContainer = styled.div`
@@ -56,7 +58,7 @@ const GifTextContainer = styled.div`
   position: absolute;
   top: 0;
   left: 0;
-  transform: rotateY(-180deg);
+  /* transform: rotateY(-180deg); */
   backface-visibility: hidden;
   transition: 1s;
   border: 3px solid black;
@@ -67,28 +69,47 @@ const GifTextContainer = styled.div`
     width: 100%;
     text-align: center;
     color: rgb(104, 82, 242);
+    @media screen and (max-width: 600px) {
+      font-size: 24px;
+    }
   }
   .explain {
     font-size: 16px;
     margin-top: 12px;
+    @media screen and (max-width: 600px) {
+      font-size: 12px;
+    }
   }
 `;
 
 const ContributeAndStack = styled.div`
   display: flex;
-  height: auto;
+  width: 100%;
+  height: 30%;
   margin-top: 20px;
-
+  /* overflow: hidden; */
+  @media screen and (max-width: 600px) {
+    /* overflow-y: visible; */
+    overflow-y: scroll;
+    overflow-x: hidden;
+    flex-direction: column-reverse;
+  }
   .stackContainer {
     width: 50%;
-    height: inherit;
+    height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
     border-left: 3px dashed rgb(104, 82, 242);
+    padding: 20px;
+    @media screen and (max-width: 600px) {
+      width: 80%;
+      border-left: 0px dashed rgb(104, 82, 242);
+      border-bottom: 3px dashed rgb(104, 82, 242);
+    }
     .stack {
       text-align: center;
-      width: 200px;
+      width: 100%;
       height: auto;
       font-size: 16px;
       font-weight: 800;
@@ -98,14 +119,25 @@ const ContributeAndStack = styled.div`
       padding: 5px;
       white-space: nowrap;
       margin-top: 5px;
+      @media screen and (max-width: 600px) {
+        font-size: 8px;
+      }
     }
   }
 
   .contributeContainer {
-    width: 50%;
+    width: calc(50% - 1.5px);
+    overflow-x: hidden;
+    @media screen and (max-width: 600px) {
+      width: 100%;
+      overflow: visible;
+    }
     .contribute {
       font-size: 20px;
       margin-top: 5px;
+      @media screen and (max-width: 600px) {
+        font-size: 12px;
+      }
     }
     polyline {
       fill: none;
@@ -144,7 +176,7 @@ const Repository = styled.div`
   position: absolute;
   transform: translate(-50%, 0%);
   left: 50%;
-  bottom: 30px;
+  bottom: 0px;
   display: flex;
   justify-content: space-between;
   backface-visibility: hidden;
@@ -161,6 +193,10 @@ const Repository = styled.div`
     ${(props) => `width: calc((100% / (${props.children.length})) - 30px);`}
     transition-duration: 0.5s;
     text-decoration-line: none;
+    @media screen and (max-width: 600px) {
+      height: 25px;
+      font-size: 12px;
+    }
     :hover {
       background-color: rgb(104, 82, 242);
       color: white;
@@ -173,10 +209,21 @@ function Card3DComponent({ idx }) {
   const ProjectsData = [
     {
       url: '../../mywebsize.gif',
-      title: 'PORTFOLIO',
-      explain: '순수 CSS와 three.js를 활용하여 나를 소개할 수 있는 웹 사이트',
+      title: 'PORTFOLIO 2.0',
+      explain: 'Three.js를 활용하여 만들 포트폴리오 사이트',
       stack: ['React', 'STYLED COMPONENTS', 'JS', 'three.js'],
       contribution: ['웹 전체적인 디자인 구축', '각종 Animation 지정', '3d 모델링'],
+      repository: [
+        { where: '배포', url: 'byungmin.kim' },
+        { where: '깃헙', url: 'https://github.com/byungmin12/MyWeb' },
+      ],
+    },
+    {
+      url: '../../mywebsize.gif',
+      title: 'PORTFOLIO 1.0',
+      explain: 'React와 Animation Css를 활용하여 프레젠테이션 형식으로 나를 소개하는 웹 사이트',
+      stack: ['React', 'STYLED COMPONENTS', 'JS'],
+      contribution: ['웹 전체적인 디자인 구축', '각종 Animation 지정'],
       repository: [
         { where: '배포', url: 'byungmin.kim' },
         { where: '깃헙', url: 'https://github.com/byungmin12/MyWeb' },
@@ -229,6 +276,7 @@ function Card3DComponent({ idx }) {
   useEffect(() => {
     if (ref) {
       const value = Math.round(ref.current.offsetHeight / 2 / Math.tan(Math.PI / ProjectsData.length));
+
       setTz(value);
       setRotateY(360 / ProjectsData.length);
     }

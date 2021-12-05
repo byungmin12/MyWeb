@@ -5,7 +5,6 @@ import Card3DComponent from '../components/Card3DComponent';
 
 const ProjectPage = styled.div`
   width: 100vw;
-  min-height: 65vh;
   height: 65vh;
   font-size: 24px;
   display: flex;
@@ -18,11 +17,8 @@ const ProjectPage = styled.div`
 `;
 
 const ProjectsContainer = styled.div`
-  width: 80%;
-  height: 80%;
-  min-height: 600px;
-
-  padding: 60px;
+  width: calc(80% + 100px);
+  height: calc(90% + 100px);
   border: 3px dashed rgb(104, 82, 242);
   position: relative;
   perspective: 1000px;
@@ -30,6 +26,7 @@ const ProjectsContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+
   .projects {
     position: absolute;
     transform: translate(-50%, -50%);
