@@ -26,7 +26,7 @@ function GradientPage({ position }) {
 
   return (
     <GradientContainer>
-      <Canvas ref={ref} camera={{ position: [200, 600, 0] }} shadowMap>
+      <Canvas ref={ref} camera={{ position: [200, 600, 0] }} near={0} shadowMap>
         <Scene>
           <ambientLight intensity={0.3} />
           <OrbitControls enableZoom={false} />
