@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import styled, { keyframes } from 'styled-components';
+import { ProjectsData } from './Data';
 
 const dash = keyframes`
   from {
@@ -27,7 +28,8 @@ const Card3D = styled.div`
   width: 80%;
   height: 80%;
   min-height: auto;
-  transform: ${(props) => `rotateX(${props.angle}deg) translateZ(${props.transZ}px)`};
+  transform: ${(props) => `rotateX(${props.angle}deg) translateZ(${props.transZ + 20}px)`};
+  display: flex;
 
   /* @media screen and (max-width: 600px) {
     transform: ${(props) => `rotateX(${props.angle}deg) translateZ(${props.transZ}px)`};
@@ -43,7 +45,6 @@ const GifContainer = styled.div`
   backface-visibility: hidden;
   transition: 1s;
   border: 3px solid black;
-
   img {
     width: 100%;
     height: 100%;
@@ -51,14 +52,13 @@ const GifContainer = styled.div`
 `;
 
 const GifTextContainer = styled.div`
-  height: calc(100% - (20px));
+  height: calc(100%);
   width: 100%;
-  padding: 20px 20px 0px 20px;
   background-color: white;
   position: absolute;
   top: 0;
   left: 0;
-  /* transform: rotateY(-180deg); */
+  transform: rotateY(-180deg);
   backface-visibility: hidden;
   transition: 1s;
   border: 3px solid black;
@@ -72,12 +72,18 @@ const GifTextContainer = styled.div`
     @media screen and (max-width: 600px) {
       font-size: 24px;
     }
+    @media screen and (max-width: 350px) {
+      font-size: 18px;
+    }
   }
   .explain {
     font-size: 16px;
     margin-top: 12px;
     @media screen and (max-width: 600px) {
       font-size: 12px;
+    }
+    @media screen and (max-width: 350px) {
+      font-size: 8px;
     }
   }
 `;
@@ -87,7 +93,9 @@ const ContributeAndStack = styled.div`
   width: 100%;
   height: 30%;
   margin-top: 20px;
-  /* overflow: hidden; */
+  transform: rotateY(-180deg);
+  backface-visibility: hidden;
+
   @media screen and (max-width: 600px) {
     /* overflow-y: visible; */
     overflow-y: scroll;
@@ -102,6 +110,7 @@ const ContributeAndStack = styled.div`
     align-items: center;
     border-left: 3px dashed rgb(104, 82, 242);
     padding: 20px;
+
     @media screen and (max-width: 600px) {
       width: 80%;
       border-left: 0px dashed rgb(104, 82, 242);
@@ -151,30 +160,12 @@ const ContributeAndStack = styled.div`
   }
 `;
 
-const Card3DContainer = styled.div`
-  display: flex;
-  height: 100%;
-  width: 100%;
-  position: relative;
-  perspective: 1000px;
-  transition: 1s;
-
-  :hover {
-    ${GifContainer} {
-      transform: rotateY(180deg);
-    }
-    ${GifTextContainer} {
-      transform: rotateY(0deg);
-    }
-  }
-`;
-
 const Repository = styled.div`
   width: calc(100% - (20px));
   padding: 20px;
   height: auto;
   position: absolute;
-  transform: translate(-50%, 0%);
+  transform: translate(-50%, 0%) rotateY(-180deg);
   left: 50%;
   bottom: 0px;
   display: flex;
@@ -193,9 +184,12 @@ const Repository = styled.div`
     ${(props) => `width: calc((100% / (${props.children.length})) - 30px);`}
     transition-duration: 0.5s;
     text-decoration-line: none;
+    backface-visibility: hidden;
+
     @media screen and (max-width: 600px) {
       height: 25px;
       font-size: 12px;
+      ${(props) => `width: calc((100% / (${props.children.length})) );`}
     }
     :hover {
       background-color: rgb(104, 82, 242);
@@ -205,69 +199,30 @@ const Repository = styled.div`
   }
 `;
 
+const Card3DContainer = styled.div`
+  display: flex;
+  height: 100%;
+  width: 100%;
+  position: relative;
+  perspective: 1000px;
+  transition: 1s;
+  :hover {
+    ${GifContainer} {
+      transform: rotateY(180deg);
+    }
+    ${GifTextContainer} {
+      transform: rotateY(0deg);
+    }
+    ${Repository} {
+      transform: translate(-50%, 0%) rotateY(0deg);
+    }
+    ${ContributeAndStack} {
+      transform: rotateY(0deg);
+    }
+  }
+`;
+
 function Card3DComponent({ idx }) {
-  const ProjectsData = [
-    {
-      url: '../../mywebsize.gif',
-      title: 'PORTFOLIO 2.0',
-      explain: 'Three.js를 활용하여 만들 포트폴리오 사이트',
-      stack: ['React', 'STYLED COMPONENTS', 'JS', 'three.js'],
-      contribution: ['웹 전체적인 디자인 구축', '각종 Animation 지정', '3d 모델링'],
-      repository: [
-        { where: '배포', url: 'byungmin.kim' },
-        { where: '깃헙', url: 'https://github.com/byungmin12/MyWeb' },
-      ],
-    },
-    {
-      url: '../../mywebsize.gif',
-      title: 'PORTFOLIO 1.0',
-      explain: 'React와 Animation Css를 활용하여 프레젠테이션 형식으로 나를 소개하는 웹 사이트',
-      stack: ['React', 'STYLED COMPONENTS', 'JS'],
-      contribution: ['웹 전체적인 디자인 구축', '각종 Animation 지정'],
-      repository: [
-        { where: '배포', url: 'byungmin.kim' },
-        { where: '깃헙', url: 'https://github.com/byungmin12/MyWeb' },
-      ],
-    },
-    {
-      url: '../../isthisright.gif',
-      title: '이거맞아?',
-      explain: '운동을 좋아하는 사람들을 위한 운동 피드백 커뮤니티 ',
-      stack: ['React', 'STYLED COMPONENTS', 'JS'],
-      contribution: [
-        'Landing page 구현',
-        'Nav bar 구현',
-        'Question page 구현',
-        'Login page 구현',
-        'Sign up page 구현',
-        'Mypage 구현',
-        'footer 구현',
-      ],
-      repository: [
-        { where: '배포', url: 'isthisright.kr' },
-        { where: '깃헙', url: 'https://github.com/codestates/is-this-right' },
-        { where: '기획서', url: 'https://codestates.notion.site/1-S-M-S-31dbe334fe7544b79569c717c8c6bb16' },
-      ],
-    },
-    {
-      url: '../../mysubway.gif',
-      title: 'MySubway',
-      explain:
-        '나만의 서브웨이 메뉴를 만들어 저장하고 사람들과 공유합니다. 메뉴 추천을 통해 서브웨이 메뉴 고민을 줄여주는 웹페이지',
-      stack: ['React', 'STYLED COMPONENTS', 'JS'],
-      contribution: [
-        '웹 전체적인 디자인 구축',
-        'Side bar 구현',
-        'post page 구현',
-        'detail page 구현',
-        'post card 구현',
-      ],
-      repository: [
-        { where: '깃헙', url: 'https://github.com/codestates/My-subway' },
-        { where: '기획서', url: 'https://github.com/codestates/My-subway/wiki' },
-      ],
-    },
-  ];
   const ref = useRef();
   const [tz, setTz] = useState(0);
   const [rotateY, setRotateY] = useState(0);
@@ -276,7 +231,6 @@ function Card3DComponent({ idx }) {
   useEffect(() => {
     if (ref) {
       const value = Math.round(ref.current.offsetHeight / 2 / Math.tan(Math.PI / ProjectsData.length));
-
       setTz(value);
       setRotateY(360 / ProjectsData.length);
     }
