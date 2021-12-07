@@ -12,9 +12,12 @@ function normalize(v, vmin, vmax, tmin, tmax) {
 
 function Plane({ position, scale, where, scroll, heightRef }) {
   let plane = useRef();
-  let { x, z } = position;
+  // let { x, z } = position;
   const a = heightRef;
   const [y, setY] = useState(0);
+  const [x, setX] = useState(position.x);
+  const [z, setZ] = useState(position.z);
+
   const [xPosition, setXPosition] = useState(0);
 
   useFrame(({ mouse }) => {
@@ -23,29 +26,19 @@ function Plane({ position, scale, where, scroll, heightRef }) {
       const newY = y + (targetY - y) * 0.1;
       setY(newY);
       plane.current.rotation.set((y - targetY) * 0.0064, 0, (targetY - y) * 0.0064);
-    } else if (where === 'side') {
-      if (plane.current.position.x >= 450) {
-        plane.current.position.x = -350;
-      } else {
-        const targetY = normalize(mouse.y, -0.75, 1.75, -50, 105);
-        const newY = y + (targetY - y) * 0.1;
-        plane.current.position.x = plane.current.position.x + 1;
-        plane.current.rotation.set((y - targetY) * 0.0064, 0, (targetY - y) * 0.0064);
-      }
     } else {
-      let planePosition = scroll / (a.current.clientHeight / 1050) - 700 + 40;
+      let planePosition = scroll / (a.current.clientHeight / 1050) - 720;
       let planeRotation = scroll / (a.current.clientHeight / (180 / 100));
-      plane.current.position.x = planePosition;
-
       const targetX = normalize(-mouse.x, -0.75, 1.75, -50, 105);
-      const newX = xPosition + (targetX - xPosition) * 0.1;
-      setXPosition(newX);
-      plane.current.rotation.set(0, -(xPosition - targetX) * 0.01, planeRotation);
-      plane.current.position.z = (targetX - xPosition) * 1;
+      const targetY = normalize(mouse.y, -0.75, 1.75, -50, 105);
+      plane.current.rotation.set(0, (xPosition - targetX) * 0.01, planeRotation);
+      setX(planePosition - targetY);
+
+      setZ((targetX - xPosition) * 1);
       if ((xPosition - targetX) * 1 > -0.5) {
-        plane.current.position.y = (xPosition - targetX) * 0.5;
+        setY((xPosition - targetX) * 0.5);
       } else {
-        plane.current.position.y = (xPosition - targetX) * -0.5;
+        setY((xPosition - targetX) * -0.5);
       }
     }
   });
