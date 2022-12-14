@@ -3,11 +3,12 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import GlobalStyle from './global';
+import { BrowserRouter } from 'react-router-dom';
 
 ReactDOM.render(
-  <Suspense fallback={<div>로딩중입니다.</div>}>
+  <BrowserRouter>
     <App />
     <GlobalStyle />
-  </Suspense>,
+  </BrowserRouter>,
   document.getElementById('root'),
 );
