@@ -5,8 +5,7 @@ import { Line } from 'three'
 extend({ Line_: Line })
 
 declare global {
-  // eslint-disable-next-line @typescript-eslint/no-namespace
-  namespace JSX {
+  declare module JSX {
     interface IntrinsicElements {
       line_: ReactThreeFiber.Object3DNode<Line, typeof Line>
     }
