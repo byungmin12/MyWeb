@@ -1,23 +1,11 @@
-import React, { useMemo, useState } from 'react'
-import { useFrame,extend, ReactThreeFiber  } from '@react-three/fiber'
+import React, {  useLayoutEffect,  useRef, useState } from 'react'
+import { useFrame } from '@react-three/fiber'
 import { Vector3 as Vector } from 'three/src/math/Vector3'
-import { BufferGeometry,Line } from 'three'
-
-extend({ Line_: Line })
-
-declare global {
-  // eslint-disable-next-line @typescript-eslint/no-namespace
-  module  JSX {
-    interface IntrinsicElements {
-      line_: ReactThreeFiber.Object3DNode<Line, typeof Line>
-    }
-  }
-}
-
 
 function Rain() {
   const [position, setPosition] = useState([Math.random() * 400 -200, Math.random() * 500 - 250, Math.random() * 400 - 200])
   const [speed, setSpeed] = useState(0)
+  const lineRef = useRef<any>(null)
 
   useFrame(()=>{
     setSpeed((prev)=>(prev - 0.1 + Math.random() * 0.1))
@@ -28,19 +16,21 @@ function Rain() {
     }
   })
 
-  const lineGeometry = useMemo(()=>{
-    const points = []
-    const random = Math.random() * 10 + 2
-    points.push(new Vector(0,random,0))
-    points.push(new Vector(0,-random,0))
-    return new BufferGeometry().setFromPoints(points)
+  useLayoutEffect(()=>{
+      const points = []
+      const random = Math.random() * 10 + 2
+      points.push(new Vector(0,random,0))
+      points.push(new Vector(0,-random,0))
+      lineRef.current?.geometry.setFromPoints(points)
   },[])
+
 
   return (
     <group  position={new Vector(...position)} >
-      <line_ geometry={lineGeometry}>
+      <line ref={lineRef} >
+        <bufferGeometry/>
         <lineBasicMaterial  attach="material" color={'#aaaaaa'} linewidth={10} linejoin={'round'} />
-      </line_>
+      </line>
     </group>
   )
 }
