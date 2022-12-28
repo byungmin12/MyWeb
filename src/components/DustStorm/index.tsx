@@ -1,8 +1,8 @@
 import React, { Suspense, useEffect, useMemo } from 'react'
 import { OBJLoader } from 'three-stdlib'
-import { Euler, Fog,  Object3D, Vector3 } from 'three'
+import {  Fog,  Object3D } from 'three'
 import { useLoader, useThree } from '@react-three/fiber'
-import { PerspectiveCamera } from '@react-three/drei'
+import CustomPerspectiveCamera, { TInitialArgs } from '../common/CustomPerspectiveCamera'
 const color = '#D4CC9A'
 
 const Buildings = () => {
@@ -55,26 +55,13 @@ const Buildings = () => {
   return <primitive object={memoizationObj} dispose={null}  castShadow={true} receiveShadow={true}  />
 }
 
-
-
-
-export const FogCamera = () => {
+const DustStorm = () => {
   const rotation = [-0.4239391588266323, 0.7010640463834621, 0.2832774959276831]
   const position = [127.45293777867074, 62.11080512264083, 137.6247069251716]
-  return (
-    <PerspectiveCamera
-      rotation={new Euler(...rotation)}
-      position={new Vector3(...position)}
-      makeDefault={true}
-      args={[20, 2, 1, 1000]}
-    />
-  )
-}
-
-const DustStorm = () => {
+  const args : TInitialArgs = [20, 2, 1, 1000]
   return (
     <>
-      <FogCamera />
+      <CustomPerspectiveCamera initialPosition={position} initialRotation={rotation} initialArgs={args} />
       <group>
         <Suspense fallback={null}>
         <Buildings />
