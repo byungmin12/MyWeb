@@ -1,11 +1,16 @@
 import React, { useState } from 'react'
 import { Cloud, Sky, Stars } from '@react-three/drei'
+import CustomPerspectiveCamera, { TInitialArgs } from '../common/CustomPerspectiveCamera'
 
 function Bright({isCloud = 0}: {isCloud : number}) {
   const hours = new Date().getHours()
   const [inclination ] = useState( ((1 / 24) * hours)+ 0.5)
+  const rotation = [1.16, -0.12, 0.27]
+  const position = [0,0,1]
+  const args : TInitialArgs = [45, 1, 1, 1000]
   return (
     <>
+      <CustomPerspectiveCamera initialRotation={rotation} initialPosition={position} initialArgs={args} />
       {
         (inclination >=13 || inclination <= 0.66) ?
         <>
