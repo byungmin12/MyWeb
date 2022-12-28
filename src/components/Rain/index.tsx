@@ -3,9 +3,10 @@ import Rain from './Rain';
 import Flash from '../Flash'
 import Clouds from '../Clouds'
 import CustomPerspectiveCamera, { TInitialArgs } from '../common/CustomPerspectiveCamera'
+import WaterDrop from './WaterDrop'
 
 function Rains() {
-  const count = 3000; // number point accross one axis ini akan generate point 10.00 dimana count hanya 100 karena multiply
+  const count = 500; // number point accross one axis ini akan generate point 10.00 dimana count hanya 100 karena multiply
   const rotation = [1.16, -0.12, 0.27]
   const position = [0,0,1]
   const args : TInitialArgs = [45, 1, 1, 1000]
@@ -17,7 +18,12 @@ function Rains() {
           <Rain  key={idx}/>
         )
       })}
-      <Flash />
+      {Array(300).fill(0).map((_,idx)=>{
+        return (
+          <WaterDrop position={[Math.random() * 800 - 400, 300, Math.random() * 500 - 500]}  key={idx}/>
+        )
+      })}
+      {/*<Flash />*/}
       <Clouds />
       <ambientLight color={'#555555'} />
       <directionalLight position={[0, 0, 1]} color={'#FFEEDD'} />

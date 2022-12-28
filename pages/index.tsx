@@ -29,11 +29,12 @@ export default function Home() {
       {/*<color attach='background' args={['#434343']} />*/}
       {/*<fogExp2 color={'#00354e'} density={0.001} />*/}
       {/*<Clouds />*/}
-      {/*<Rains />*/}
+      <Rains />
       {/*<Flash />*/}
       {/*<Bright isCloud={0} />*/}
       {/*<Snow />*/}
       {/*<DustStorm />*/}
+
     </Canvas>
   </Wrapper>
 }
