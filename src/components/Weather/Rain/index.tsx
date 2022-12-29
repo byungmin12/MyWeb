@@ -1,6 +1,5 @@
 import React from 'react'
 import Rain from './Rain';
-import Flash from '../Flash'
 import Clouds from '../Clouds'
 import CustomPerspectiveCamera, { TInitialArgs } from '../common/CustomPerspectiveCamera'
 import WaterDrop from './WaterDrop'
@@ -23,7 +22,7 @@ function Rains() {
           <WaterDrop position={[Math.random() * 800 - 400, 300, Math.random() * 500 - 500]}  key={idx}/>
         )
       })}
-      {/*<Flash />*/}
+      {/* <Flash /> */}
       <Clouds />
       <ambientLight color={'#555555'} />
       <directionalLight position={[0, 0, 1]} color={'#FFEEDD'} />

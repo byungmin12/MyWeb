@@ -1,7 +1,7 @@
 import React, {  useLayoutEffect,  useRef, useState } from 'react'
 import { useFrame } from '@react-three/fiber'
 import { Vector3 as Vector } from 'three/src/math/Vector3'
-import random from '../../hooks/random'
+import random from '../../../hooks/random'
 
 function Rain() {
   const [position, setPosition] = useState(random())
