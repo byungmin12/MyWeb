@@ -10,14 +10,13 @@ interface IWaterDrop {
 function WaterDrop({position}:IWaterDrop) {
   const mesh = useRef<Mesh>(null)
   const [newPosition, setPosition] = useState(position)
-  const [opacity, setOpacity] = useState(0.4)
+  const [opacity, setOpacity] = useState(0.2)
   const [scale,setScale] = useState(0)
 
   useFrame(() => {
     const random  = Math.random() * 0.08
     setOpacity((prev)=>prev - (random/5))
     setScale((prev)=>prev+random)
-
     if (opacity <= 0) {
       setPosition([Math.random() * 800 - 400, 300, Math.random() * 500 - 500])
       setOpacity(0.2)
