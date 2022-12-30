@@ -10,6 +10,7 @@ import Flash from '../src/components/Weather/Flash'
 import Bright from '../src/components/Weather/Bright'
 import Snow from '../src/components/Weather/Snow'
 import DustStorm from '../src/components/Weather/DustStorm'
+import Glassmorphism from '../src/components/Glassmorphism'
 
 export default function Home() {
 
@@ -35,9 +36,7 @@ export default function Home() {
       {/* <Snow /> */}
       {/* <DustStorm /> */}
     </Canvas>
-    <div>
-      rwar
-    </div>
+    <Glassmorphism />
   </Wrapper>
 }
 
