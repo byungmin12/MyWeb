@@ -1,6 +1,7 @@
 import React from 'react'
-import styled, { css } from 'styled-components'
+import styled from 'styled-components'
 import GlassmorphismWrapper from '../common/GlassmorphismWrapper'
+import { mediaQueries } from '../../../styles/mediaQueries'
 
 function Sidebar() {
 
@@ -23,6 +24,12 @@ function Sidebar() {
 const Wrapper = styled(GlassmorphismWrapper)`
   width: 260px;
   height: 100%;
+
+  ${mediaQueries("md")`
+   width: 100%;
+   display: flex;
+   flex:1
+  `};
 `
 
 const AvatarWrapper = styled.div`
@@ -34,12 +41,22 @@ const AvatarWrapper = styled.div`
   
   .github-stats {
     width: 100%;
+    
+    ${mediaQueries("md")`
+     height: 100%;
+     width: 50%;
+  `};
   }
 `
 const Avatar = styled.img`
   border-radius: 50%;
   width: 80px;
   height: 80px;
+
+  ${mediaQueries("md")`
+  width: 40px;
+  height: 40px;
+  `};
 `
 
 
