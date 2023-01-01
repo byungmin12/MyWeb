@@ -9,6 +9,7 @@
     "lint": "prettier pages ./src --write && eslint pages ./src --fix && next lint"
   },
   "dependencies": {
+    "@next/font": "^13.1.1",
     "@react-three/drei": "^9.46.7",
     "@react-three/fiber": "^8.9.1",
     "@react-three/postprocessing": "^2.7.0",

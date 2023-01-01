@@ -1,20 +1,18 @@
 import React from 'react'
 import styled from 'styled-components'
-import { breakpoints, mediaQueries } from '../../../styles/mediaQueries'
+import {  mediaQueries } from '../../../styles/mediaQueries'
+import { ISlide } from './index'
 
-function Skills() {
-  const [query , setQuery] = React.useState("&hide_title=true")
+interface ISkills extends ISlide{
 
-  React.useLayoutEffect(()=>{
-    if(matchMedia(`(max-width: ${breakpoints.md}px)`).matches){
-      setQuery("&hide_title=false")
-    }
-  },[])
+}
+
+function Skills({isSlide}:ISkills) {
 
   return (
     <Wrapper>
       <img className="github-skill-stats" src={`
-      https://github-readme-stats.vercel.app/api/top-langs/?username=byungmin12&layout=compact&bg_color=00000000&hide=css,html,java,ruby&hide_border=true&count_private=true&title_color=ffffff&text_color=ffffff${query}
+      https://github-readme-stats.vercel.app/api/top-langs/?username=byungmin12&layout=compact&bg_color=00000000&hide=css,html,java,ruby&hide_border=true&count_private=true&title_color=ffffff&text_color=ffffff&hide_title=${isSlide.toString()}
       `} alt={"language stats"}/>
     </Wrapper>
   )
@@ -25,8 +23,12 @@ const Wrapper = styled.div`
     width: 100%;
 
     ${mediaQueries("md")`
-      width: 50%;
-      height: 100%;
+    width: 100%;
+    height: 100%;
+    opacity: 1;
+    position: absolute;
+    top: 0;
+    left: 0;
   `};
   }
 `
