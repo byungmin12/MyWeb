@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import React, { useRef, useState } from 'react'
 import SunView from './SunView'
 import { MathUtils, Vector3 } from 'three'
 import { useFrame, useThree } from '@react-three/fiber'
@@ -6,6 +6,7 @@ import { IEffectController } from './Sun'
 
 function SunContainer() {
   const { gl } = useThree()
+  const [time, setTime] = useState(0)
   //타입을 알 수가 없음
   const skyRef = useRef<any>(null)
   const sun = new Vector3()
@@ -20,14 +21,23 @@ function SunContainer() {
     exposure: 5, // 0.13 ~ 5
   }
 
-  const elevationRange = [0, 90]
+  const elevationRange = [-5, 9]
   const azimuthRange = [-180, 180]
-  const exposureRange = [0.13, 5]
+  const exposureRange = [0.13, 0.5]
 
   const mappingTime = (toLow: number, toHigh: number): number => {
-    const currentTime = new Date().getHours() * 3600 + new Date().getMinutes() * 60
+    const today = new Date('Wed Oct 18 2023 15:00:00')
+    const fromHigh = 12 * 3600
+    const halfTime = fromHigh / 2
+    let currentTime = today.getHours() * 3600 + today.getMinutes() * 60 + today.getSeconds()
     const fromLow = 0
-    const fromHigh = 24 * 3600
+
+    console.log(currentTime, fromHigh, fromHigh + (fromHigh - currentTime))
+
+    if (currentTime > fromHigh) {
+      currentTime = fromHigh + (fromHigh - currentTime)
+    }
+
     return ((currentTime - fromLow) * (toHigh - toLow)) / (fromHigh - fromLow) + toLow
   }
 
@@ -38,12 +48,14 @@ function SunContainer() {
     uniforms['mieCoefficient'].value = effectController.mieCoefficient
     uniforms['mieDirectionalG'].value = effectController.mieDirectionalG
 
-    const phi = MathUtils.degToRad(mappingTime(elevationRange[0], elevationRange[1]))
+    const phi = MathUtils.degToRad(90 - mappingTime(elevationRange[0], elevationRange[1]))
     const theta = MathUtils.degToRad(mappingTime(azimuthRange[0], azimuthRange[1]) - 180)
+    const theta1 = MathUtils.degToRad(180)
 
-    sun.setFromSphericalCoords(1, phi, theta)
+    console.log(mappingTime(elevationRange[0], elevationRange[1]))
+    sun.setFromSphericalCoords(1, phi, theta1)
     uniforms['sunPosition'].value.copy(sun)
-    gl.toneMappingExposure = mappingTime(exposureRange[1], exposureRange[0])
+    // gl.toneMappingExposure = mappingTime(exposureRange[1], exposureRange[0])
   }
 
   // Use this hook to update the GUI and rendering
